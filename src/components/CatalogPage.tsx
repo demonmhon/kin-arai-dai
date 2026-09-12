@@ -304,8 +304,8 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
   };
 
   return (
-    <Container size={1600} py="lg" style={{ flex: 1 }}>
-      <Stack gap="lg">
+    <Container size={1600} py={{ base: 'xs', sm: 'lg' }} px={{ base: 'xs', sm: 'md' }} style={{ flex: 1 }}>
+      <Stack gap="sm">
         {/* Hero Search Box */}
         <HeroSearch
           searchTerm={searchTerm}
@@ -315,7 +315,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
         />
 
         {/* 2-Column Responsive Layout */}
-        <Grid gutter="md" align="flex-start">
+        <Grid gutter={{ base: 'xs', md: 'md' }} align="flex-start">
           {/* Left: Desktop Sticky Sidebar Filters */}
           <Grid.Col span={{ base: 12, md: 4, lg: 3.5, xl: 2.8 }} visibleFrom="md">
             <Box style={{ position: 'sticky', top: 76 }}>
@@ -339,19 +339,21 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
           <Grid.Col span={{ base: 12, md: 8, lg: 8.5, xl: 9.2 }}>
             {/* Scroll anchor with offset margin for sticky navbar */}
             <div ref={resultsTopRef} style={{ scrollMarginTop: 84 }} />
-            <Stack gap="md">
-              {/* Condition Hub Header with Eating & Menu Guides */}
-              <ConditionHubHeader
-                conditionId={selectedDiseaseId}
-                conditionName={diseaseMeta.name}
-                stageName={stageMeta.name}
-                stageBadge={stageMeta.badge}
-                onOpenStageModal={onOpenStageModal}
-              />
+            <Stack gap="xs">
+              {/* Condition Hub Header with Eating & Menu Guides (Desktop) */}
+              <Box visibleFrom="md">
+                <ConditionHubHeader
+                  conditionId={selectedDiseaseId}
+                  conditionName={diseaseMeta.name}
+                  stageName={stageMeta.name}
+                  stageBadge={stageMeta.badge}
+                  onOpenStageModal={onOpenStageModal}
+                />
+              </Box>
 
               {/* Status Bar */}
               <Paper
-                p="xs"
+                p={{ base: 8, sm: 'xs' }}
                 radius="lg"
                 withBorder
                 style={{
@@ -401,7 +403,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
                         styles={{
                           root: {
                             fontWeight: 600,
-                            fontSize: 11,
+                            fontSize: 12,
                           },
                         }}
                       >
@@ -425,7 +427,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
                 {/* Active Filter Badges */}
                 {isFilterActive && (
                   <Group gap="xs" mt="xs" pt="xs" style={{ borderTop: '1px solid #f1f5f9' }}>
-                    <Text size="11px" c="dimmed" fw={500}>
+                    <Text size="xs" c="dimmed" fw={500}>
                       ตัวกรองที่เปิดอยู่:
                     </Text>
 
@@ -610,6 +612,17 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
                   </Button>
                 </Paper>
               )}
+
+              {/* Condition Hub Header with Eating & Menu Guides (Mobile: placed under results & pagination) */}
+              <Box hiddenFrom="md">
+                <ConditionHubHeader
+                  conditionId={selectedDiseaseId}
+                  conditionName={diseaseMeta.name}
+                  stageName={stageMeta.name}
+                  stageBadge={stageMeta.badge}
+                  onOpenStageModal={onOpenStageModal}
+                />
+              </Box>
 
               {/* Medical Warning Banner */}
               <MedicalWarningBanner diseaseId={selectedDiseaseId} />

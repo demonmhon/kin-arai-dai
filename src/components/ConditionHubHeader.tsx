@@ -47,24 +47,24 @@ export const ConditionHubHeader: React.FC<ConditionHubHeaderProps> = ({
 
   return (
     <Paper
-      p={{ base: 'md', sm: 'lg' }}
+      p={{ base: 'xs', sm: 'lg' }}
       radius="lg"
       withBorder
-      mb="lg"
+      mb={{ base: 'xs', sm: 'lg' }}
       style={{
         background: 'linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #f8fafc 100%)',
         borderColor: '#a7f3d0',
         boxShadow: '0 4px 16px rgba(16, 185, 129, 0.06)',
       }}
     >
-      <Group justify="space-between" align="flex-start" wrap="wrap" gap="sm">
-        <Group gap="sm" wrap="nowrap" align="flex-start">
-          <ThemeIcon size={44} radius="xl" color="emerald" variant="filled" style={{ marginTop: 2 }}>
-            {getDiseaseLucideIcon(conditionId, 22)}
+      <Group justify="space-between" align="center" wrap="wrap" gap="xs">
+        <Group gap="xs" wrap="nowrap" align="center">
+          <ThemeIcon size={38} radius="xl" color="emerald" variant="filled" style={{ flexShrink: 0 }}>
+            {getDiseaseLucideIcon(conditionId, 20)}
           </ThemeIcon>
           <Box>
             <Group gap="xs" wrap="wrap" mb={2}>
-              <Title order={2} fz={{ base: 18, sm: 22 }} fw={700} c="slate.9">
+              <Title order={2} fz={{ base: 16, sm: 22 }} fw={700} c="slate.9">
                 {conditionName}
               </Title>
               {stageBadge && (
@@ -80,7 +80,7 @@ export const ConditionHubHeader: React.FC<ConditionHubHeaderProps> = ({
                 </Badge>
               )}
             </Group>
-            <Text size="xs" c="dimmed" lh={1.5}>
+            <Text size="xs" c="dimmed" lh={1.4}>
               {guide.tagline}
             </Text>
           </Box>
@@ -100,14 +100,14 @@ export const ConditionHubHeader: React.FC<ConditionHubHeaderProps> = ({
             },
           }}
         >
-          {tipsOpen ? 'ซ่อนคู่มือเมนูอาหาร' : 'เมนูนี้กินอย่างไร & คำแนะนำเมนู'}
+          {tipsOpen ? 'ซ่อนคู่มือ' : 'คำแนะนำเมนู'}
         </Button>
       </Group>
 
       {/* Quick Core Tip Strip */}
       <Box
-        mt="sm"
-        p="xs"
+        mt={{ base: 8, sm: 'sm' }}
+        p={{ base: 8, sm: 'xs' }}
         style={{
           backgroundColor: 'rgba(255, 255, 255, 0.85)',
           borderRadius: 10,
@@ -150,7 +150,7 @@ export const ConditionHubHeader: React.FC<ConditionHubHeaderProps> = ({
                       {tip.category}
                     </Text>
                   </Group>
-                  <Text size="11px" c="slate.7" lh={1.6}>
+                  <Text size="xs" c="slate.7" lh={1.5}>
                     {tip.tip}
                   </Text>
                 </Card>
@@ -175,7 +175,7 @@ export const ConditionHubHeader: React.FC<ConditionHubHeaderProps> = ({
                       flexShrink: 0,
                     }}
                   />
-                  <Text size="11px" c="dimmed" lh={1.5}>
+                  <Text size="xs" c="dimmed" lh={1.4}>
                     {item}
                   </Text>
                 </Group>

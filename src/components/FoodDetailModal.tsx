@@ -5,7 +5,7 @@ import {
   Group,
   Text,
   Badge,
-  Button,
+  ActionIcon,
   Stack,
   Anchor,
   Paper,
@@ -102,7 +102,7 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
     >
       {/* Modal Gradient Header (Sticky at top) */}
       <Box
-        p="lg"
+        p={{ base: 'md', sm: 'lg' }}
         style={{
           background: getHeaderGradient(adviceInfo.level),
           color: '#ffffff',
@@ -112,14 +112,14 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
           zIndex: 10,
         }}
       >
-        <Group justify="space-between" align="flex-start">
-          <Group gap="md">
+        <Group justify="space-between" align="center" wrap="nowrap" gap="sm">
+          <Group gap="sm" wrap="nowrap" style={{ flex: 1, minWidth: 0 }}>
             {food.imageUrl ? (
               <Box
                 style={{
-                  width: 64,
-                  height: 64,
-                  borderRadius: 16,
+                  width: 58,
+                  height: 58,
+                  borderRadius: 14,
                   overflow: 'hidden',
                   backgroundColor: '#ffffff',
                   boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
@@ -140,9 +140,9 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
             ) : (
               <Box
                 style={{
-                  width: 64,
-                  height: 64,
-                  borderRadius: 16,
+                  width: 58,
+                  height: 58,
+                  borderRadius: 14,
                   backgroundColor: 'rgba(255, 255, 255, 0.25)',
                   border: '1px solid rgba(255, 255, 255, 0.4)',
                   display: 'flex',
@@ -150,15 +150,15 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
                   justifyContent: 'center',
                   flexShrink: 0,
                   backdropFilter: 'blur(8px)',
-                  fontSize: '34px',
+                  fontSize: '30px',
                   userSelect: 'none',
                 }}
               >
-                {food.icon ? food.icon : <UtensilsCrossed size={32} color="#ffffff" />}
+                {food.icon ? food.icon : <UtensilsCrossed size={28} color="#ffffff" />}
               </Box>
             )}
-            <Box>
-              <Group gap="xs" mb={4}>
+            <Box style={{ flex: 1, minWidth: 0 }}>
+              <Group gap="xs" mb={4} wrap="wrap">
                 <Badge
                   size="xs"
                   styles={{
@@ -176,38 +176,40 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
                   หมวด: {food.categoryName}
                 </Text>
               </Group>
-              <Text fw={700} size="xl" c="white">
+              <Text fw={700} fz={{ base: 18, sm: 22 }} c="white" style={{ lineHeight: 1.25 }}>
                 {food.name}
               </Text>
             </Box>
           </Group>
 
-          <Button
+          <ActionIcon
             variant="subtle"
             color="gray"
-            size="xs"
+            size={34}
             radius="xl"
             onClick={onClose}
-            leftSection={<X size={14} />}
+            aria-label="ปิดหน้าต่าง"
+            title="ปิดหน้าต่าง"
             styles={{
               root: {
-                backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                backgroundColor: 'rgba(0, 0, 0, 0.22)',
                 color: '#ffffff',
-                padding: '4px 10px',
+                backdropFilter: 'blur(8px)',
+                flexShrink: 0,
                 '&:hover': {
-                  backgroundColor: 'rgba(0, 0, 0, 0.35)',
+                  backgroundColor: 'rgba(0, 0, 0, 0.38)',
                 },
               },
             }}
           >
-            ปิด
-          </Button>
+            <X size={18} />
+          </ActionIcon>
         </Group>
       </Box>
 
       {/* Modal Scrollable Body */}
       <Box
-        p="lg"
+        p={{ base: 'md', sm: 'lg' }}
         style={{
           overflowY: 'auto',
           flex: 1,
@@ -386,20 +388,13 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
 
           {/* Image CC license credit */}
           {food.imageCredit && (
-            <Group gap={6} align="center">
+            <Group gap={6} align="center" pt="xs" style={{ borderTop: '1px dashed #e2e8f0' }}>
               <Camera size={13} color="#64748b" />
-              <Text size="11px" c="dimmed">
+              <Text size="xs" c="dimmed">
                 สิทธิ์การใช้งานภาพ: {food.imageCredit}
               </Text>
             </Group>
           )}
-
-          {/* Close button */}
-          <Group justify="flex-end" mt="xs">
-            <Button variant="default" size="sm" radius="xl" onClick={onClose}>
-              ปิดหน้าต่าง
-            </Button>
-          </Group>
         </Stack>
       </Box>
     </Modal>

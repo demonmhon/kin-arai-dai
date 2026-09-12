@@ -4,7 +4,7 @@
   "version": "0.2.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx scripts/build-db.ts && vite",
+    "dev": "tsx scripts/build-db.ts && vite --host",
     "build:db": "tsx scripts/build-db.ts",
     "build": "tsx scripts/build-db.ts && tsc -b && vite build",
     "preview": "vite preview"

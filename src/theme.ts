@@ -15,10 +15,17 @@ const emerald: MantineColorsTuple = [
 ];
 
 export const theme = createTheme({
-  fontFamily: "'Prompt', sans-serif",
+  fontFamily: "'Noto Sans Thai', 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
   headings: {
-    fontFamily: "'Prompt', sans-serif",
+    fontFamily: "'Noto Sans Thai', 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
     fontWeight: '700',
+  },
+  fontSizes: {
+    xs: '0.8125rem', // ~13px (from 12px) - improves Thai character loop & mark legibility
+    sm: '0.9375rem', // ~15px (from 14px)
+    md: '1.0625rem', // ~17px (from 16px)
+    lg: '1.1875rem', // ~19px (from 18px)
+    xl: '1.375rem',  // ~22px (from 20px)
   },
   colors: {
     emerald,

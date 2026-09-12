@@ -5,6 +5,7 @@ import {
   Text,
   Button,
   Box,
+  ActionIcon,
 } from '@mantine/core';
 import {
   ChevronDown,
@@ -45,91 +46,90 @@ export const Navbar: React.FC<NavbarProps> = ({
         backgroundColor: 'rgba(255, 255, 255, 0.96)',
         backdropFilter: 'blur(10px)',
         borderBottom: '1px solid #e2e8f0',
+        width: '100%',
+        maxWidth: '100vw',
       }}
     >
-      <Container size={1600} py={{ base: 'xs', sm: 'sm' }} px={{ base: 'sm', sm: 'md' }}>
-        <Group justify="space-between" wrap="nowrap" gap="xs">
+      <Container size={1600} py={{ base: 8, sm: 'sm' }} px={{ base: 10, sm: 'md' }}>
+        <Group justify="space-between" wrap="nowrap" gap={6}>
           {/* Logo & Brand Name (Clickable to return to Home) */}
           <Group
-            gap="xs"
+            gap={6}
             wrap="nowrap"
             align="center"
             onClick={onGoHome}
-            style={{ cursor: onGoHome ? 'pointer' : 'default' }}
+            style={{ cursor: onGoHome ? 'pointer' : 'default', flexShrink: 0 }}
             title="กลับสู่หน้าแรก / ข้อมูลเจตนารมณ์"
           >
             <Box
               style={{
                 display: 'flex',
                 alignItems: 'center',
+                flexShrink: 0,
               }}
             >
-              <Logo size={36} />
+              <Box visibleFrom="sm">
+                <Logo size={36} />
+              </Box>
+              <Box hiddenFrom="sm">
+                <Logo size={30} />
+              </Box>
             </Box>
 
-            <Box>
-              <Group gap={6} align="center" wrap="nowrap">
-                <Text
-                  fw={700}
-                  fz={{ base: 15, sm: 16 }}
-                  c="slate.9"
-                  style={{ lineHeight: 1.2, whiteSpace: 'nowrap' }}
-                >
-                  กินอะไรได้?
-                </Text>
-              </Group>
+            <Box style={{ flexShrink: 0 }}>
+              <Text
+                fw={700}
+                fz={{ base: 15, sm: 16 }}
+                c="slate.9"
+                style={{ lineHeight: 1.2, whiteSpace: 'nowrap' }}
+              >
+                กินอะไรได้?
+              </Text>
 
               {/* Subtitle on Desktop: Full explanatory text */}
               <Text size="xs" c="dimmed" fw={300} visibleFrom="sm" style={{ lineHeight: 1.3 }}>
                 ข้อมูลอาหารประกอบการตัดสินใจเบื้องต้น
               </Text>
-
-              {/* Subtitle on Mobile: Compact & clean, prevents overflow */}
-              <Text
-                size="10px"
-                c="dimmed"
-                fw={400}
-                hiddenFrom="sm"
-                style={{ whiteSpace: 'nowrap', lineHeight: 1.2 }}
-              >
-                เช็กอาหารตามภาวะสุขภาพ
-              </Text>
             </Box>
           </Group>
 
           {/* Action Buttons */}
-          <Group gap="xs" wrap="nowrap" align="center">
+          <Group gap={6} wrap="nowrap" align="center" style={{ flexShrink: 0 }}>
             {isLandingView ? (
               /* Landing View Navigation */
               <>
                 <Button
                   variant="light"
                   color="emerald"
-                  size="sm"
+                  size="xs"
                   radius="xl"
                   onClick={onOpenDiseaseModal}
-                  leftSection={<Search size={15} />}
+                  leftSection={<Search size={14} />}
                   styles={{
                     root: {
                       fontWeight: 600,
                       border: '1px solid #a7f3d0',
-                      height: 34,
+                      height: 32,
+                      paddingLeft: 10,
+                      paddingRight: 10,
                     },
                   }}
                 >
-                  <Text span visibleFrom="xs">
+                  <Text span visibleFrom="sm">
                     เลือกภาวะสุขภาพและระยะ
                   </Text>
-                  <Text span hiddenFrom="xs">
-                    เลือกภาวะสุขภาพและระยะ
+                  <Text span hiddenFrom="sm">
+                    เลือกภาวะสุขภาพ
                   </Text>
                 </Button>
 
+                {/* Guide button: Full on Desktop */}
                 <Button
                   variant="default"
                   size="sm"
                   radius="xl"
                   onClick={onOpenGuideModal}
+                  visibleFrom="sm"
                   leftSection={<Info size={16} color="#059669" />}
                   styles={{
                     root: {
@@ -142,10 +142,28 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }}
                   title="เกณฑ์โภชนาการ"
                 >
-                  <Text span visibleFrom="sm" fz="xs">
+                  <Text span fz="xs">
                     เกณฑ์โภชนาการ
                   </Text>
                 </Button>
+
+                {/* Guide button: Compact ActionIcon on Mobile */}
+                <ActionIcon
+                  variant="default"
+                  size={32}
+                  radius="xl"
+                  onClick={onOpenGuideModal}
+                  hiddenFrom="sm"
+                  styles={{
+                    root: {
+                      borderColor: '#cbd5e1',
+                    },
+                  }}
+                  title="เกณฑ์โภชนาการ"
+                  aria-label="เกณฑ์โภชนาการ"
+                >
+                  <Info size={16} color="#059669" />
+                </ActionIcon>
               </>
             ) : (
               /* Catalog View Navigation */
@@ -170,18 +188,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <Button
                   variant="light"
                   color="emerald"
-                  size="sm"
+                  size="xs"
                   radius="xl"
                   onClick={onOpenDiseaseModal}
-                  leftSection={<Stethoscope size={15} />}
-                  rightSection={<ChevronDown size={13} />}
+                  leftSection={<Stethoscope size={14} />}
+                  rightSection={<ChevronDown size={12} />}
                   styles={{
                     root: {
                       fontWeight: 600,
                       border: '1px solid #a7f3d0',
-                      paddingLeft: 10,
-                      paddingRight: 8,
-                      height: 34,
+                      paddingLeft: 8,
+                      paddingRight: 6,
+                      height: 32,
                     },
                   }}
                 >
@@ -195,7 +213,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     hiddenFrom="sm"
                     fz="xs"
                     style={{
-                      maxWidth: 95,
+                      maxWidth: 85,
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap',
@@ -238,6 +256,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   size="sm"
                   radius="xl"
                   onClick={onOpenGuideModal}
+                  visibleFrom="sm"
                   leftSection={<Info size={16} color="#059669" />}
                   styles={{
                     root: {
@@ -250,10 +269,27 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }}
                   title="เกณฑ์โภชนาการ"
                 >
-                  <Text span visibleFrom="sm" fz="xs">
+                  <Text span fz="xs">
                     เกณฑ์โภชนาการ
                   </Text>
                 </Button>
+
+                <ActionIcon
+                  variant="default"
+                  size={32}
+                  radius="xl"
+                  onClick={onOpenGuideModal}
+                  hiddenFrom="sm"
+                  styles={{
+                    root: {
+                      borderColor: '#cbd5e1',
+                    },
+                  }}
+                  title="เกณฑ์โภชนาการ"
+                  aria-label="เกณฑ์โภชนาการ"
+                >
+                  <Info size={16} color="#059669" />
+                </ActionIcon>
               </>
             )}
           </Group>
