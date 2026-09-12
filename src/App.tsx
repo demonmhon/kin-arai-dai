@@ -15,15 +15,16 @@ import { LandingPage } from './components/LandingPage';
 import { ReferencesPage } from './components/ReferencesPage';
 import { CatalogPage } from './components/CatalogPage';
 import { KidneyStageModal } from './components/KidneyStageModal';
+import { GoutStageModal } from './components/GoutStageModal';
 import { FoodDetailModal } from './components/FoodDetailModal';
 import { DiseaseModal } from './components/DiseaseModal';
 import { EducationalModal } from './components/EducationalModal';
 import { OnboardingModal } from './components/OnboardingModal';
 
-import { FoodItem, KidneyStageId } from './types/food';
-import { kidneyStages } from './data/kidneyStages';
+import { FoodItem, KidneyStageId, GoutStageId } from './types/food';
 import { diseases } from './data/diseases';
-import { slugToKidneyStage, STAGE_TO_SLUG } from './utils/url';
+import { slugToDiseaseAndStage, STAGE_TO_SLUG } from './utils/url';
+import { getStageMeta } from './utils/diseaseHelper';
 
 const STORAGE_KEYS = {
   DISEASE: 'kin_selected_disease',
@@ -33,34 +34,34 @@ const STORAGE_KEYS = {
 
 interface StageCatalogRouteProps {
   selectedDiseaseId: string;
+  selectedStage: string;
   onOpenStageModal: () => void;
   onOpenDetail: (food: FoodItem) => void;
-  onStageActive: (stage: KidneyStageId) => void;
+  onRouteActive: (diseaseId: string, stageId: string) => void;
 }
 
 const StageCatalogRoute: React.FC<StageCatalogRouteProps> = ({
-  selectedDiseaseId,
   onOpenStageModal,
   onOpenDetail,
-  onStageActive,
+  onRouteActive,
 }) => {
   const { stageSlug } = useParams<{ stageSlug: string }>();
-  const matchedStage = stageSlug ? slugToKidneyStage(stageSlug) : null;
+  const matchedRoute = stageSlug ? slugToDiseaseAndStage(stageSlug) : null;
 
   useEffect(() => {
-    if (matchedStage) {
-      onStageActive(matchedStage);
+    if (matchedRoute) {
+      onRouteActive(matchedRoute.diseaseId, matchedRoute.stageId);
     }
-  }, [matchedStage, onStageActive]);
+  }, [matchedRoute?.diseaseId, matchedRoute?.stageId, onRouteActive]);
 
-  if (!matchedStage) {
+  if (!matchedRoute) {
     return <Navigate to="/" replace />;
   }
 
   return (
     <CatalogPage
-      selectedStage={matchedStage}
-      selectedDiseaseId={selectedDiseaseId}
+      selectedStage={matchedRoute.stageId}
+      selectedDiseaseId={matchedRoute.diseaseId}
       onOpenStageModal={onOpenStageModal}
       onOpenDetail={onOpenDetail}
     />
@@ -80,10 +81,10 @@ export const App: React.FC = () => {
     }
   });
 
-  const [selectedStage, setSelectedStage] = useState<KidneyStageId>(() => {
+  const [selectedStage, setSelectedStage] = useState<string>(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEYS.STAGE) as KidneyStageId;
-      if (saved && kidneyStages[saved]) return saved;
+      const saved = localStorage.getItem(STORAGE_KEYS.STAGE);
+      if (saved) return saved;
     } catch {}
     return 'stage4_5_pre';
   });
@@ -107,24 +108,26 @@ export const App: React.FC = () => {
   const [stageModalOpen, setStageModalOpen] = useState<boolean>(false);
   const [guideModalOpen, setGuideModalOpen] = useState<boolean>(false);
 
-  // Callback to sync active stage from URL param
-  const handleStageActive = useCallback((stage: KidneyStageId) => {
-    setSelectedStage(stage);
-    setSelectedDiseaseId('ckd');
+  // Callback to sync active disease and stage from URL permalink
+  const handleRouteActive = useCallback((diseaseId: string, stageId: string) => {
+    setSelectedDiseaseId(diseaseId);
+    setSelectedStage(stageId);
     try {
-      localStorage.setItem(STORAGE_KEYS.STAGE, stage);
-      localStorage.setItem(STORAGE_KEYS.DISEASE, 'ckd');
+      localStorage.setItem(STORAGE_KEYS.DISEASE, diseaseId);
+      localStorage.setItem(STORAGE_KEYS.STAGE, stageId);
       localStorage.setItem(STORAGE_KEYS.HAS_INITIALIZED, 'true');
     } catch {}
   }, []);
 
-  const handleSelectStage = (stg: KidneyStageId) => {
-    handleStageActive(stg);
-    navigate(`/${STAGE_TO_SLUG[stg]}${location.search}`);
+  const handleSelectStage = (diseaseId: string, stg: string) => {
+    handleRouteActive(diseaseId, stg);
+    const slug = STAGE_TO_SLUG[stg] || 'ckd-stage-1';
+    navigate(`/${slug}${location.search}`);
   };
 
   // Determine current active disease metadata
   const currentDisease = diseases.find((d) => d.id === selectedDiseaseId) || diseases[0];
+  const currentStageMeta = getStageMeta(selectedDiseaseId, selectedStage);
 
   // Active view check for Navbar layout
   const isLandingView = location.pathname === '/' || location.pathname === '/references';
@@ -134,7 +137,7 @@ export const App: React.FC = () => {
       {/* Top Navbar */}
       <Navbar
         currentDiseaseName={currentDisease.name}
-        currentStageBadge={!isLandingView ? kidneyStages[selectedStage].badge : undefined}
+        currentStageBadge={!isLandingView ? currentStageMeta.badge : undefined}
         isLandingView={isLandingView}
         onOpenDiseaseModal={() => setDiseaseModalOpen(true)}
         onOpenStageModal={() => setStageModalOpen(true)}
@@ -150,7 +153,8 @@ export const App: React.FC = () => {
             path="/"
             element={
               <LandingPage
-                onSelectCkdStage={(stage) => handleSelectStage(stage)}
+                onSelectCkdStage={(stage) => handleSelectStage('ckd', stage)}
+                onSelectGoutStage={(stage) => handleSelectStage('gout', stage)}
                 onOpenStageModal={() => setStageModalOpen(true)}
                 onOpenGuideModal={() => setGuideModalOpen(true)}
                 onNavigateReferences={() => navigate('/references')}
@@ -164,20 +168,21 @@ export const App: React.FC = () => {
             element={
               <ReferencesPage
                 onNavigateHome={() => navigate('/')}
-                onNavigateCatalog={() => handleSelectStage(selectedStage)}
+                onNavigateCatalog={() => handleSelectStage(selectedDiseaseId, selectedStage)}
               />
             }
           />
 
-          {/* Disease Stage Permalinks e.g. /ckd-stage-1, /ckd-stage-3, /ckd-stage-4-5, /ckd-dialysis */}
+          {/* Disease Stage Permalinks e.g. /ckd-stage-1, /gout-remission, /gout-flare */}
           <Route
             path="/:stageSlug"
             element={
               <StageCatalogRoute
                 selectedDiseaseId={selectedDiseaseId}
+                selectedStage={selectedStage}
                 onOpenStageModal={() => setStageModalOpen(true)}
                 onOpenDetail={(food) => setDetailFood(food)}
-                onStageActive={handleStageActive}
+                onRouteActive={handleRouteActive}
               />
             }
           />
@@ -208,7 +213,11 @@ export const App: React.FC = () => {
           setSelectedDiseaseId(id);
           setDiseaseModalOpen(false);
           if (id === 'ckd') {
-            navigate(`/${STAGE_TO_SLUG[selectedStage]}${location.search}`);
+            const nextStage = selectedStage.startsWith('stage') || selectedStage === 'dialysis' ? selectedStage : 'stage4_5_pre';
+            handleSelectStage('ckd', nextStage);
+          } else if (id === 'gout') {
+            const nextStage = selectedStage.startsWith('gout') ? selectedStage : 'gout_remission';
+            handleSelectStage('gout', nextStage);
           }
         }}
       />
@@ -220,24 +229,39 @@ export const App: React.FC = () => {
       />
 
       {/* Kidney Stage Selection Modal */}
-      <KidneyStageModal
-        opened={stageModalOpen}
-        onClose={() => setStageModalOpen(false)}
-        selectedStage={selectedStage}
-        onSelectStage={(stg) => {
-          setStageModalOpen(false);
-          handleSelectStage(stg);
-        }}
-      />
+      {selectedDiseaseId === 'ckd' && (
+        <KidneyStageModal
+          opened={stageModalOpen}
+          onClose={() => setStageModalOpen(false)}
+          selectedStage={(selectedStage as KidneyStageId) || 'stage4_5_pre'}
+          onSelectStage={(stg) => {
+            setStageModalOpen(false);
+            handleSelectStage('ckd', stg);
+          }}
+        />
+      )}
 
-      {/* First-Visit Onboarding Modal */}
+      {/* Gout Condition Selection Modal */}
+      {selectedDiseaseId === 'gout' && (
+        <GoutStageModal
+          opened={stageModalOpen}
+          onClose={() => setStageModalOpen(false)}
+          selectedStage={(selectedStage as GoutStageId) || 'gout_remission'}
+          onSelectStage={(stg) => {
+            setStageModalOpen(false);
+            handleSelectStage('gout', stg);
+          }}
+        />
+      )}
+
+      {/* First-Visit Onboarding Modal (Kidney Focus) */}
       <OnboardingModal
         opened={onboardingOpen}
         onClose={() => setOnboardingOpen(false)}
-        currentStage={selectedStage}
+        currentStage={(selectedStage as KidneyStageId) || 'stage4_5_pre'}
         onConfirmStage={(stg) => {
           setOnboardingOpen(false);
-          handleSelectStage(stg);
+          handleSelectStage('ckd', stg);
         }}
       />
     </Box>

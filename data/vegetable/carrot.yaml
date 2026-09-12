@@ -14,6 +14,8 @@ keywords:
 sources:
   - name: National Kidney Foundation
     url: https://www.kidney.org/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: แครอทดิบมีโพแทสเซียมระดับปานกลางค่อนข้างสูง แต่สามารถลดลงได้ด้วยการหั่นต้มน้ำทิ้ง
@@ -30,3 +32,15 @@ diseases:
       dialysis:
         level: caution
         advice: จำกัดปริมาณ ต้มน้ำทิ้ง
+  gout:
+    reason: แครอทมีพิวรีนต่ำมาก อุดมด้วยเบต้าแคโรทีน วิตามินเอ และใยอาหาร ช่วยต้านอนุมูลอิสระและไม่กระตุ้นยูริก
+    tags:
+      - พิวรีนต่ำมาก
+      - เบต้าแคโรทีน
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานได้ตามปกติ ใส่ในต้มจืด สลัด หรือผัดผัก
+      gout_flare:
+        level: safe
+        advice: ทานได้ตามปกติ พิวรีนต่ำ ปลอดภัย

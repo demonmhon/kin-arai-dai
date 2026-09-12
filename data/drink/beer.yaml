@@ -1,0 +1,53 @@
+id: beer
+name: เบียร์ / เครื่องดื่มแอลกอฮอล์หมักยีสต์
+category: drink
+categoryName: เครื่องดื่ม
+icon: 🍺
+tags:
+  - พิวรีนสูงจัด
+  - มีสารกัวโนซีน
+  - ยับยั้งการขับยูริก
+  - อันตรายสูงสุด
+keywords:
+  - เบียร์
+  - เหล้า
+  - แอลกอฮอล์
+  - สุรา
+  - ไวน์
+  - คราฟต์เบียร์
+sources:
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
+  - name: American College of Rheumatology (ACR)
+    url: https://rheumatology.org/
+diseases:
+  ckd:
+    reason: แอลกอฮอล์ทำให้ความดันโลหิตสูง รบกวนสมดุลน้ำและเกลือแร่ เพิ่มภาระการทำงานของไตอย่างหนัก
+    stages:
+      stage1_2:
+        level: danger
+        advice: ควรหลีกเลี่ยงเด็ดขาด แอลกอฮอล์ทำลายหลอดเลือดไต
+      stage3:
+        level: danger
+        advice: งดเด็ดขาด เร่งให้ไตเสื่อมเร็วขึ้น
+      stage4_5_pre:
+        level: danger
+        advice: งดเด็ดขาด 100%
+      dialysis:
+        level: danger
+        advice: งดเด็ดขาด รบกวนสมดุลน้ำและการฟอกเลือด
+  gout:
+    reason: เบียร์คือตัวการอันดับ 1 ของโรคเกาต์ เพราะทำจากยีสต์หมักซึ่งอุดมด้วยกัวโนซีน (Guanosine) ที่เปลี่ยนเป็นยูริกได้เร็วที่สุด ทั้งแอลกอฮอล์ยังยับยั้งไตไม่ให้ขับกรดยูริกออก ทำให้ยูริกคั่งในเลือดพุ่งสูงสุด
+    tags:
+      - ตัวการเกาต์อันดับ 1
+      - พิวรีนและยีสต์สูงจัด
+      - งดเด็ดขาด 100%
+    stages:
+      gout_remission:
+        level: danger
+        advice: งดเด็ดขาด 100% เบียร์เพียงแก้วเดียวสามารถกระตุ้นให้เกาต์กำเริบฉับพลันได้ทันที
+      gout_flare:
+        level: danger
+        advice: งดเด็ดขาด 100% ห้ามดื่มอย่างเด็ดขาด
+imageUrl: /images/foods/beer.jpg
+imageCredit: Photo by Jon Parry on Unsplash (CC0/Free License)

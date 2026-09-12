@@ -15,6 +15,8 @@ keywords:
 sources:
   - name: National Kidney Foundation (บทความ Root Vegetables)
     url: https://www.kidney.org/kidney-topics/root-vegetables
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: มันฝรั่งมีโพแทสเซียมสูงมาก โดยเฉพาะเปลือกและเนื้อใกล้เปลือก แต่สามารถลดปริมาณลงได้มากด้วยการหั่นแช่น้ำและต้มทิ้งน้ำก่อนปรุง
@@ -31,3 +33,15 @@ diseases:
       dialysis:
         level: danger
         advice: ควรหลีกเลี่ยง
+  gout:
+    reason: มันฝรั่งมีพิวรีนต่ำ (<20 มก./100 ก.) เป็นคาร์โบไฮเดรตที่ปลอดภัย แนะนำปรุงด้วยการต้ม อบ หรือนึ่ง หลีกเลี่ยงการทอด
+    tags:
+      - พิวรีนต่ำ
+      - แป้งปลอดภัย
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานต้มหรือนึ่ง มื้อละ 1 หัวขนาดกลาง
+      gout_flare:
+        level: safe
+        advice: ทานได้ตามปกติ พิวรีนต่ำ ปลอดภัย

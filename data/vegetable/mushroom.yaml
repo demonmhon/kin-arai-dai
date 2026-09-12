@@ -15,6 +15,8 @@ keywords:
 sources:
   - name: National Kidney Foundation (บทความ Potassium in Your CKD Diet)
     url: https://www.kidney.org/kidney-topics/potassium-your-ckd-diet
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: เห็ดมีโพแทสเซียมและฟอสฟอรัสค่อนข้างสูงเมื่อเทียบกับผักทั่วไป โดยเฉพาะเห็ดหอมแห้ง
@@ -31,3 +33,16 @@ diseases:
       dialysis:
         level: caution
         advice: ทานได้น้อยมากเป็นครั้งคราว
+  gout:
+    reason: เห็ดมีสารพิวรีนระดับปานกลาง (ประมาณ 50-90 มก./100 ก.) สูงกว่าผักใบส่วนใหญ่ ช่วงปกติทานได้พอควร แต่ช่วงกำเริบควรงด
+    tags:
+      - พิวรีนปานกลาง
+      - คุมปริมาณ
+      - งดช่วงกำเริบ
+    stages:
+      gout_remission:
+        level: caution
+        advice: ทานได้พอประมาณ ไม่เกินมื้อละ 1 ทัพพี สัปดาห์ละ 2-3 ครั้ง
+      gout_flare:
+        level: danger
+        advice: งดทานช่วงข้ออักเสบ เห็ดมีพิวรีนสะสมสูงกว่าผักทั่วไป

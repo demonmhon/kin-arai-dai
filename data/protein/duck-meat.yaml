@@ -1,0 +1,51 @@
+id: duck-meat
+name: เนื้อเป็ด / สัตว์ปีกติดหนัง
+category: protein
+categoryName: เนื้อสัตว์/โปรตีน
+icon: 🦆
+tags:
+  - พิวรีนสูงจัด
+  - สัตว์ปีก
+  - ไขมันอิ่มตัวสูง
+  - งดเด็ดขาดช่วงกำเริบ
+keywords:
+  - เป็ด
+  - เนื้อเป็ด
+  - เป็ดย่าง
+  - เป็ดพะโล้
+  - ห่าน
+sources:
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
+  - name: โรงพยาบาลศิริราช ปิยมหาราชการุณย์
+    url: https://www.siphhospital.com/
+diseases:
+  ckd:
+    reason: เนื้อเป็ดมีไขมันอิ่มตัวและฟอสฟอรัสสูง อีกทั้งน้ำพะโล้หรือน้ำราดยังมีโซเดียมสูงจัด
+    stages:
+      stage1_2:
+        level: caution
+        advice: ทานได้แต่น้อย ลอกหนังทิ้ง ไม่ราดน้ำเค็ม
+      stage3:
+        level: caution
+        advice: จำกัดไม่เกินมื้อละ 1-2 ชิ้น ลอกหนังออก
+      stage4_5_pre:
+        level: danger
+        advice: หลีกเลี่ยง หันมาทานไข่ขาวหรือปลาเนื้อขาวแทน
+      dialysis:
+        level: caution
+        advice: ทานเนื้อล้วนไม่ติดหนัง
+  gout:
+    reason: เนื้อเป็ดและห่านจัดเป็นสัตว์ปีกที่มีปริมาณสารพิวรีนสูงที่สุดในกลุ่มเนื้อสัตว์ปีก (>150 มก./100 ก.) โดยเฉพาะบริเวณหนังและไขมันใต้ผิวหนัง ทำให้กรดยูริกในเลือดพุ่งสูงขึ้นอย่างรวดเร็ว
+    tags:
+      - พิวรีนสูงที่สุดในสัตว์ปีก
+      - งดช่วงกำเริบ
+    stages:
+      gout_remission:
+        level: danger
+        advice: ควรหลีกเลี่ยงเด็ดขาด หากทานต้องลอกหนังทิ้งและทานไม่เกินเดือนละครั้ง
+      gout_flare:
+        level: danger
+        advice: งดเด็ดขาด 100% ตัวกระตุ้นอาการปวดข้อรุนแรง
+imageUrl: /images/foods/duck-meat.jpg
+imageCredit: Created with Nanobanana AI (Creative Commons CC0 Public Domain)

@@ -16,6 +16,8 @@ keywords:
 sources:
   - name: สมาคมโรคไตแห่งประเทศไทย
     url: https://www.nephrothai.org/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: ทำจากแป้งมันสำปะหลัง จัดเป็นแป้งปลอดโปรตีน ไม่สร้างภาระยูเรียคั่งในไต
@@ -32,3 +34,15 @@ diseases:
       dialysis:
         level: safe
         advice: ทานได้พอเหมาะ
+  gout:
+    reason: เม็ดสาคูเป็นคาร์โบไฮเดรตบริสุทธิ์จากแป้งมันสำปะหลัง มีพิวรีนต่ำมาก แต่ควรระวังน้ำเชื่อมหวานจัดเพราะฟรุกโตสกระตุ้นยูริก
+    tags:
+      - พิวรีนต่ำมาก
+      - ระวังความหวาน
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานได้พอเหมาะ เลี่ยงการเติมน้ำเชื่อมหรือกะทิหวานจัด
+      gout_flare:
+        level: safe
+        advice: ทานได้ แต่ไม่ควรปรุงรสหวานจัด

@@ -17,6 +17,8 @@ keywords:
 sources:
   - name: American Kidney Fund
     url: https://www.kidneyfund.org/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: น้ำอัดลมสีเข้มใส่กรดฟอสฟอริกสังเคราะห์ ร่างกายดูดซึมได้ 100% เร่งให้กระดูกพรุนและหลอดเลือดแข็งตัวอย่างรวดเร็ว ส่วนโกโก้มีฟอสฟอรัสธรรมชาติสูงมาก
@@ -33,3 +35,19 @@ diseases:
       dialysis:
         level: danger
         advice: ห้ามดื่มเด็ดขาด ฟอสเฟตดูดซึมทันทีและฟอกออกยาก
+  gout:
+    reason: น้ำอัดลมมีน้ำตาลฟรุกโตสเข้มข้น (High Fructose Corn Syrup) ซึ่งฟรุกโตสเร่งกระบวนการสลาย ATP ในตับ ทำให้ร่างกายผลิตกรดยูริกพุ่งสูงขึ้นอย่างรวดเร็ว
+    tags:
+      - ฟรุกโตสสูงจัด
+      - กระตุ้นยูริกพุ่งสูง
+      - อันตรายต่อเกาต์
+      - งดเด็ดขาด
+    stages:
+      gout_remission:
+        level: danger
+        advice: ควรหลีกเลี่ยงเด็ดขาด น้ำตาลฟรุกโตสกระตุ้นให้ตับผลิตกรดยูริกเพิ่มขึ้นทันที
+      gout_flare:
+        level: danger
+        advice: งดเด็ดขาด 100% ตัวเร่งให้ข้ออักเสบรุนแรงและหายช้าลง
+imageUrl: /images/foods/dark-cola.jpg
+imageCredit: Photo by Jonathan Borba on Unsplash (CC0/Free License)

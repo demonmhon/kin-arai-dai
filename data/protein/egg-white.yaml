@@ -16,6 +16,8 @@ keywords:
 sources:
   - name: สมาคมโรคไตแห่งประเทศไทย
     url: https://www.nephrothai.org/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: ไข่ขาวคือโปรตีนคุณภาพสูงสุด (High Biological Value) มีฟอสฟอรัสต่ำมาก ร่างกายดูดซึมซ่อมแซมได้หมด สร้างของเสียน้อยที่สุด
@@ -32,3 +34,18 @@ diseases:
       dialysis:
         level: safe
         advice: 🌟 จำเป็นมาก! แนะนำทานวันละ 4-6 ฟอง เพื่อชดเชยโปรตีนที่สูญเสียจากการฟอกไต
+  gout:
+    reason: ไข่ขาวมีสารพิวรีนต่ำที่สุดในบรรดาแหล่งโปรตีนทั้งหมด (แทบเป็นศูนย์) เป็นโปรตีนคุณภาพสูงที่ปลอดภัยที่สุด 100% สำหรับผู้ป่วยเกาต์ทุกระยะ
+    tags:
+      - พิวรีนต่ำที่สุด
+      - โปรตีนปลอดภัยสูงสุด
+      - แนะนำเป็นหลัก
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานได้ตามต้องการ วันละ 3-5 ฟอง เป็นแหล่งโปรตีนหลักที่ดีที่สุด
+      gout_flare:
+        level: safe
+        advice: ทานได้ไม่จำกัด ปลอดภัยที่สุด ไม่เพิ่มกรดยูริกเลยแม้แต่น้อย
+imageUrl: /images/foods/egg-white.jpg
+imageCredit: Created with Nanobanana AI (Creative Commons CC0 Public Domain)

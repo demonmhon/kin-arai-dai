@@ -14,6 +14,8 @@ keywords:
 sources:
   - name: โรงพยาบาลรามาธิบดี
     url: https://www.rama.mahidol.ac.th/ramachannel/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: เป็นน้ำเกลือแร่ธรรมชาติที่มีโพแทสเซียมเข้มข้นที่สุด เพียงแก้วเดียวทำให้โพแทสเซียมในเลือดทะลุเกณฑ์วิกฤต
@@ -30,3 +32,18 @@ diseases:
       dialysis:
         level: danger
         advice: ห้ามดื่มเด็ดขาด
+  gout:
+    reason: น้ำมะพร้าวสดมีพิวรีนต่ำมาก ช่วยดับกระหายและขับปัสสาวะ แต่มีน้ำตาลฟรุกโตสธรรมชาติเล็กน้อย จึงไม่ควรดื่มในปริมาณที่มากเกินไป
+    tags:
+      - พิวรีนต่ำ
+      - ขับปัสสาวะ
+      - ระวังน้ำตาลธรรมชาติ
+    stages:
+      gout_remission:
+        level: safe
+        advice: ดื่มได้วันละไม่เกิน 1 ลูก แนะนำดื่มน้ำมะพร้าวสดแท้ไม่เติมน้ำตาล
+      gout_flare:
+        level: safe
+        advice: ดื่มได้วันละ 1 แก้ว ช่วยเพิ่มการขับปัสสาวะ
+imageUrl: /images/foods/coconut-water.jpg
+imageCredit: Photo by Jonas Dücker on Unsplash (CC0/Free License)

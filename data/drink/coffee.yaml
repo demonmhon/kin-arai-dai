@@ -15,6 +15,8 @@ keywords:
 sources:
   - name: 'National Kidney Foundation (บทความ Coffee and Kidney Disease: Is it Safe?)'
     url: https://www.kidney.org/news-stories/coffee-and-kidney-disease-it-safe
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: กาแฟดำมีโพแทสเซียมไม่สูงมากหากดื่มในปริมาณพอเหมาะ แต่หากใส่นมหรือครีมเทียมจะเพิ่มฟอสฟอรัสและโพแทสเซียมตามไปด้วย ⚠️ หลีกเลี่ยงกาแฟ 3-in-1 หรือกาแฟกระป๋องสำเร็จรูป เพราะมีครีมเทียม ไขมันทรานส์ และสารฟอสเฟตสังเคราะห์
@@ -31,3 +33,18 @@ diseases:
       dialysis:
         level: caution
         advice: นับรวมในโควตาน้ำดื่มประจำวัน
+  gout:
+    reason: งานวิจัยทางการแพทย์ขนาดใหญ่พบว่าสารประกอบฟีนอลิกในกาแฟช่วยยับยั้งเอนไซม์ Xanthine Oxidase และเพิ่มการขับกรดยูริกออกทางไต ช่วยลดความเสี่ยงเกาต์กำเริบ
+    tags:
+      - ช่วยลดกรดยูริก
+      - งานวิจัยรับรอง
+      - ดื่มไม่เติมหวาน
+    stages:
+      gout_remission:
+        level: safe
+        advice: ดื่มกาแฟดำวันละ 1-2 แก้ว ไม่เติมน้ำตาล นมข้น หรือครีมเทียม
+      gout_flare:
+        level: safe
+        advice: ดื่มกาแฟดำได้ตามปกติ ไม่ใส่น้ำตาล
+imageUrl: /images/foods/coffee.jpg
+imageCredit: Photo by Nathan Dumlao on Unsplash (CC0/Free License)

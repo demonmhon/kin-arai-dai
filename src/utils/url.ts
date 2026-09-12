@@ -1,13 +1,17 @@
-import { KidneyStageId, FoodCategory, StageLevel } from '../types/food';
+import { KidneyStageId, DiseaseStageId, FoodCategory, StageLevel } from '../types/food';
 
 /**
- * Maps KidneyStageId to a user-friendly and clean URL slug
+ * Maps DiseaseStageId to a user-friendly and clean URL slug
  */
-export const STAGE_TO_SLUG: Record<KidneyStageId, string> = {
+export const STAGE_TO_SLUG: Record<string, string> = {
+  // CKD
   stage1_2: 'ckd-stage-1',
   stage3: 'ckd-stage-3',
   stage4_5_pre: 'ckd-stage-4-5',
   dialysis: 'ckd-dialysis',
+  // Gout
+  gout_remission: 'gout-remission',
+  gout_flare: 'gout-flare',
 };
 
 /**
@@ -21,31 +25,74 @@ const VALID_CATEGORIES: FoodCategory[] = [
   'carb',
   'condiment',
   'drink',
+  'dish',
 ];
 
+export interface ResolvedRoute {
+  diseaseId: string;
+  stageId: DiseaseStageId;
+}
+
 /**
- * Normalize and match a URL path to a KidneyStageId
+ * Normalize and match a URL path to a diseaseId and stageId
  */
-export function slugToKidneyStage(pathSegment: string): KidneyStageId | null {
+export function slugToDiseaseAndStage(pathSegment: string): ResolvedRoute | null {
   const clean = pathSegment.toLowerCase().trim().replace(/^\/+|\/+$/g, '');
 
-  // Exact mappings
-  if (clean === 'ckd-stage-1' || clean === 'ckd-stage-2' || clean === 'ckd-stage-1-2' || clean === 'stage-1' || clean === 'stage-2') {
-    return 'stage1_2';
+  // 1. CKD stages
+  if (
+    clean === 'ckd-stage-1' ||
+    clean === 'ckd-stage-2' ||
+    clean === 'ckd-stage-1-2' ||
+    clean === 'stage-1' ||
+    clean === 'stage-2'
+  ) {
+    return { diseaseId: 'ckd', stageId: 'stage1_2' };
   }
-  if (clean === 'ckd-stage-3' || clean === 'ckd-stage-3a' || clean === 'ckd-stage-3b' || clean === 'stage-3') {
-    return 'stage3';
+  if (
+    clean === 'ckd-stage-3' ||
+    clean === 'ckd-stage-3a' ||
+    clean === 'ckd-stage-3b' ||
+    clean === 'stage-3'
+  ) {
+    return { diseaseId: 'ckd', stageId: 'stage3' };
   }
-  if (clean === 'ckd-stage-4-5' || clean === 'ckd-stage-4' || clean === 'ckd-stage-5' || clean === 'stage-4' || clean === 'stage-5' || clean === 'ckd-stage-4-5-pre') {
-    return 'stage4_5_pre';
+  if (
+    clean === 'ckd-stage-4-5' ||
+    clean === 'ckd-stage-4' ||
+    clean === 'ckd-stage-5' ||
+    clean === 'stage-4' ||
+    clean === 'stage-5' ||
+    clean === 'ckd-stage-4-5-pre'
+  ) {
+    return { diseaseId: 'ckd', stageId: 'stage4_5_pre' };
   }
   if (clean === 'ckd-dialysis' || clean === 'ckd-stage-dialysis' || clean === 'dialysis') {
-    return 'dialysis';
+    return { diseaseId: 'ckd', stageId: 'dialysis' };
   }
   if (clean === 'ckd') {
-    return 'stage4_5_pre'; // Default stage for CKD
+    return { diseaseId: 'ckd', stageId: 'stage4_5_pre' };
   }
 
+  // 2. Gout stages
+  if (clean === 'gout' || clean === 'gout-remission' || clean === 'gout-maintenance' || clean === 'gout-normal') {
+    return { diseaseId: 'gout', stageId: 'gout_remission' };
+  }
+  if (clean === 'gout-flare' || clean === 'gout-acute' || clean === 'gout-pain') {
+    return { diseaseId: 'gout', stageId: 'gout_flare' };
+  }
+
+  return null;
+}
+
+/**
+ * Normalize and match a URL path to a KidneyStageId (backward compatible)
+ */
+export function slugToKidneyStage(pathSegment: string): KidneyStageId | null {
+  const resolved = slugToDiseaseAndStage(pathSegment);
+  if (resolved && resolved.diseaseId === 'ckd') {
+    return resolved.stageId as KidneyStageId;
+  }
   return null;
 }
 
@@ -54,7 +101,7 @@ export interface ParsedUrlState {
   isHome: boolean;
   isPermalink: boolean;
   diseaseId: string;
-  stageId: KidneyStageId | null;
+  stageId: DiseaseStageId | null;
   searchTerm: string;
   category: FoodCategory;
   level: StageLevel | 'all';
@@ -83,8 +130,8 @@ export function parseAppUrl(pathname: string, search: string): ParsedUrlState {
 
   // 2. Path segment for stage permalink
   const pathSegment = cleanPath.replace(/^\//, '');
-  const matchedStage = slugToKidneyStage(pathSegment);
-  const isPermalink = matchedStage !== null;
+  const matchedRoute = slugToDiseaseAndStage(pathSegment);
+  const isPermalink = matchedRoute !== null;
 
   // 3. Query params: keywords, category, level
   const rawKeyword =
@@ -116,8 +163,8 @@ export function parseAppUrl(pathname: string, search: string): ParsedUrlState {
     isReferences: false,
     isHome: cleanPath === '/' && !isPermalink,
     isPermalink,
-    diseaseId: 'ckd',
-    stageId: matchedStage,
+    diseaseId: matchedRoute ? matchedRoute.diseaseId : 'ckd',
+    stageId: matchedRoute ? matchedRoute.stageId : null,
     searchTerm,
     category,
     level,
@@ -127,7 +174,7 @@ export function parseAppUrl(pathname: string, search: string): ParsedUrlState {
 export interface BuildUrlOptions {
   path?: string;
   diseaseId?: string;
-  stageId?: KidneyStageId;
+  stageId?: DiseaseStageId | string;
   searchTerm?: string;
   category?: FoodCategory;
   level?: StageLevel | 'all';
@@ -148,8 +195,8 @@ export function buildAppUrl(options: BuildUrlOptions): string {
   }
 
   let basePath = '/';
-  if (options.stageId) {
-    basePath = `/${STAGE_TO_SLUG[options.stageId] || 'ckd-stage-1'}`;
+  if (options.stageId && STAGE_TO_SLUG[options.stageId]) {
+    basePath = `/${STAGE_TO_SLUG[options.stageId]}`;
   } else if (options.path) {
     basePath = options.path;
   }

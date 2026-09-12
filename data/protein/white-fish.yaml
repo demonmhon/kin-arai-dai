@@ -18,6 +18,8 @@ keywords:
 sources:
   - name: โรงพยาบาลศิริราช
     url: https://www.si.mahidol.ac.th/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: ย่อยง่าย มีพิวรีนและฟอสฟอรัสน้อยกว่าเนื้อหมูหรือเนื้อวัวติดมัน
@@ -34,3 +36,18 @@ diseases:
       dialysis:
         level: safe
         advice: ทานได้เต็มที่ มื้อละ 3-4 ช้อนโต๊ะ เพื่อฟื้นฟูกล้ามเนื้อ
+  gout:
+    reason: ปลาน้ำจืดและปลาเนื้อขาวมีพิวรีนระดับปานกลาง (50-110 มก./100 ก.) ปลอดภัยกว่าปลาทะเลผิวน้ำ (ซาร์ดีน ซาบะ) ทานได้โดยวิธีต้มหรือนึ่ง
+    tags:
+      - พิวรีนปานกลาง
+      - ปลาเนื้อขาว
+      - ปรุงต้มหรือนึ่ง
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานมื้อละ 3-4 ช้อนโต๊ะ ปรุงต้มหรือนึ่ง ดีกว่าสัตว์ปีก
+      gout_flare:
+        level: caution
+        advice: ช่วงกำเริบทานแต่น้อย มื้อละไม่เกิน 2 ช้อนโต๊ะ หรือเปลี่ยนเป็นไข่ขาว
+imageUrl: /images/foods/white-fish.jpg
+imageCredit: Created with Nanobanana AI (Creative Commons CC0 Public Domain)

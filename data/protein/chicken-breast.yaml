@@ -14,6 +14,8 @@ keywords:
 sources:
   - name: สมาคมโรคไตแห่งประเทศไทย
     url: https://www.nephrothai.org/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: เป็นเนื้อสัตว์ไม่ติดมันที่ย่อยง่าย มีฟอสฟอรัสน้อยกว่าเนื้อแดง แต่ยังต้องคุมปริมาณในระยะก่อนฟอก
@@ -30,3 +32,18 @@ diseases:
       dialysis:
         level: safe
         advice: ทานได้มื้อละ 3-4 ช้อนโต๊ะ
+  gout:
+    reason: สัตว์ปีกมีสารพิวรีนปานกลาง-สูง (ประมาณ 130-150 มก./100 ก.) ช่วงปกติทานได้บ้างโดยเลือกเนื้อล้วนไม่ติดหนัง แต่ช่วงข้ออักเสบกำเริบต้องงดเด็ดขาด
+    tags:
+      - พิวรีนปานกลาง-สูง
+      - สัตว์ปีก
+      - งดเด็ดขาดช่วงกำเริบ
+    stages:
+      gout_remission:
+        level: caution
+        advice: ทานมื้อละ 2-3 ช้อนโต๊ะ ลอกหนังออก และไม่ควรทานทุกวัน
+      gout_flare:
+        level: danger
+        advice: งดเด็ดขาดช่วงข้ออักเสบ สัตว์ปีกกระตุ้นการสร้างกรดยูริกและเพิ่มอาการปวดบวม
+imageUrl: /images/foods/chicken-breast.jpg
+imageCredit: Photo by Eiliv Aceron on Unsplash (CC0/Free License)

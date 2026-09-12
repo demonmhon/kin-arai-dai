@@ -16,6 +16,8 @@ keywords:
 sources:
   - name: สมาคมโรคไตแห่งประเทศไทย
     url: https://www.nephrothai.org/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: ผักสีซีดโพแทสเซียมต่ำ ย่อยง่าย อ่อนโยนต่อทางเดินอาหารและไต
@@ -32,3 +34,16 @@ diseases:
       dialysis:
         level: safe
         advice: ทานได้ดี
+  gout:
+    reason: ผักกาดขาวมีน้ำมากกว่า 95% และมีพิวรีนต่ำมาก ย่อยง่าย ช่วยเพิ่มปริมาณน้ำในร่างกายและขับปัสสาวะ
+    tags:
+      - พิวรีนต่ำมาก
+      - น้ำเยอะ
+      - ย่อยง่าย
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานได้ตามชอบ นำมาต้มแกงจืดหรือผัดผัก
+      gout_flare:
+        level: safe
+        advice: ทานได้ตามชอบ ช่วยเสริมน้ำและการขับปัสสาวะ

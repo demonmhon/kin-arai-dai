@@ -17,6 +17,8 @@ keywords:
 sources:
   - name: National Kidney Foundation (บทความ Shellfish)
     url: https://www.kidney.org/kidney-topics/shellfish
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: 'กุ้งมีคอเลสเตอรอลและพิวรีนค่อนข้างสูง (สำคัญมากถ้ามีโรคเก๊าท์ร่วมด้วย) แต่โพแทสเซียมและฟอสฟอรัสอยู่ในระดับปานกลาง ทานได้ในปริมาณจำกัด ⚠️ ข้อควรระวัง: กุ้งแช่แข็งสำเร็จรูปหรือกุ้งเด้งมักแช่สารฟอสเฟตสังเคราะห์ (STPP) เพื่ออุ้มน้ำ ซึ่งร่างกายดูดซึมได้ 100% ควรเลือกกุ้งสดธรรมชาติ'
@@ -33,3 +35,18 @@ diseases:
       dialysis:
         level: safe
         advice: ทานได้มื้อละ 4-5 ตัว เพื่อเสริมโปรตีน
+  gout:
+    reason: กุ้งและอาหารทะเลเปลือกแข็งมีพิวรีนปานกลาง-สูง (120-150 มก./100 ก.) โดยเฉพาะมันกุ้งและหัวกุ้งมีพิวรีนสูงมาก ช่วงกำเริบต้องงดเด็ดขาด
+    tags:
+      - พิวรีนปานกลาง-สูง
+      - หลีกเลี่ยงหัวและมันกุ้ง
+      - งดช่วงกำเริบ
+    stages:
+      gout_remission:
+        level: caution
+        advice: ทานได้แต่น้อย ไม่เกินมื้อละ 3-4 ตัว แกะหัวและมันกุ้งทิ้ง
+      gout_flare:
+        level: danger
+        advice: งดเด็ดขาดช่วงข้ออักเสบ อาหารทะเลเปลือกแข็งกระตุ้นการปวดบวม
+imageUrl: /images/foods/shrimp.jpg
+imageCredit: Photo by Anastasia Zhenina on Unsplash (CC0/Free License)

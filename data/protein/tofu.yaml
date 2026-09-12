@@ -14,6 +14,8 @@ keywords:
 sources:
   - name: National Kidney Foundation (บทความ Tofu and Kidney Disease)
     url: https://www.kidney.org/kidney-topics/tofu
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: เป็นโปรตีนทางเลือกที่ย่อยง่าย มีฟอสฟอรัสน้อยกว่าเนื้อสัตว์แปรรูปและถั่วเมล็ดแห้ง เหมาะเป็นโปรตีนสลับมื้อ
@@ -30,3 +32,18 @@ diseases:
       dialysis:
         level: safe
         advice: ทานได้ดี เป็นโปรตีนเสริม
+  gout:
+    reason: งานวิจัยทางการแพทย์สมัยใหม่ยืนยันตรงกันว่า โปรตีนพิวรีนจากถั่วเหลืองและเต้าหู้ไม่เพิ่มความเสี่ยงโรคเกาต์เหมือนเนื้อสัตว์ เป็นแหล่งโปรตีนจากพืชที่ดีมาก
+    tags:
+      - พิวรีนจากพืช
+      - งานวิจัยยืนยันปลอดภัย
+      - โปรตีนทางเลือก
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานได้มื้อละ 1/2 - 1 ก้อน เป็นโปรตีนปลอดภัยทดแทนเนื้อสัตว์
+      gout_flare:
+        level: caution
+        advice: ช่วงกำเริบทานได้พอประมาณ หรือเน้นไข่ขาวเป็นหลักก่อน
+imageUrl: /images/foods/tofu.jpg
+imageCredit: Created with Nanobanana AI (Creative Commons CC0 Public Domain)

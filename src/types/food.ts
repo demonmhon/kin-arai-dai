@@ -9,7 +9,8 @@ export type FoodCategory =
   | 'protein'
   | 'carb'
   | 'condiment'
-  | 'drink';
+  | 'drink'
+  | 'dish';
 
 export interface ReferenceSource {
   name: string;
@@ -66,6 +67,19 @@ export interface KidneyStage {
   focus: string;
 }
 
+export type GoutStageId = 'gout_remission' | 'gout_flare';
+
+export interface GoutStage {
+  id: GoutStageId;
+  name: string;
+  badge: string;
+  color: 'emerald' | 'red';
+  summary: string;
+  focus: string;
+}
+
+export type DiseaseStageId = KidneyStageId | GoutStageId;
+
 export interface Disease {
   id: string;
   name: string;
@@ -74,3 +88,4 @@ export interface Disease {
   summary: string;
   badgeText: string;
 }
+

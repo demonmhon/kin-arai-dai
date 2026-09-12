@@ -29,15 +29,14 @@ import { MedicalWarningBanner } from './MedicalWarningBanner';
 import {
   FoodItem,
   FoodCategory,
-  KidneyStageId,
   StageLevel,
 } from '../types/food';
 import { foods } from '../data/foods';
-import { kidneyStages } from '../data/kidneyStages';
+import { getStageMeta } from '../utils/diseaseHelper';
 import { getFoodAdvice } from '../utils/foodAdvice';
 
 interface CatalogPageProps {
-  selectedStage: KidneyStageId;
+  selectedStage: string;
   selectedDiseaseId?: string;
   onOpenStageModal: () => void;
   onOpenDetail: (food: FoodItem) => void;
@@ -51,6 +50,7 @@ const VALID_CATEGORIES: FoodCategory[] = [
   'carb',
   'condiment',
   'drink',
+  'dish',
 ];
 
 export const CatalogPage: React.FC<CatalogPageProps> = ({
@@ -59,6 +59,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
   onOpenStageModal,
   onOpenDetail,
 }) => {
+  const stageMeta = getStageMeta(selectedDiseaseId, selectedStage);
   const [searchParams, setSearchParams] = useSearchParams();
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -153,6 +154,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
       carb: 0,
       condiment: 0,
       drink: 0,
+      dish: 0,
     };
     foods.forEach((item) => {
       counts[item.category]++;
@@ -222,6 +224,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
           onSelectSuggestion={(val) => setSearchTerm(val)}
+          diseaseId={selectedDiseaseId}
         />
 
         {/* 2-Column Responsive Layout */}
@@ -231,6 +234,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
             <Box style={{ position: 'sticky', top: 76 }}>
               <SidebarFilter
                 selectedStage={selectedStage}
+                selectedDiseaseId={selectedDiseaseId}
                 onOpenStageModal={onOpenStageModal}
                 currentLevelFilter={levelFilter}
                 onSelectLevel={(lvl) => setLevelFilter(lvl)}
@@ -273,8 +277,8 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
 
                   <Text size="xs" fw={600} c="slate.7">
                     {isFilterActive
-                      ? `พบ ${filteredFoods.length} รายการ (ในเกณฑ์ของ: ${kidneyStages[selectedStage].name.split(' ')[0]} ${kidneyStages[selectedStage].name.split(' ')[1] || ''})`
-                      : `แสดงทั้งหมด ${filteredFoods.length} รายการ (ตามเกณฑ์ของ: ${kidneyStages[selectedStage].name})`}
+                      ? `พบ ${filteredFoods.length} รายการ (ในเกณฑ์ของ: ${stageMeta.name.split(' ')[0]} ${stageMeta.name.split(' ')[1] || ''})`
+                      : `แสดงทั้งหมด ${filteredFoods.length} รายการ (ตามเกณฑ์ของ: ${stageMeta.name})`}
                   </Text>
 
                   <Group gap="xs" align="center">
@@ -440,7 +444,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
               )}
 
               {/* Medical Warning Banner */}
-              <MedicalWarningBanner />
+              <MedicalWarningBanner diseaseId={selectedDiseaseId} />
             </Stack>
           </Grid.Col>
         </Grid>
@@ -461,6 +465,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
       >
         <SidebarFilter
           selectedStage={selectedStage}
+          selectedDiseaseId={selectedDiseaseId}
           onOpenStageModal={() => {
             setMobileDrawerOpen(false);
             onOpenStageModal();

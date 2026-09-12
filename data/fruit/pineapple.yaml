@@ -15,7 +15,9 @@ keywords:
   - ของหวาน
 sources:
   - name: National Kidney Foundation (NKF)
-    url: https://www.kidney.org/atoz/content/kidney-friendly-fruits
+    url: https://www.kidney.org/kidney-topics/potassium-your-ckd-diet
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: มีโพแทสเซียมต่ำเมื่อเทียบกับผลไม้รสหวานอื่น และมีเอนไซม์โบรมีเลนช่วยย่อยอาหาร
@@ -32,3 +34,16 @@ diseases:
       dialysis:
         level: safe
         advice: ทานได้ 4 ชิ้นคำ
+  gout:
+    reason: สับปะรดมีพิวรีนต่ำ และมีเอนไซม์บรอมมีเลน (Bromelain) ซึ่งทางการแพทย์พบว่ามีฤทธิ์ช่วยลดการอักเสบและบรรเทาอาการปวดบวมของข้อต่อ
+    tags:
+      - เอนไซม์บรอมมีเลน
+      - ต้านการอักเสบ
+      - พิวรีนต่ำ
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานครั้งละ 5-6 ชิ้นคำ เอนไซม์บรอมมีเลนช่วยลดการอักเสบ
+      gout_flare:
+        level: safe
+        advice: ทานได้พอเหมาะ สารบรอมมีเลนช่วยบรรเทาอาการปวดข้อ

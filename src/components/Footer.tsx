@@ -31,17 +31,6 @@ export const Footer: React.FC = () => {
             >
               แหล่งข้อมูลอ้างอิงทางการแพทย์ (References)
             </Anchor>
-            <Text size="xs" c="dimmed">
-              •
-            </Text>
-            <Anchor
-              component={Link}
-              to="/references"
-              size="xs"
-              c="slate.6"
-            >
-              สมาคมโรคไตแห่งประเทศไทย (The Nephrology Society of Thailand)
-            </Anchor>
           </Group>
 
           <Text size="11px" c="dimmed" style={{ maxWidth: 680, margin: '0 auto' }} lh={1.6}>

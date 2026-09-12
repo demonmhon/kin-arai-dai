@@ -15,6 +15,8 @@ keywords:
 sources:
   - name: สมาคมโรคไตแห่งประเทศไทย
     url: https://www.nephrothai.org/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: ไข่แดง 1 ฟองมีฟอสฟอรัสสูง หากไตขับไม่ออก จะสะสมจนดึงแคลเซียมออกจากกระดูก ทำให้คันตามผิวและกระดูกเปราะหักง่าย
@@ -31,3 +33,17 @@ diseases:
       dialysis:
         level: danger
         advice: หลีกเลี่ยงเด็ดขาด ฟอสฟอรัสในไข่แดงฟอกออกยากมาก
+  gout:
+    reason: ไข่แดงมีสารพิวรีนต่ำมาก (<20 มก./100 ก.) สามารถรับประทานได้ปกติ ไม่ส่งผลต่อระดับกรดยูริกในเลือด
+    tags:
+      - พิวรีนต่ำ
+      - ทานวันละ 1 ฟอง
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานได้วันละ 1 ฟองตามปกติ พิวรีนต่ำไม่กระตุ้นเกาต์
+      gout_flare:
+        level: safe
+        advice: ทานได้วันละ 1 ฟอง ปลอดภัยสำหรับกรดยูริก
+imageUrl: /images/foods/egg-yolk.jpg
+imageCredit: Created with Nanobanana AI (Creative Commons CC0 Public Domain)

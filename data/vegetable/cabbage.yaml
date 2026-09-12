@@ -16,6 +16,8 @@ keywords:
 sources:
   - name: American Kidney Fund
     url: https://www.kidneyfund.org/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: เป็นผักสีขาว/อ่อนที่มีโพแทสเซียมต่ำมาก โซเดียมต่ำ และมีวิตามิน C, K เหมาะกับโรคไตทุกระยะ
@@ -32,3 +34,15 @@ diseases:
       dialysis:
         level: safe
         advice: ปลอดภัย แนะนำลวกน้ำทิ้งก่อน
+  gout:
+    reason: กะหล่ำปลีมีพิวรีนต่ำมาก (<20 มก./100 ก.) ปลอดภัยสูง ทานสดหรือต้มสุกได้ตามชอบ ไม่เพิ่มกรดยูริก
+    tags:
+      - พิวรีนต่ำมาก
+      - ปลอดภัย 100%
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานได้ตามชอบทุกมื้อ พิวรีนต่ำ ปลอดภัย
+      gout_flare:
+        level: safe
+        advice: ทานได้ตามปกติ เป็นผักที่ปลอดภัยช่วงปวดข้อ

@@ -22,11 +22,12 @@ import {
   IconCheck,
   IconAlertTriangle,
 } from '@tabler/icons-react';
-import { KidneyStageId } from '../types/food';
+import { KidneyStageId, GoutStageId } from '../types/food';
 import { diseases } from '../data/diseases';
 
 interface LandingPageProps {
   onSelectCkdStage: (stage: KidneyStageId) => void;
+  onSelectGoutStage?: (stage: GoutStageId) => void;
   onOpenStageModal: () => void;
   onOpenGuideModal: () => void;
   onNavigateReferences?: () => void;
@@ -34,6 +35,7 @@ interface LandingPageProps {
 
 export const LandingPage: React.FC<LandingPageProps> = ({
   onSelectCkdStage,
+  onSelectGoutStage,
   onOpenStageModal,
   onOpenGuideModal,
   onNavigateReferences,
@@ -335,39 +337,61 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </SimpleGrid>
             </Card>
 
-            {/* Upcoming Diseases Grid */}
+            {/* Additional Diseases Grid */}
             <Text size="xs" fw={700} c="slate.6" mb="xs">
-              อาการป่วยอื่นๆ ที่กำลังพัฒนาข้อมูล:
+              โรคและอาการป่วยอื่นๆ ในระบบ:
             </Text>
             <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }} spacing="sm">
               {diseases
                 .filter((d) => d.id !== 'ckd')
-                .map((d) => (
-                  <Card
-                    key={d.id}
-                    p="md"
-                    radius="lg"
-                    withBorder
-                    style={{
-                      backgroundColor: '#f8fafc',
-                      borderColor: '#e2e8f0',
-                      opacity: 0.8,
-                    }}
-                  >
-                    <Group justify="space-between" mb="xs">
-                      <Text size="xl">{d.icon}</Text>
-                      <Badge size="xs" color="gray" variant="light">
-                        {d.badgeText}
-                      </Badge>
-                    </Group>
-                    <Text size="xs" fw={700} c="slate.8" mb={2}>
-                      {d.name}
-                    </Text>
-                    <Text size="11px" c="dimmed" lineClamp={2}>
-                      {d.summary}
-                    </Text>
-                  </Card>
-                ))}
+                .map((d) => {
+                  const isActive = d.status === 'active';
+                  return (
+                    <Card
+                      key={d.id}
+                      p="md"
+                      radius="lg"
+                      withBorder
+                      onClick={() => {
+                        if (isActive && d.id === 'gout' && onSelectGoutStage) {
+                          onSelectGoutStage('gout_remission');
+                        }
+                      }}
+                      style={{
+                        backgroundColor: isActive ? '#ecfdf5' : '#f8fafc',
+                        borderColor: isActive ? '#a7f3d0' : '#e2e8f0',
+                        opacity: isActive ? 1 : 0.8,
+                        cursor: isActive ? 'pointer' : 'default',
+                        transition: 'all 0.15s ease',
+                      }}
+                    >
+                      <Group justify="space-between" mb="xs">
+                        <Text size="xl">{d.icon}</Text>
+                        <Badge size="xs" color={isActive ? 'emerald' : 'gray'} variant={isActive ? 'filled' : 'light'}>
+                          {d.badgeText}
+                        </Badge>
+                      </Group>
+                      <Text size="xs" fw={700} c={isActive ? 'emerald.9' : 'slate.8'} mb={2}>
+                        {d.name}
+                      </Text>
+                      <Text size="11px" c="dimmed" lineClamp={2} mb={isActive ? 'xs' : 0}>
+                        {d.summary}
+                      </Text>
+                      {isActive && (
+                        <Button
+                          size="compact-xs"
+                          color="emerald"
+                          variant="light"
+                          radius="md"
+                          fullWidth
+                          mt="xs"
+                        >
+                          เข้าดูเกณฑ์อาหาร ➔
+                        </Button>
+                      )}
+                    </Card>
+                  );
+                })}
             </SimpleGrid>
           </Box>
 

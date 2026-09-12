@@ -1,0 +1,49 @@
+id: red-meat-beef
+name: เนื้อวัว / เนื้อแดงไม่ติดมัน
+category: protein
+categoryName: เนื้อสัตว์/โปรตีน
+icon: 🥩
+tags:
+  - พิวรีนปานกลาง-สูง
+  - เนื้อแดง
+  - จำกัดปริมาณ
+keywords:
+  - เนื้อวัว
+  - เนื้อแดง
+  - เนื้อสเต๊ก
+  - เนื้อบด
+sources:
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
+  - name: คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี
+    url: https://www.rama.mahidol.ac.th/
+diseases:
+  ckd:
+    reason: เนื้อแดงสร้างของเสียยูเรียและสารพิษในทางเดินอาหารสูงกว่าเนื้อขาว และมีฟอสฟอรัสอินทรีย์สูง
+    stages:
+      stage1_2:
+        level: caution
+        advice: ทานได้มื้อละ 2-3 ช้อนโต๊ะ สัปดาห์ละ 1-2 ครั้ง
+      stage3:
+        level: caution
+        advice: จำกัดมื้อละ 1-2 ช้อนโต๊ะ
+      stage4_5_pre:
+        level: danger
+        advice: ควรหลีกเลี่ยง เปลี่ยนเป็นไข่ขาวเพื่อลดภาระไต
+      dialysis:
+        level: safe
+        advice: ทานได้มื้อละ 3-4 ช้อนโต๊ะ ช่วยป้องกันภาวะโลหิตจาง
+  gout:
+    reason: เนื้อวัวและเนื้อแดงมีสารพิวรีนปานกลาง-สูง (ประมาณ 110-140 มก./100 ก.) การบริโภคเนื้อแดงเป็นประจำสัมพันธ์กับการเพิ่มขึ้นของระดับกรดยูริกในเลือดและอุบัติการณ์ของโรคเกาต์
+    tags:
+      - เนื้อแดงพิวรีนสูง
+      - จำกัดมื้อละน้อย
+    stages:
+      gout_remission:
+        level: caution
+        advice: จำกัดไม่เกินสัปดาห์ละ 1-2 มื้อ มื้อละไม่เกิน 2-3 ช้อนโต๊ะ เลือกเนื้อไม่ติดมัน
+      gout_flare:
+        level: danger
+        advice: งดเด็ดขาดช่วงข้ออักเสบ เปลี่ยนเป็นโปรตีนปลอดภัย เช่น ไข่ขาว หรือเต้าหู้
+imageUrl: /images/foods/red-meat-beef.jpg
+imageCredit: Created with Nanobanana AI (Creative Commons CC0 Public Domain)

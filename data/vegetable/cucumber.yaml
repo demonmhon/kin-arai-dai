@@ -14,7 +14,9 @@ keywords:
   - แตง
 sources:
   - name: กรมอนามัย กระทรวงสาธารณสุข
-    url: https://multimedia.anamai.moph.go.th/
+    url: https://www.anamai.moph.go.th/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: โพแทสเซียมและฟอสฟอรัสต่ำมาก ปลอดภัยสูง
@@ -31,3 +33,16 @@ diseases:
       dialysis:
         level: safe
         advice: ปอกเปลือก (ระวังเรื่องน้ำถ้ามีอาการบวม)
+  gout:
+    reason: แตงกวามีน้ำเป็นส่วนประกอบสูงที่สุดและมีพิวรีนต่ำที่สุดในกลุ่มผัก มีฤทธิ์เย็นช่วยขับปัสสาวะและขับกรดยูริกตามธรรมชาติ
+    tags:
+      - พิวรีนต่ำที่สุด
+      - น้ำสูงมาก
+      - ขับกรดยูริก
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานได้ไม่จำกัด ช่วยเพิ่มน้ำในร่างกายและขับยูริก
+      gout_flare:
+        level: safe
+        advice: ทานได้ดีมาก มีน้ำสูงช่วยระบายกรดยูริก

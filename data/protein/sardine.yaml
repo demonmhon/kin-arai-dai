@@ -1,0 +1,50 @@
+id: sardine
+name: ปลาซาร์ดีน / ปลาแอนโชวี่ / ปลากระป๋อง
+category: protein
+categoryName: เนื้อสัตว์/โปรตีน
+icon: 🐟
+tags:
+  - พิวรีนสูงจัด
+  - ปลาผิวน้ำ
+  - งดเด็ดขาด
+keywords:
+  - ปลาซาร์ดีน
+  - ปลากระป๋อง
+  - ปลาแอนโชวี่
+  - ปลาแมคเคอเรล
+  - ปลาซาบะ
+sources:
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
+  - name: คณะแพทยศาสตร์ศิริราชพยาบาล
+    url: https://www.si.mahidol.ac.th/
+diseases:
+  ckd:
+    reason: ปลากระป๋องมีโซเดียมและฟอสฟอรัสเข้มข้นสูงมากจากซอสมะเขือเทศและก้างปลาที่บดละเอียด
+    stages:
+      stage1_2:
+        level: caution
+        advice: ทานแต่น้อย รินน้ำซอสทิ้ง
+      stage3:
+        level: danger
+        advice: ควรหลีกเลี่ยง ฟอสฟอรัสและเกลือสูง
+      stage4_5_pre:
+        level: danger
+        advice: งดเด็ดขาด
+      dialysis:
+        level: danger
+        advice: งดเด็ดขาด
+  gout:
+    reason: ปลาซาร์ดีน ปลาแอนโชวี่ และปลาทะเลตัวเล็กผิวน้ำที่กินทั้งตัว/ก้าง เป็นอาหารที่มีสารพิวรีนสูงที่สุดในกลุ่มสัตว์น้ำ (>200-300 มก./100 ก.) เป็นตัวกระตุ้นเกาต์ชั้นนำ
+    tags:
+      - พิวรีนสูงจัด
+      - งดเด็ดขาด 100%
+    stages:
+      gout_remission:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด สารพิวรีนสูงจัดเทียบเท่าเครื่องในสัตว์
+      gout_flare:
+        level: danger
+        advice: งดเด็ดขาด 100% ห้ามรับประทาน
+imageUrl: /images/foods/sardine.jpg
+imageCredit: Created with Nanobanana AI (Creative Commons CC0 Public Domain)

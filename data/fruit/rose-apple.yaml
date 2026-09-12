@@ -18,6 +18,8 @@ keywords:
 sources:
   - name: ฝ่ายโภชนาการ โรงพยาบาลรามาธิบดี
     url: https://www.rama.mahidol.ac.th/ramachannel/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: ผลไม้โพแทสเซียมต่ำมาก เนื้อกรอบฉ่ำน้ำ ไม่เพิ่มภาระขับโพแทสเซียมให้ไต
@@ -34,3 +36,16 @@ diseases:
       dialysis:
         level: safe
         advice: ทานได้ 1-2 ผล (นับรวมในโควตาน้ำดื่มประจำวัน)
+  gout:
+    reason: ชมพู่มีปริมาณน้ำสูงมากและมีพิวรีนต่ำมาก ช่วยเพิ่มปริมาณน้ำในร่างกายและขับกรดยูริกออกทางปัสสาวะได้อย่างดี
+    tags:
+      - พิวรีนต่ำมาก
+      - มีน้ำสูง
+      - ช่วยขับปัสสาวะ
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานได้วันละ 2-3 ผล ทานเป็นของว่างเพื่อสุขภาพ
+      gout_flare:
+        level: safe
+        advice: ทานได้ตามชอบ มีน้ำสูงช่วยเจือจางกรดยูริก

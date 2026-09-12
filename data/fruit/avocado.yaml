@@ -15,6 +15,8 @@ keywords:
 sources:
   - name: National Kidney Foundation (เอกสารเจาะลึกเรื่องอะโวคาโด)
     url: https://www.kidney.org/sites/default/files/441-9152_2210_patflyer_superfood-avocado.pdf
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: แม้จะมีไขมันดีและใยอาหารสูง แต่อะโวคาโดมีโพแทสเซียมสูงมาก (สูงกว่ากล้วยเมื่อเทียบต่อน้ำหนัก) ผู้ป่วยไตขับออกไม่ทัน
@@ -31,3 +33,16 @@ diseases:
       dialysis:
         level: danger
         advice: ควรหลีกเลี่ยง
+  gout:
+    reason: อะโวคาโดมีพิวรีนต่ำมาก อุดมด้วยกรดไขมันไม่อิ่มตัวเชิงเดี่ยว วิตามินอี และสารต้านอนุมูลอิสระ ช่วยลดภาวะการอักเสบในร่างกาย
+    tags:
+      - พิวรีนต่ำมาก
+      - ไขมันดี
+      - ต้านการอักเสบ
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานได้วันละ 1/2 ผล ไขมันดีช่วยต้านการอักเสบ
+      gout_flare:
+        level: safe
+        advice: ทานได้วันละ 1/2 ผล ปลอดภัยสำหรับข้ออักเสบ

@@ -6,14 +6,20 @@ interface HeroSearchProps {
   searchTerm: string;
   onSearchChange: (value: string) => void;
   onSelectSuggestion: (value: string) => void;
+  diseaseId?: string;
 }
 
 export const HeroSearch: React.FC<HeroSearchProps> = ({
   searchTerm,
   onSearchChange,
   onSelectSuggestion,
+  diseaseId = 'ckd',
 }) => {
-  const suggestions = ['ผลไม้', 'ผัก', 'ไข่ขาว', 'วุ้นเส้น', 'เครื่องปรุง', 'ปลา'];
+  const suggestions =
+    diseaseId === 'gout'
+      ? ['เชอร์รี่', 'อกไก่', 'ยอดผัก', 'เบียร์', 'เครื่องใน', 'ไข่ขาว']
+      : ['ผลไม้', 'ผัก', 'ไข่ขาว', 'วุ้นเส้น', 'เครื่องปรุง', 'ปลา'];
+
 
   return (
     <Box

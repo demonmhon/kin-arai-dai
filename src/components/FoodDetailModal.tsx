@@ -16,14 +16,14 @@ import {
   IconActivity,
   IconCheck,
 } from '@tabler/icons-react';
-import { FoodItem, KidneyStageId } from '../types/food';
-import { kidneyStages } from '../data/kidneyStages';
+import { FoodItem } from '../types/food';
+import { getStageMeta } from '../utils/diseaseHelper';
 import { getFoodAdvice } from '../utils/foodAdvice';
 import { diseases } from '../data/diseases';
 
 interface FoodDetailModalProps {
   food: FoodItem | null;
-  currentStage: KidneyStageId;
+  currentStage: string;
   currentDiseaseId?: string;
   opened: boolean;
   onClose: () => void;
@@ -39,7 +39,7 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
   if (!food) return null;
 
   const adviceInfo = getFoodAdvice(food, currentDiseaseId, currentStage);
-  const stageMeta = kidneyStages[currentStage];
+  const stageMeta = getStageMeta(currentDiseaseId, currentStage);
   const diseaseMeta = diseases.find((d) => d.id === currentDiseaseId) || diseases[0];
 
   const getHeaderGradient = (lvl: string) => {
@@ -198,7 +198,7 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
               <Text size="xs" fw={700} c="#312e81">
                 คำแนะนำเฉพาะ:{' '}
                 <Text span style={{ textDecoration: 'underline' }}>
-                  {currentDiseaseId === 'ckd' ? stageMeta.name : diseaseMeta.name}
+                  {currentDiseaseId === 'ckd' || currentDiseaseId === 'gout' ? stageMeta.name : diseaseMeta.name}
                 </Text>
               </Text>
             </Group>

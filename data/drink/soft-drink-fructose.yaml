@@ -1,0 +1,51 @@
+id: soft-drink-fructose
+name: น้ำหวาน / ชาเขียวหวาน / น้ำผลไม้เข้มข้น (HFCS)
+category: drink
+categoryName: เครื่องดื่ม
+icon: 🧃
+tags:
+  - ฟรุกโตสสูงจัด
+  - กระตุ้นตับสร้างยูริก
+  - อันตราย
+keywords:
+  - น้ำหวาน
+  - ชาเขียวหวาน
+  - น้ำผลไม้กล่อง
+  - น้ำเชื่อม
+  - ฟรุกโตส
+  - ชานม
+sources:
+  - name: คณะแพทยศาสตร์ศิริราชพยาบาล
+    url: https://www.si.mahidol.ac.th/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
+diseases:
+  ckd:
+    reason: น้ำตาลเข้มข้นทำให้น้ำตาลในเลือดและไขมันไตรกลีเซอไรด์สูง เร่งให้หลอดเลือดไตแข็งตัวและเสื่อมเร็ว
+    stages:
+      stage1_2:
+        level: danger
+        advice: หลีกเลี่ยง น้ำตาลสูงเร่งไตเสื่อม
+      stage3:
+        level: danger
+        advice: งดเด็ดขาด เพิ่มความเสี่ยงเบาหวานและไตวาย
+      stage4_5_pre:
+        level: danger
+        advice: งดเด็ดขาด
+      dialysis:
+        level: danger
+        advice: งดเด็ดขาด
+  gout:
+    reason: น้ำหวานที่มี High Fructose Corn Syrup (HFCS) จะถูกตับนำไปย่อยสลายโดยใช้พลังงาน ATP อย่างรวดเร็ว เกิดผลพลอยได้คือกรดยูริกพุ่งสูงขึ้นในกระแสเลือดทันทีหลังดื่ม
+    tags:
+      - ฟรุกโตสเร่งสร้างยูริก
+      - งดเด็ดขาด
+    stages:
+      gout_remission:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด เปลี่ยนเป็นดื่มน้ำเปล่าหรือชาชงไม่ใส่น้ำตาล
+      gout_flare:
+        level: danger
+        advice: งดเด็ดขาด 100% น้ำตาลฟรุกโตสทำให้ข้ออักเสบหายช้าลงมาก
+imageUrl: /images/foods/soft-drink-fructose.jpg
+imageCredit: Photo by Rosalind Chang on Unsplash (CC0/Free License)

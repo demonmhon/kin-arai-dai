@@ -14,6 +14,8 @@ keywords:
 sources:
   - name: โรงพยาบาลศิริราช ปิยมหาราชการุณย์ (บทความโรคไต ภัยเงียบจากความเค็ม)
     url: https://www.siphhospital.com/th/news/article/share/sodium-and-kidney-disease
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: กระบวนการดองใช้เกลือปริมาณมาก ทำให้โซเดียมสูงมากแม้จะเป็นผัก และยังมีโพแทสเซียมจากน้ำดองสะสมด้วย
@@ -30,3 +32,16 @@ diseases:
       dialysis:
         level: danger
         advice: ห้ามรับประทาน
+  gout:
+    reason: ผักดองมีปริมาณเกลือโซเดียมสูงมาก ซึ่งโซเดียมที่มากเกินไปทำให้ไตขับกรดยูริกออกได้ช้าลง ส่งผลให้ระดับกรดยูริกในเลือดสะสมสูงขึ้น
+    tags:
+      - โซเดียมสูงจัด
+      - หมักดอง
+      - ยับยั้งการขับยูริก
+    stages:
+      gout_remission:
+        level: caution
+        advice: ทานแต่น้อย โซเดียมสูงทำให้ไตขับกรดยูริกได้ลดลง
+      gout_flare:
+        level: danger
+        advice: งดเด็ดขาดช่วงข้ออักเสบ เพื่อหลีกเลี่ยงภาวะกรดยูริกคั่ง

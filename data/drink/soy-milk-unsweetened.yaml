@@ -14,6 +14,8 @@ keywords:
 sources:
   - name: National Kidney Foundation (บทความ Plant Based Milk and Kidney Disease)
     url: https://www.kidney.org/kidney-topics/milk-alternatives
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: มีฟอสฟอรัสและโพแทสเซียมต่ำกว่านมวัวพอสมควร เป็นทางเลือกที่ดีกว่าสำหรับผู้ที่ต้องจำกัดฟอสฟอรัส แต่สูตรเสริมแคลเซียม/เสริมสารอาหารบางยี่ห้ออาจมีฟอสฟอรัสสูงขึ้น ควรอ่านฉลาก
@@ -30,3 +32,18 @@ diseases:
       dialysis:
         level: caution
         advice: จำกัดปริมาณ
+  gout:
+    reason: งานวิจัยสมัยใหม่ระดับนานาชาติ (รวมถึงงานวิจัยในเอเชีย) ยืนยันว่าพิวรีนจากถั่วเหลืองไม่เพิ่มความเสี่ยงโรคเกาต์เหมือนพิวรีนจากเนื้อสัตว์ สามารถดื่มได้พอประมาณ
+    tags:
+      - พิวรีนจากพืช
+      - ดื่มแต่พอดี
+      - ไม่เติมน้ำตาล
+    stages:
+      gout_remission:
+        level: safe
+        advice: ดื่มได้วันละ 1 แก้ว เลือกสูตรไม่หวานหรือไม่เติมน้ำตาล
+      gout_flare:
+        level: caution
+        advice: ช่วงกำเริบจำกัดไม่เกินวันละ 1 แก้ว หรือสลับดื่มนมวัวไขมันต่ำ
+imageUrl: /images/foods/soy-milk-unsweetened.jpg
+imageCredit: Created with Nanobanana AI (Creative Commons CC0 Public Domain)

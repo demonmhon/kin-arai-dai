@@ -1,12 +1,12 @@
 import React from 'react';
 import { Card, Group, Text, Badge, Box } from '@mantine/core';
 import { IconArrowRight } from '@tabler/icons-react';
-import { FoodItem, KidneyStageId } from '../types/food';
+import { FoodItem } from '../types/food';
 import { getFoodAdvice } from '../utils/foodAdvice';
 
 interface FoodCardProps {
   food: FoodItem;
-  currentStage: KidneyStageId;
+  currentStage: string;
   currentDiseaseId?: string;
   onOpenDetail: (food: FoodItem) => void;
 }

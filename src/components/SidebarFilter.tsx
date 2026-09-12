@@ -15,11 +15,12 @@ import {
   IconCheck,
   IconReload,
 } from '@tabler/icons-react';
-import { FoodCategory, KidneyStageId, StageLevel } from '../types/food';
-import { kidneyStages } from '../data/kidneyStages';
+import { FoodCategory, StageLevel } from '../types/food';
+import { getStageMeta } from '../utils/diseaseHelper';
 
 interface SidebarFilterProps {
-  selectedStage: KidneyStageId;
+  selectedStage: string;
+  selectedDiseaseId?: string;
   onOpenStageModal: () => void;
   currentLevelFilter: StageLevel | 'all';
   onSelectLevel: (level: StageLevel | 'all') => void;
@@ -38,6 +39,7 @@ interface SidebarFilterProps {
 
 export const SidebarFilter: React.FC<SidebarFilterProps> = ({
   selectedStage,
+  selectedDiseaseId = 'ckd',
   onOpenStageModal,
   currentLevelFilter,
   onSelectLevel,
@@ -48,7 +50,8 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
   onResetFilters,
   isFilterActive,
 }) => {
-  const stage = kidneyStages[selectedStage];
+  const stage = getStageMeta(selectedDiseaseId, selectedStage);
+  const isGout = selectedDiseaseId === 'gout';
 
   const levels: {
     id: StageLevel | 'all';
@@ -102,6 +105,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
     { id: 'carb', label: 'ข้าว-แป้ง', icon: '🍚', count: categoryCounts.carb },
     { id: 'condiment', label: 'เครื่องปรุง', icon: '🧂', count: categoryCounts.condiment },
     { id: 'drink', label: 'เครื่องดื่ม/ของหวาน', icon: '☕', count: categoryCounts.drink },
+    { id: 'dish', label: 'อาหารจานเดียว/ฟาสต์ฟู้ด', icon: '🍲', count: categoryCounts.dish },
   ];
 
   return (
@@ -149,9 +153,9 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
         >
           <Group justify="space-between" align="center" mb={4}>
             <Text size="11px" fw={700} c="slate.6" style={{ textTransform: 'uppercase' }}>
-              ระยะโรคไตที่ประเมิน
+              {isGout ? 'สภาวะโรคเกาต์ที่ประเมิน' : 'ระยะโรคไตที่ประเมิน'}
             </Text>
-            <Badge size="xs" color="blue" variant="light">
+            <Badge size="xs" color={stage.color as any || 'emerald'} variant="light">
               {stage.badge}
             </Badge>
           </Group>
@@ -178,7 +182,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
               },
             }}
           >
-            เปลี่ยนระยะโรคไต ⚙️
+            {isGout ? 'เปลี่ยนสภาวะโรคเกาต์ ⚙️' : 'เปลี่ยนระยะโรคไต ⚙️'}
           </Button>
         </Box>
 

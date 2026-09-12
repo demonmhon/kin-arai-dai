@@ -14,6 +14,8 @@ keywords:
 sources:
   - name: สมาคมโรคไตแห่งประเทศไทย
     url: https://www.nephrothai.org/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: น้ำเปล่าสะอาดเป็นของเหลวที่ดีที่สุด ช่วยขับสารพิษโดยไม่เพิ่มภาระแร่ธาตุใดๆ ให้ไต
@@ -30,3 +32,18 @@ diseases:
       dialysis:
         level: caution
         advice: ต้องจำกัดน้ำเข้มงวด ชั่งน้ำหนักทุกวันเพื่อไม่ให้น้ำหนักเกิน 1-1.5 กก. ระหว่างรอบฟอก
+  gout:
+    reason: น้ำเปล่าคือยาขับกรดยูริกที่ดีและปลอดภัยที่สุด การดื่มน้ำเพียงพอช่วยละลายผลึกยูเรตและเร่งการขับออกทางปัสสาวะ ป้องกันโรคนิ่วในไต
+    tags:
+      - ดีที่สุด
+      - เร่งขับกรดยูริก
+      - ป้องกันนิ่วในไต
+    stages:
+      gout_remission:
+        level: safe
+        advice: ดื่มวันละ 2 - 2.5 ลิตร ช่วยขับกรดยูริกและป้องกันการกำเริบ
+      gout_flare:
+        level: safe
+        advice: ดื่มวันละ 2.5 - 3 ลิตร เร่งการขับผลึกยูเรตออกจากข้อและกระแสเลือด
+imageUrl: /images/foods/water.jpg
+imageCredit: Photo by Manu Schwendener on Unsplash (CC0/Free License)

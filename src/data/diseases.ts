@@ -21,9 +21,9 @@ export const diseases: Disease[] = [
     id: 'gout',
     name: 'โรคเกาต์ (Gout / กรดยูริกสูง)',
     icon: '🦶',
-    status: 'upcoming',
-    summary: 'เน้นปริมาณสารพิวรีน ยอดผัก สัตว์ปีก แอลกอฮอล์ และน้ำตาลฟรุกโตส',
-    badgeText: 'เร็วๆ นี้',
+    status: 'active',
+    summary: 'เน้นปริมาณสารพิวรีน สัตว์ปีก เครื่องใน แอลกอฮอล์ ยอดผัก และน้ำตาลฟรุกโตส',
+    badgeText: 'เปิดใช้งานอยู่',
   },
   {
     id: 'hypertension',

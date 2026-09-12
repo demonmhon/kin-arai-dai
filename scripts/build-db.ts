@@ -35,6 +35,7 @@ const VALID_CATEGORIES = new Set([
   'carb',
   'condiment',
   'drink',
+  'dish',
 ]);
 
 export interface StageInfo {

@@ -14,6 +14,8 @@ keywords:
 sources:
   - name: โรงพยาบาลรามาธิบดี
     url: https://www.rama.mahidol.ac.th/ramachannel/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: มีโพแทสเซียมสูงมาก แม้จะต้มแล้วก็ยังมีความเข้มข้นสูงในเนื้อ
@@ -30,3 +32,15 @@ diseases:
       dialysis:
         level: danger
         advice: หลีกเลี่ยงเด็ดขาด
+  gout:
+    reason: ฟักทองมีพิวรีนต่ำมาก อุดมด้วยเบต้าแคโรทีน วิตามินซี และสารต้านอนุมูลอิสระ ไม่เพิ่มระดับกรดยูริกในเลือด
+    tags:
+      - พิวรีนต่ำมาก
+      - เบต้าแคโรทีน
+    stages:
+      gout_remission:
+        level: safe
+        advice: ทานได้มื้อละ 1 ทัพพี นึ่ง ต้ม หรือแกงเลียง
+      gout_flare:
+        level: safe
+        advice: ทานได้ตามปกติ พิวรีนต่ำ ไม่กระตุ้นเกาต์

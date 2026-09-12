@@ -17,6 +17,8 @@ keywords:
 sources:
   - name: National Kidney Foundation (บทความ Dairy and Our Kidneys)
     url: https://www.kidney.org/kidney-topics/dairy-and-our-kidneys
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: นมวัวมีทั้งฟอสฟอรัสและโพแทสเซียมสูงมากในปริมาณเข้มข้น เป็นสาเหตุหลักที่ทำให้ค่าฟอสเฟตในเลือดของผู้ป่วยไตพุ่งสูงหากดื่มเป็นประจำ
@@ -33,3 +35,18 @@ diseases:
       dialysis:
         level: danger
         advice: ควรหลีกเลี่ยง ฟอสฟอรัสสะสมเร็วมาก
+  gout:
+    reason: นมวัวมีสารพิวรีนต่ำมาก โปรตีนเคซีนและแลกโตอัลบูมินในนมมีคุณสมบัติพิเศษช่วยเพิ่มการขับกรดยูริกออกทางปัสสาวะ ช่วยลดระดับยูริกในเลือดอย่างมีนัยสำคัญ
+    tags:
+      - พิวรีนต่ำมาก
+      - โปรตีนช่วยขับยูริก
+      - แนะนำนมไขมันต่ำ
+    stages:
+      gout_remission:
+        level: safe
+        advice: ดื่มวันละ 1-2 แก้ว แนะนำสูตรพร่องมันเนยหรือไขมัน 0%
+      gout_flare:
+        level: safe
+        advice: ดื่มได้ เป็นแหล่งโปรตีนที่ปลอดภัยและช่วยเร่งขับกรดยูริก
+imageUrl: /images/foods/cow-milk.jpg
+imageCredit: Photo by Mehrad Vosoughi on Unsplash (CC0/Free License)

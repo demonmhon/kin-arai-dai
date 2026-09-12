@@ -16,7 +16,9 @@ keywords:
   - ผลไม้หวานจัด
 sources:
   - name: กรมอนามัย กระทรวงสาธารณสุข
-    url: https://multimedia.anamai.moph.go.th/
+    url: https://www.anamai.moph.go.th/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: อุดมด้วยโพแทสเซียม ฟอสฟอรัส และพลังงานเข้มข้น ไตขับไม่ทันอย่างแน่นอน
@@ -33,3 +35,16 @@ diseases:
       dialysis:
         level: danger
         advice: ห้ามรับประทานเด็ดขาด
+  gout:
+    reason: แม้พิวรีนจะไม่สูงมาก แต่ทุเรียนมีน้ำตาลเข้มข้นและพลังงานสูงมาก ซึ่งน้ำตาลและไขมันสูงทำให้เกิดภาวะดื้ออินซูลินและทำให้ไตขับยูริกได้ลดลง
+    tags:
+      - น้ำตาลสูงจัด
+      - พลังงานสูง
+      - เสี่ยงยูริกสะสม
+    stages:
+      gout_remission:
+        level: caution
+        advice: ทานแต่น้อย ไม่เกิน 1 เม็ดเล็ก นานๆ ครั้ง
+      gout_flare:
+        level: danger
+        advice: งดเด็ดขาดช่วงข้ออักเสบ น้ำตาลและแคลอรี่สูงรบกวนการขับกรดยูริก

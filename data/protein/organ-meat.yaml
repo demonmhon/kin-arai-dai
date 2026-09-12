@@ -16,6 +16,8 @@ keywords:
 sources:
   - name: โรงพยาบาลรามาธิบดี
     url: https://www.rama.mahidol.ac.th/ramachannel/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: เป็นแหล่งสะสมฟอสฟอรัสและพิวรีนเข้มข้นที่สุด ทำให้ระดับฟอสเฟตในเลือดสูงวิกฤต
@@ -32,3 +34,19 @@ diseases:
       dialysis:
         level: danger
         advice: งดเด็ดขาด
+  gout:
+    reason: เครื่องในสัตว์ (ตับ ไต ไส้ ปอด หัวใจ) มีสารพิวรีนเข้มข้นที่สุดในบรรดาอาหารทั้งหมด (>300 - 500 มก./100 ก.) เป็นตัวการสำคัญอันดับ 1 ที่ทำให้เกาต์กำเริบรุนแรง
+    tags:
+      - พิวรีนสูงจัด
+      - อันตรายสูงสุด
+      - ตัวการเกาต์กำเริบ
+      - งดเด็ดขาด
+    stages:
+      gout_remission:
+        level: danger
+        advice: งดเด็ดขาด แหล่งสะสมพิวรีนหนาแน่นที่สุด ทำให้กรดยูริกพุ่งสูงทันที
+      gout_flare:
+        level: danger
+        advice: งดเด็ดขาด 100% ห้ามแตะต้องแม้แต่น้อย
+imageUrl: /images/foods/organ-meat.jpg
+imageCredit: Created with Nanobanana AI (Creative Commons CC0 Public Domain)

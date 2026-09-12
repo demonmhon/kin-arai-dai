@@ -18,6 +18,8 @@ keywords:
 sources:
   - name: สมาคมโรคไตแห่งประเทศไทย
     url: https://www.nephrothai.org/
+  - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
+    url: https://thairheumatology.org/
 diseases:
   ckd:
     reason: ผสมสารฟอสเฟตสังเคราะห์ ร่างกายดูดซึมเข้ากระแสเลือดเกือบ 100% ทำให้ฟอสฟอรัสพุ่งสูงทันที และมีโซเดียมมหาศาลเร่งไตวาย
@@ -34,3 +36,19 @@ diseases:
       dialysis:
         level: danger
         advice: ห้ามรับประทานเด็ดขาด
+  gout:
+    reason: เนื้อแปรรูป (ไส้กรอก เบคอน กุนเชียง) มักทำจากเศษเนื้อผสมเครื่องในและมีโซเดียมเข้มข้น พิวรีนสูงและโซเดียมขัดขวางการขับกรดยูริกของไต
+    tags:
+      - พิวรีนสูง
+      - โซเดียมสูง
+      - เนื้อแปรรูป
+      - งดเด็ดขาด
+    stages:
+      gout_remission:
+        level: danger
+        advice: ควรหลีกเลี่ยง มีพิวรีนสูงและเกลือโซเดียมขัดขวางการกำจัดยูริก
+      gout_flare:
+        level: danger
+        advice: งดเด็ดขาดช่วงข้ออักเสบ กระตุ้นการอักเสบของเนื้อเยื่อ
+imageUrl: /images/foods/processed-meat.jpg
+imageCredit: Created with Nanobanana AI (Creative Commons CC0 Public Domain)
