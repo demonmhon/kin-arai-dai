@@ -25,7 +25,7 @@ export const MedicalWarningBanner: React.FC<MedicalWarningBannerProps> = ({ dise
           </Box>
           <Box style={{ flex: 1 }}>
             <Text fw={700} size="xs" c="#881337" mb={4}>
-              คำเตือนทางการแพทย์สำคัญพิเศษสำหรับผู้ป่วยโรคเกาต์ (Gout):
+              คำเตือนสำคัญพิเศษสำหรับภาวะโรคเกาต์ (Gout):
             </Text>
             <List size="xs" c="#9f1239" spacing={4} styles={{ item: { lineHeight: 1.5 } }}>
               <List.Item>
@@ -74,7 +74,7 @@ export const MedicalWarningBanner: React.FC<MedicalWarningBannerProps> = ({ dise
         </Box>
         <Box style={{ flex: 1 }}>
           <Text fw={700} size="xs" c="#881337" mb={4}>
-            คำเตือนทางการแพทย์สำคัญพิเศษสำหรับผู้ป่วยโรคไตทุกระยะ:
+            คำเตือนสำคัญพิเศษสำหรับผู้ที่ต้องดูแลไตทุกระยะ:
           </Text>
           <List size="xs" c="#9f1239" spacing={4} styles={{ item: { lineHeight: 1.5 } }}>
             <List.Item>

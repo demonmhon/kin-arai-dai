@@ -123,7 +123,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
         <Box>
           <Group gap={6} mb={4}>
             <Badge size="xs" variant={step === 1 ? 'filled' : 'light'} color="emerald" styles={{ root: { textTransform: 'none' } }}>
-              1. เลือกโรค
+              1. เลือกภาวะสุขภาพ
             </Badge>
             <Badge size="xs" variant={step === 2 ? 'filled' : 'light'} color="emerald" styles={{ root: { textTransform: 'none' } }}>
               2. เลือกระยะ
@@ -131,8 +131,8 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
           </Group>
           <Text fw={700} size="md" c="slate.9">
             {step === 1
-              ? 'ขั้นตอนที่ 1: เลือกอาการป่วยหรือโรคประจำตัว'
-              : 'ขั้นตอนที่ 2: เลือกระยะ/สภาวะของโรค เพื่อปรับเกณฑ์อาหาร'}
+              ? 'ขั้นตอนที่ 1: เลือกภาวะสุขภาพหรืออาการที่ต้องการดูแล'
+              : 'ขั้นตอนที่ 2: เลือกระยะหรือสภาวะ เพื่อปรับเกณฑ์อาหาร'}
           </Text>
         </Box>
       }
@@ -149,7 +149,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
       {step === 1 ? (
         <Stack gap="xs" mt="xs">
           <Text size="xs" c="dimmed">
-            เลือกโรคเพื่อปรับเกณฑ์การประเมินความปลอดภัยและโภชนาการที่เหมาะสม:
+            เลือกภาวะสุขภาพเพื่อปรับเกณฑ์การประเมินความปลอดภัยและโภชนาการที่เหมาะสม:
           </Text>
 
           {diseases.map((d) => {
@@ -318,7 +318,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
 
           <Group justify="space-between" mt="xs">
             <Button variant="default" size="sm" radius="xl" leftSection={<ArrowLeft size={16} />} onClick={() => setStep(1)}>
-              ย้อนกลับ: เลือกโรค
+              ย้อนกลับ: เลือกภาวะสุขภาพ
             </Button>
             <Button variant="filled" color="emerald" size="sm" radius="xl" onClick={handleConfirm}>
               ตกลง / นำเกณฑ์นี้ไปใช้
@@ -410,7 +410,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
 
           <Group justify="space-between" mt="xs">
             <Button variant="default" size="sm" radius="xl" leftSection={<ArrowLeft size={16} />} onClick={() => setStep(1)}>
-              ย้อนกลับ: เลือกโรค
+              ย้อนกลับ: เลือกภาวะสุขภาพ
             </Button>
             <Button variant="filled" color="emerald" size="sm" radius="xl" onClick={handleConfirm}>
               ตกลง / นำเกณฑ์นี้ไปใช้

@@ -119,7 +119,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </Title>
 
               <Text size="sm" c="#cbd5e1" fw={300} lh={1.8} mb="xl">
-                สำหรับผู้ป่วยโรคประจำตัวและคนดูแล ทุกมื้ออาหารมักเต็มไปด้วยความกังวลว่า{' '}
+                สำหรับผู้ที่ต้องดูแลภาวะสุขภาพเฉพาะตัวและคนดูแล ทุกมื้ออาหารมักเต็มไปด้วยความกังวลว่า{' '}
                 <Text span c="white" fw={500}>"เมนูนี้กินได้ไหม?", "ผักจานนี้ปลอดภัยหรือเปล่า?"</Text>{' '}
                 การค้นหาใน Search Engine หรือถาม AI ทั่วไป มักได้คำตอบกว้างๆ หรือข้อมูลที่ขัดแย้งกัน
                 จนต้องเสียเวลา Fact-check ซ้ำๆ
@@ -137,7 +137,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <Text span fw={600} c="#f87171" style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
                   <AlertTriangle size={13} /> แดง (หลีกเลี่ยง)
                 </Text>{' '}
-                ที่แบ่งตรงตามระยะของโรคจริง พร้อมแหล่งอ้างอิง
+                ที่แบ่งตรงตามระยะหรือสภาวะจริง พร้อมแหล่งอ้างอิง
               </Text>
 
               <Group gap="md" wrap="wrap">
@@ -154,7 +154,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     },
                   }}
                 >
-                  เลือกโรคและระยะ & เริ่มค้นหาอาหารทันที
+                  เลือกภาวะสุขภาพและระยะ & เริ่มค้นหาอาหารทันที
                 </Button>
 
                 <Button
@@ -218,10 +218,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   <Stethoscope size={24} />
                 </ThemeIcon>
                 <Text fw={700} size="sm" c="slate.9" mb={4}>
-                  แบ่งตามระยะของโรค
+                  แบ่งตามระยะหรือสภาวะสุขภาพ
                 </Text>
                 <Text size="xs" c="dimmed" lh={1.6}>
-                  โรคไตระยะ 1 กับระยะ 4 มีเกณฑ์แร่ธาตุและโปรตีนต่างกันสิ้นเชิง เราจึงให้ข้อมูลปรับเกณฑ์
+                  แต่ละระยะหรือสภาวะ มีเกณฑ์แร่ธาตุและสารอาหารต่างกัน เราจึงให้ข้อมูลปรับเกณฑ์ตรงตามจริง
                 </Text>
               </Card>
 
@@ -256,13 +256,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <Box id="disease-selection">
             <Box style={{ textAlign: 'center' }} mb="xl">
               <Badge size="sm" color="emerald" variant="light" mb={6}>
-                เลือกโรคเพื่อเริ่มต้น
+                เลือกภาวะสุขภาพเพื่อเริ่มต้น
               </Badge>
               <Title order={2} fz={{ base: 22, sm: 28 }} fw={700} c="slate.9" mb={6}>
-                เลือกอาการป่วยหรือโรคประจำตัวของคุณ
+                เลือกภาวะสุขภาพหรืออาการที่ต้องการดูแล
               </Title>
               <Text size="xs" c="dimmed">
-                ตอนนี้ระบบเปิดให้บริการข้อมูลสำหรับ "โรคไตเรื้อรัง (CKD)" เต็มรูปแบบ และกำลังเตรียมข้อมูลสำหรับโรคอื่นๆ เพิ่มเติม
+                ตอนนี้ระบบเปิดให้บริการข้อมูลสำหรับ "โรคไตเรื้อรัง (CKD)" และ "โรคเกาต์ (Gout)" เต็มรูปแบบ และกำลังเตรียมข้อมูลสำหรับภาวะสุขภาพอื่นๆ เพิ่มเติม
               </Text>
             </Box>
 
@@ -357,7 +357,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
             {/* Additional Diseases Grid */}
             <Text size="xs" fw={700} c="slate.6" mb="xs">
-              โรคและอาการป่วยอื่นๆ ในระบบ:
+              ภาวะสุขภาพอื่นๆ ในระบบ:
             </Text>
             <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }} spacing="sm">
               {diseases
@@ -429,7 +429,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   ตัวอย่างการประเมินอาหารจริง
                 </Text>
                 <Title order={3} fz={{ base: 18, sm: 20 }} fw={700} c="slate.9">
-                  ทำไมระดับไฟจราจรจึงสำคัญกับชีวิตผู้ป่วย?
+                  ทำไมระดับไฟจราจรจึงสำคัญต่อการดูแลสุขภาพ?
                 </Title>
               </Box>
               <Button
@@ -461,7 +461,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   ไข่ขาวต้ม / ไข่ขาวปรุงอาหาร
                 </Text>
                 <Text size="xs" c="slate.7" lh={1.5}>
-                  โปรตีนคุณภาพสูง (High Biological Value) ของเสียน้อย ฟอสฟอรัสต่ำมาก เหมาะสำหรับผู้ป่วยไตทุกระยะ
+                  โปรตีนคุณภาพสูง (High Biological Value) ของเสียน้อย ฟอสฟอรัสต่ำมาก เหมาะสำหรับผู้ที่ต้องดูแลไตทุกระยะ
                 </Text>
               </Card>
 
@@ -482,7 +482,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   มะละกอสุก (ทานครั้งละ 3-4 คำ)
                 </Text>
                 <Text size="xs" c="slate.7" lh={1.5}>
-                  ช่วยระบบขับถ่าย แต่มีโพแทสเซียมปานกลาง ผู้ป่วยไตระยะ 1-3 ทานได้ แต่ระยะ 4-5 ต้องคุมปริมาณไม่เกิน 3-4 คำ
+                  ช่วยระบบขับถ่าย แต่มีโพแทสเซียมปานกลาง ไตระยะ 1-3 ทานได้ แต่ระยะ 4-5 ต้องคุมปริมาณไม่เกิน 3-4 คำ
                 </Text>
               </Card>
 

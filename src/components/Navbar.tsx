@@ -92,7 +92,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 hiddenFrom="sm"
                 style={{ whiteSpace: 'nowrap', lineHeight: 1.2 }}
               >
-                เช็กอาหารเฉพาะโรค
+                เช็กอาหารตามภาวะสุขภาพ
               </Text>
             </Box>
           </Group>
@@ -118,10 +118,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }}
                 >
                   <Text span visibleFrom="xs">
-                    เลือกโรคและระยะ
+                    เลือกภาวะสุขภาพและระยะ
                   </Text>
                   <Text span hiddenFrom="xs">
-                    เลือกโรคและระยะ
+                    เลือกภาวะสุขภาพและระยะ
                   </Text>
                 </Button>
 

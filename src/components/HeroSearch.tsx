@@ -65,7 +65,7 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
             },
           }}
         >
-          ● เช็กความปลอดภัยแบบเฉพาะเจาะจงระยะของโรค
+          ● เช็กความปลอดภัยแบบเฉพาะเจาะจงระยะและสภาวะสุขภาพ
         </Badge>
 
         <Title order={2} fz={{ base: 20, sm: 26 }} fw={700} c="white" mb={6}>

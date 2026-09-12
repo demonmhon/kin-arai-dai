@@ -112,7 +112,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
             ยินดีต้อนรับ / ตั้งค่าครั้งแรก
           </Badge>
           <Text fw={700} fz={{ base: 18, sm: 20 }} c="slate.9" mb={4}>
-            คุณหรือผู้ป่วย อยู่ในระยะใดของโรคไต?
+            คุณหรือคนที่คุณดูแล อยู่ในระยะใดของโรคไต?
           </Text>
           <Text size="xs" c="dimmed" style={{ maxWidth: 520, margin: '0 auto', lineHeight: 1.6 }}>
             การทำงานของไตในแต่ละระยะมีความต้องการแร่ธาตุและโปรตีนต่างกัน
