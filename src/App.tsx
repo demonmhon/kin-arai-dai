@@ -29,7 +29,7 @@ import { SelectionDialog } from './components/SelectionDialog';
 import { EducationalModal } from './components/EducationalModal';
 import { OnboardingModal } from './components/OnboardingModal';
 
-import { FoodItem, KidneyStageId } from './types/food';
+import { FoodItem } from './types/food';
 import { diseases } from './data/diseases';
 import {
   slugToDiseaseAndStage,
@@ -39,12 +39,14 @@ import {
 } from './utils/url';
 import { getStageMeta } from './utils/diseaseHelper';
 import { getDiseaseLucideIcon } from './utils/diseaseIcons';
-
-const STORAGE_KEYS = {
-  DISEASE: 'kin_selected_disease',
-  STAGE: 'kin_selected_stage',
-  HAS_INITIALIZED: 'kin_has_profile',
-};
+import {
+  APP_VERSION,
+  CONDITIONS_SIGNATURE,
+  STORAGE_KEYS,
+  OnboardingReason,
+  checkOnboardingRequired,
+  markOnboardingCompleted,
+} from './config/version';
 
 interface StageCatalogRouteProps {
   selectedDiseaseId: string;
@@ -172,18 +174,25 @@ export const App: React.FC = () => {
   });
 
   // Modals state
-  const [onboardingOpen, setOnboardingOpen] = useState<boolean>(() => {
-    // Only show onboarding on root / if user has never initialized a profile
+  const [onboardingReason, setOnboardingReason] = useState<OnboardingReason>(() => {
+    // Only check onboarding if user lands on root '/'
     if (typeof window !== 'undefined' && window.location.pathname !== '/') {
-      return false;
+      return null;
     }
-    try {
-      const hasProfile = localStorage.getItem(STORAGE_KEYS.HAS_INITIALIZED);
-      return !hasProfile;
-    } catch {
-      return false;
-    }
+    return checkOnboardingRequired();
   });
+  const [onboardingOpen, setOnboardingOpen] = useState<boolean>(() => !!onboardingReason);
+
+  // When landing on root '/', check if onboarding or new version prompt is needed
+  useEffect(() => {
+    if (location.pathname === '/') {
+      const reason = checkOnboardingRequired();
+      if (reason) {
+        setOnboardingReason(reason);
+        setOnboardingOpen(true);
+      }
+    }
+  }, [location.pathname]);
 
   const [detailFood, setDetailFood] = useState<FoodItem | null>(null);
   const [guideModalOpen, setGuideModalOpen] = useState<boolean>(false);
@@ -214,6 +223,8 @@ export const App: React.FC = () => {
       localStorage.setItem(STORAGE_KEYS.DISEASE, diseaseId);
       localStorage.setItem(STORAGE_KEYS.STAGE, stageId);
       localStorage.setItem(STORAGE_KEYS.HAS_INITIALIZED, 'true');
+      localStorage.setItem(STORAGE_KEYS.APP_VERSION, APP_VERSION);
+      localStorage.setItem(STORAGE_KEYS.CONDITIONS_SIGNATURE, CONDITIONS_SIGNATURE);
     } catch {}
   }, []);
 
@@ -221,6 +232,17 @@ export const App: React.FC = () => {
     handleRouteActive(diseaseId, stg);
     const slug = STAGE_TO_SLUG[stg] || 'ckd-stage-1';
     navigate(`/${slug}${location.search}`);
+  };
+
+  const handleCompleteOnboarding = (diseaseId: string, stageId: string) => {
+    markOnboardingCompleted(diseaseId, stageId);
+    setOnboardingOpen(false);
+    handleSelectStage(diseaseId, stageId);
+  };
+
+  const handleDismissOnboarding = () => {
+    markOnboardingCompleted();
+    setOnboardingOpen(false);
   };
 
   // Determine current active disease metadata
@@ -342,15 +364,14 @@ export const App: React.FC = () => {
         onClose={() => setGuideModalOpen(false)}
       />
 
-      {/* First-Visit Onboarding Modal (Kidney Focus) */}
+      {/* First-Visit & New Version Onboarding Modal (Neutral health condition copy, reuses SelectionDialog) */}
       <OnboardingModal
         opened={onboardingOpen}
-        onClose={() => setOnboardingOpen(false)}
-        currentStage={(selectedStage as KidneyStageId) || 'stage4_5_pre'}
-        onConfirmStage={(stg) => {
-          setOnboardingOpen(false);
-          handleSelectStage('ckd', stg);
-        }}
+        onClose={handleDismissOnboarding}
+        selectedDiseaseId={selectedDiseaseId}
+        selectedStage={selectedStage}
+        onConfirm={handleCompleteOnboarding}
+        onboardingReason={onboardingReason}
       />
     </Box>
   );

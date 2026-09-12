@@ -19,6 +19,9 @@ import {
   Info,
   AlertTriangle,
   ShieldCheck,
+  Save,
+  CheckCircle2,
+  AlertCircle,
 } from 'lucide-react';
 import { diseases } from '../data/diseases';
 import { kidneyStages } from '../data/kidneyStages';
@@ -26,10 +29,12 @@ import { goutStages } from '../data/goutStages';
 import { cholecystectomyStages } from '../data/cholecystectomyStages';
 import { KidneyStageId, GoutStageId, CholecystectomyStageId } from '../types/food';
 import { getDiseaseLucideIcon } from '../utils/diseaseIcons';
+import { Logo } from './Logo';
+import { OnboardingReason } from '../config/version';
 
 type SelectionStep = 1 | 2;
 
-interface SelectionDialogProps {
+export interface SelectionDialogProps {
   opened: boolean;
   onClose: () => void;
   /** Which step to land on when the dialog opens. Defaults to disease selection. */
@@ -39,6 +44,10 @@ interface SelectionDialogProps {
   /** Preselect a different disease when opening (e.g. clicked from a specific disease card), overriding selectedDiseaseId. */
   initialDiseaseId?: string;
   onConfirm: (diseaseId: string, stageId: string) => void;
+  /** When true, renders onboarding / first-visit copy and welcoming banner */
+  isOnboarding?: boolean;
+  /** Specific onboarding trigger reason (e.g. first visit vs. new version update) */
+  onboardingReason?: OnboardingReason;
 }
 
 const KIDNEY_STAGE_KEYS: KidneyStageId[] = ['stage1_2', 'stage3', 'stage4_5_pre', 'dialysis'];
@@ -102,6 +111,8 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
   selectedStage,
   initialDiseaseId,
   onConfirm,
+  isOnboarding = false,
+  onboardingReason = null,
 }) => {
   const [step, setStep] = useState<SelectionStep>(initialStep);
   const [pendingDiseaseId, setPendingDiseaseId] = useState(initialDiseaseId ?? selectedDiseaseId);
@@ -121,6 +132,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
   const isGout = pendingDiseaseId === 'gout';
   const isChole = pendingDiseaseId === 'cholecystectomy';
   const canGoToStage = pendingDiseaseId === 'ckd' || isGout || isChole;
+  const currentDisease = diseases.find((d) => d.id === pendingDiseaseId) || diseases[0];
 
   const handleSelectDisease = (id: string) => {
     setPendingDiseaseId(id);
@@ -132,30 +144,98 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
     onClose();
   };
 
+  const renderStep2Footer = () => (
+    <Stack gap="xs" mt="xs">
+      <Group justify="space-between">
+        <Button
+          variant="default"
+          size="sm"
+          radius="xl"
+          leftSection={<ArrowLeft size={16} />}
+          onClick={() => setStep(1)}
+        >
+          ย้อนกลับ: เลือกภาวะสุขภาพ
+        </Button>
+        <Button
+          variant="filled"
+          color="emerald"
+          size="sm"
+          radius="xl"
+          onClick={handleConfirm}
+          leftSection={isOnboarding ? <Save size={16} /> : undefined}
+          styles={{
+            root: {
+              fontWeight: 600,
+            },
+          }}
+        >
+          {isOnboarding ? 'บันทึกและเริ่มต้นค้นหาอาหาร' : 'ตกลง / นำเกณฑ์นี้ไปใช้'}
+        </Button>
+      </Group>
+
+      {isOnboarding && (
+        <Stack gap={6} mt={2}>
+          <Button variant="subtle" color="gray" size="xs" onClick={onClose}>
+            ยังไม่เลือกตอนนี้
+          </Button>
+          <Group justify="center" gap={6} c="dimmed">
+            <ShieldCheck size={14} />
+            <Text size="11px" c="dimmed">
+              บันทึกข้อมูลเฉพาะในเบราว์เซอร์นี้ (คุณสามารถกดเปลี่ยนภาวะสุขภาพและระยะได้ตลอดเวลาที่แถบด้านบน)
+            </Text>
+          </Group>
+        </Stack>
+      )}
+    </Stack>
+  );
+
   return (
     <Modal
       opened={opened}
       onClose={onClose}
-      title={
-        <Box>
-          <Group gap={6} mb={4}>
-            <Badge size="xs" variant={step === 1 ? 'filled' : 'light'} color="emerald" styles={{ root: { textTransform: 'none' } }}>
-              1. เลือกภาวะสุขภาพ
-            </Badge>
-            <Badge size="xs" variant={step === 2 ? 'filled' : 'light'} color="emerald" styles={{ root: { textTransform: 'none' } }}>
-              2. เลือกระยะ
-            </Badge>
-          </Group>
-          <Text fw={700} size="md" c="slate.9">
-            {step === 1
-              ? 'ขั้นตอนที่ 1: เลือกภาวะสุขภาพหรืออาการที่ต้องการดูแล'
-              : 'ขั้นตอนที่ 2: เลือกระยะหรือสภาวะ เพื่อปรับเกณฑ์อาหาร'}
-          </Text>
-        </Box>
-      }
-      size={step === 1 ? 'md' : 'lg'}
+      closeOnClickOutside={true}
+      withCloseButton={true}
+      size={isOnboarding ? 'lg' : step === 1 ? 'md' : 'lg'}
       radius="xl"
       padding="lg"
+      title={
+        isOnboarding ? (
+          <Group gap="xs">
+            <Logo size={28} />
+            <Box>
+              <Text fw={700} size="sm" c="slate.9">
+                กินอะไรได้?
+              </Text>
+            </Box>
+          </Group>
+        ) : (
+          <Box>
+            <Group gap={6} mb={4}>
+              <Badge
+                size="xs"
+                variant={step === 1 ? 'filled' : 'light'}
+                color="emerald"
+                styles={{ root: { textTransform: 'none' } }}
+              >
+                1. เลือกภาวะสุขภาพ
+              </Badge>
+              <Badge
+                size="xs"
+                variant={step === 2 ? 'filled' : 'light'}
+                color="emerald"
+                styles={{ root: { textTransform: 'none' } }}
+              >
+                2. เลือกระยะ
+              </Badge>
+            </Group>
+            <Text fw={700} size="md" c="slate.9">
+              {step === 1
+                ? 'ขั้นตอนที่ 1: เลือกภาวะสุขภาพหรืออาการที่ต้องการดูแล'
+                : 'ขั้นตอนที่ 2: เลือกระยะหรือสภาวะ เพื่อปรับเกณฑ์อาหาร'}
+            </Text>
+          </Box>
+        )
+      }
       styles={{
         header: {
           borderBottom: '1px solid #f1f5f9',
@@ -163,11 +243,70 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
         },
       }}
     >
-      {step === 1 ? (
-        <Stack gap="xs" mt="xs">
-          <Text size="xs" c="dimmed">
-            เลือกภาวะสุขภาพเพื่อปรับเกณฑ์การประเมินความปลอดภัยและโภชนาการที่เหมาะสม:
+      {/* Onboarding Welcome / New Version Announcement Banner */}
+      {isOnboarding && (
+        <Box style={{ textAlign: 'center' }} pb="sm">
+          <Badge size="sm" variant="light" color="emerald" mb={6}>
+            {onboardingReason === 'new_version'
+              ? '✨ อัปเดตใหม่ / อัปเกรดเวอร์ชัน'
+              : 'ยินดีต้อนรับ / เริ่มต้นใช้งาน'}
+          </Badge>
+          <Text fw={700} fz={{ base: 17, sm: 19 }} c="slate.9" mb={4}>
+            {step === 1
+              ? 'คุณหรือคนที่คุณดูแล ต้องการเลือกดูข้อมูลสำหรับภาวะสุขภาพใด?'
+              : `คุณหรือคนที่คุณดูแล อยู่ในระยะหรือสภาวะใดของ${currentDisease.name}?`}
           </Text>
+          <Text size="xs" c="dimmed" style={{ maxWidth: 540, margin: '0 auto', lineHeight: 1.6 }}>
+            {step === 1 ? (
+              <>
+                อาหารแต่ละชนิดส่งผลต่อร่างกายต่างกันในแต่ละภาวะสุขภาพ
+                กรุณาเลือกภาวะสุขภาพและระยะ เพื่อแสดงเกณฑ์ไฟจราจร{' '}
+                <Text span fw={600} c="#10b981" style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                  <CheckCircle2 size={13} /> เขียว
+                </Text>{' '}
+                •{' '}
+                <Text span fw={600} c="#f59e0b" style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                  <AlertCircle size={13} /> เหลือง
+                </Text>{' '}
+                •{' '}
+                <Text span fw={600} c="#ef4444" style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                  <AlertTriangle size={13} /> แดง
+                </Text>{' '}
+                ที่ปลอดภัยและเหมาะสมสำหรับคุณ
+              </>
+            ) : (
+              'แต่ละระยะมีความต้องการสารอาหารและการจำกัดแร่ธาตุต่างกัน เลือกระยะเพื่อปรับเกณฑ์ให้ตรงกับคุณมากที่สุด'
+            )}
+          </Text>
+
+          <Group justify="center" gap={6} mt="xs">
+            <Badge
+              size="xs"
+              variant={step === 1 ? 'filled' : 'light'}
+              color="emerald"
+              styles={{ root: { textTransform: 'none' } }}
+            >
+              1. เลือกภาวะสุขภาพ
+            </Badge>
+            <Badge
+              size="xs"
+              variant={step === 2 ? 'filled' : 'light'}
+              color="emerald"
+              styles={{ root: { textTransform: 'none' } }}
+            >
+              2. เลือกระยะ / สภาวะ
+            </Badge>
+          </Group>
+        </Box>
+      )}
+
+      {step === 1 ? (
+        <Stack gap="xs" mt={isOnboarding ? 0 : 'xs'}>
+          {!isOnboarding && (
+            <Text size="xs" c="dimmed">
+              เลือกภาวะสุขภาพเพื่อปรับเกณฑ์การประเมินความปลอดภัยและโภชนาการที่เหมาะสม:
+            </Text>
+          )}
 
           {diseases.map((d) => {
             const isActive = d.status === 'active';
@@ -227,7 +366,17 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
             );
           })}
 
-          <Group justify="flex-end" mt="md">
+          <Group justify={isOnboarding ? 'space-between' : 'flex-end'} mt="md">
+            {isOnboarding && (
+              <Button
+                variant="subtle"
+                color="gray"
+                size="xs"
+                onClick={onClose}
+              >
+                ยังไม่เลือกตอนนี้ (เข้าสู่หน้าหลัก)
+              </Button>
+            )}
             <Button
               variant="filled"
               color="emerald"
@@ -240,9 +389,18 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
               ถัดไป: เลือกระยะ
             </Button>
           </Group>
+
+          {isOnboarding && (
+            <Group justify="center" gap={6} mt={4} c="dimmed">
+              <ShieldCheck size={14} />
+              <Text size="11px" c="dimmed">
+                บันทึกข้อมูลเฉพาะในเบราว์เซอร์นี้ (คุณสามารถกดเปลี่ยนภาวะสุขภาพและระยะได้ตลอดเวลาที่แถบด้านบน)
+              </Text>
+            </Group>
+          )}
         </Stack>
       ) : isChole ? (
-        <Stack gap="md" mt="xs">
+        <Stack gap="md" mt={isOnboarding ? 0 : 'xs'}>
           <Text size="xs" c="dimmed">
             ผู้ตัดถุงน้ำดีส่วนใหญ่กลับไปทานอาหารได้ปกติ เป็นเรื่องความทนทานเฉพาะบุคคล (Individual tolerance) แนะนำให้กระจายการทานไขมันเป็นมื้อเล็กๆ หลายมื้อ แทนการกินไขมันก้อนใหญ่ทีเดียว:
           </Text>
@@ -330,17 +488,10 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
             </Text>
           </Alert>
 
-          <Group justify="space-between" mt="xs">
-            <Button variant="default" size="sm" radius="xl" leftSection={<ArrowLeft size={16} />} onClick={() => setStep(1)}>
-              ย้อนกลับ: เลือกภาวะสุขภาพ
-            </Button>
-            <Button variant="filled" color="emerald" size="sm" radius="xl" onClick={handleConfirm}>
-              ตกลง / นำเกณฑ์นี้ไปใช้
-            </Button>
-          </Group>
+          {renderStep2Footer()}
         </Stack>
       ) : isGout ? (
-        <Stack gap="md" mt="xs">
+        <Stack gap="md" mt={isOnboarding ? 0 : 'xs'}>
           <Text size="xs" c="dimmed">
             ในขณะที่ข้ออักเสบกำเริบ (ปวด บวม แดง) ร่างกายจะไวต่อสารพิวรีนสูงมาก จึงต้องคุมอาหารเข้มงวดยิ่งกว่าช่วงปกติ:
           </Text>
@@ -431,17 +582,10 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
             </Text>
           </Alert>
 
-          <Group justify="space-between" mt="xs">
-            <Button variant="default" size="sm" radius="xl" leftSection={<ArrowLeft size={16} />} onClick={() => setStep(1)}>
-              ย้อนกลับ: เลือกภาวะสุขภาพ
-            </Button>
-            <Button variant="filled" color="emerald" size="sm" radius="xl" onClick={handleConfirm}>
-              ตกลง / นำเกณฑ์นี้ไปใช้
-            </Button>
-          </Group>
+          {renderStep2Footer()}
         </Stack>
       ) : (
-        <Stack gap="md" mt="xs">
+        <Stack gap="md" mt={isOnboarding ? 0 : 'xs'}>
           <Text size="xs" c="dimmed">
             การทำงานของไตในแต่ละระยะส่งผลต่อการกรองแร่ธาตุ (โพแทสเซียม, ฟอสฟอรัส, โซเดียม) และปริมาณโปรตีนที่ร่างกายต้องการ:
           </Text>
@@ -523,14 +667,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
             </Text>
           </Alert>
 
-          <Group justify="space-between" mt="xs">
-            <Button variant="default" size="sm" radius="xl" leftSection={<ArrowLeft size={16} />} onClick={() => setStep(1)}>
-              ย้อนกลับ: เลือกภาวะสุขภาพ
-            </Button>
-            <Button variant="filled" color="emerald" size="sm" radius="xl" onClick={handleConfirm}>
-              ตกลง / นำเกณฑ์นี้ไปใช้
-            </Button>
-          </Group>
+          {renderStep2Footer()}
         </Stack>
       )}
     </Modal>
