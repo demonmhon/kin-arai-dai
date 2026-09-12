@@ -45,3 +45,5 @@ diseases:
       gout_flare:
         level: danger
         advice: งดเด็ดขาดช่วงข้ออักเสบ เพื่อหลีกเลี่ยงภาวะกรดยูริกคั่ง
+imageUrl: /images/foods/pickled-vegetable.jpg
+imageCredit: Photo by Alpha from Melbourne, Australia on Wikimedia Commons (CC BY-SA 2.0)

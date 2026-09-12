@@ -47,3 +47,5 @@ diseases:
       gout_flare:
         level: danger
         advice: งดเด็ดขาด 100% ช่วงข้ออักเสบ ยอดผักเป็นตัวกระตุ้นอาการปวดบวม
+imageUrl: /images/foods/cha-om.jpg
+imageCredit: Photo by J.M.Garg on Wikimedia Commons (CC BY-SA 4.0)

@@ -95,6 +95,7 @@ const VALID_CATEGORIES: FoodCategory[] = [
   'condiment',
   'drink',
   'dish',
+  'supplement',
 ];
 
 export interface ResolvedRoute {

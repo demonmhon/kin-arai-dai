@@ -28,6 +28,7 @@ import { FoodDetailModal } from './components/FoodDetailModal';
 import { SelectionDialog } from './components/SelectionDialog';
 import { EducationalModal } from './components/EducationalModal';
 import { OnboardingModal } from './components/OnboardingModal';
+import { PrivacyModal } from './components/PrivacyModal';
 
 import { FoodItem } from './types/food';
 import { diseases } from './data/diseases';
@@ -196,6 +197,7 @@ export const App: React.FC = () => {
 
   const [detailFood, setDetailFood] = useState<FoodItem | null>(null);
   const [guideModalOpen, setGuideModalOpen] = useState<boolean>(false);
+  const [privacyModalOpen, setPrivacyModalOpen] = useState<boolean>(false);
 
   // Shared disease + stage selection dialog (step 1: disease, step 2: stage), used by both
   // the landing page CTA and the global navbar's disease/stage pills.
@@ -336,7 +338,10 @@ export const App: React.FC = () => {
       </Box>
 
       {/* Footer */}
-      <Footer onOpenGuideModal={() => setGuideModalOpen(true)} />
+      <Footer
+        onOpenGuideModal={() => setGuideModalOpen(true)}
+        onOpenPrivacyModal={() => setPrivacyModalOpen(true)}
+      />
 
       {/* Food Detail Modal */}
       <FoodDetailModal
@@ -362,6 +367,8 @@ export const App: React.FC = () => {
       <EducationalModal
         opened={guideModalOpen}
         onClose={() => setGuideModalOpen(false)}
+        selectedDiseaseId={selectedDiseaseId}
+        selectedStage={selectedStage}
       />
 
       {/* First-Visit & New Version Onboarding Modal (Neutral health condition copy, reuses SelectionDialog) */}
@@ -372,6 +379,12 @@ export const App: React.FC = () => {
         selectedStage={selectedStage}
         onConfirm={handleCompleteOnboarding}
         onboardingReason={onboardingReason}
+      />
+
+      {/* Privacy & Transparency Modal */}
+      <PrivacyModal
+        opened={privacyModalOpen}
+        onClose={() => setPrivacyModalOpen(false)}
       />
     </Box>
   );

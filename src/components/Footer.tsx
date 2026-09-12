@@ -28,9 +28,10 @@ import { Logo } from './Logo';
 
 export interface FooterProps {
   onOpenGuideModal?: () => void;
+  onOpenPrivacyModal?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenGuideModal }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenGuideModal, onOpenPrivacyModal }) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -130,6 +131,26 @@ export const Footer: React.FC<FooterProps> = ({ onOpenGuideModal }) => {
                   }}
                 >
                   เกณฑ์โภชนาการและระยะโรค
+                </Text>
+              )}
+              {onOpenPrivacyModal && (
+                <Text
+                  component="button"
+                  type="button"
+                  onClick={onOpenPrivacyModal}
+                  size="xs"
+                  c="gray.7"
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    margin: 0,
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                    fontFamily: 'inherit',
+                  }}
+                >
+                  นโยบายความเป็นส่วนตัว (Privacy)
                 </Text>
               )}
             </Stack>
@@ -309,6 +330,29 @@ export const Footer: React.FC<FooterProps> = ({ onOpenGuideModal }) => {
             >
               CC BY-SA 4.0
             </Anchor>
+            {onOpenPrivacyModal && (
+              <>
+                {' • '}
+                <Text
+                  component="button"
+                  type="button"
+                  onClick={onOpenPrivacyModal}
+                  size="xs"
+                  c="dimmed"
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    margin: 0,
+                    cursor: 'pointer',
+                    textDecoration: 'underline',
+                    fontFamily: 'inherit',
+                  }}
+                >
+                  ความเป็นส่วนตัว
+                </Text>
+              </>
+            )}
           </Text>
 
           <Group gap="xs">

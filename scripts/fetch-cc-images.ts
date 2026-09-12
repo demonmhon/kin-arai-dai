@@ -25,14 +25,18 @@ const COMMONS_SEARCH_TERMS: Record<string, string[]> = {
   'chicken-nuggets': ['Chicken Nuggets', 'Fried chicken nuggets'],
   'congee-pork-chicken': ['Chinese rice congee', 'Congee bowl', 'Rice congee'],
 
-  // Protein
+  // Protein & Nuts
   'salmon': ['Grilled plated salmon fillet', 'Salmon fillet', 'Salmon steak'],
   'whey-protein': ['Protein shake scoop', 'Protein powder container', 'Whey protein'],
+  'peanut': ['Peanuts in a bowl', 'Roasted peanuts in bowl'],
+  'almond': ['Whole almonds in bowl', 'Roasted almonds in bowl'],
+  'cashew-nut': ['Roasted cashew nuts', 'Cashew nuts in a bowl'],
+  'sunflower-seed': ['Sunflower seeds in a bowl', 'Roasted sunflower seeds'],
 
   // Fruit
-  'mango': ['Mangifera indica fruit', 'Ripe mango slices', 'Mango fruit'],
-  'avocado': ['Avocado halved', 'Persea americana fruit', 'Avocado fruit'],
-  'cherry': ['Sweet cherries bowl', 'Red cherries fruit', 'Prunus avium'],
+  'mango': ['Mangifera indica fruit', 'Ripe mango fruit', 'Fresh mango slices'],
+  'avocado': ['Avocado halved', 'Fresh avocado fruit'],
+  'cherry': ['Sweet cherries', 'Ripe cherries fruit', 'Cherries bowl'],
 
   // Vegetable
   'carrot': ['Fresh carrots', 'Daucus carota carrots', 'Carrots bunch'],
@@ -47,7 +51,7 @@ const COMMONS_SEARCH_TERMS: Record<string, string[]> = {
 
   // Carb
   'croissant': ['Croissant on plate', 'Butter croissant pastry', 'Fresh croissant'],
-  'white-rice': ['Cooked rice in bowl', 'Steamed jasmine rice', 'White rice bowl'],
+  'white-rice': ['A bowl of rice', 'Cooked white rice bowl', 'Steamed rice bowl'],
   'brown-rice': ['Brown rice in bowl', 'Cooked brown rice', 'Brown basmati rice'],
   'instant-noodle': ['Instant noodles bowl', 'Ramen noodles bowl', 'Ramen bowl'],
   'glass-noodle': ['Cellophane noodles cooked', 'Glass noodles', 'Fensi noodles'],
@@ -56,13 +60,27 @@ const COMMONS_SEARCH_TERMS: Record<string, string[]> = {
   // Condiment
   'kimchi': ['Korean Kimchi bowl', 'Napa cabbage kimchi', 'Baechu-kimchi'],
   'pickled-vegetable': ['Pickled mustard greens', 'Suan cai', 'Pickled cabbage'],
-  'bone-broth': ['Beef bone broth bowl', 'Clear broth soup', 'Chicken broth'],
-  'herbs': ['Cymbopogon citratus lemongrass', 'Lemongrass galangal', 'Thai herbs'],
-  'low-sodium-salt': ['Salt cellar spoon', 'Table salt shaker', 'Sea salt bowl'],
-  'soysauce-measured': ['Soy sauce in dipping bowl', 'Soy sauce dish', 'Soy sauce'],
+  'bone-broth': ['Bone broth bowl', 'Clear broth soup', 'Chicken broth'],
+  'herbs': ['Thai herbs spices', 'Cymbopogon citratus lemongrass', 'Galangal lemongrass'],
+  'low-sodium-salt': ['Salt shaker glass', 'Salt cellar spoon', 'Table salt'],
+  'soysauce-measured': ['Soy sauce in dipping bowl', 'Soy sauce dish'],
 
   // Drink
-  'wine': ['Glass of red wine', 'Red wine in glass', 'Wine glass']
+  'wine': ['Glass of red wine', 'Red wine in glass', 'Wine glass'],
+
+  // Protein & Condiment
+  'cheese': ['Cheddar cheese block', 'Gouda cheese wedge', 'Cheese platter'],
+  'butter': ['Butter on butter dish', 'Block of fresh butter', 'Butter dish'],
+  'shabu-suki': ['Shabu-shabu hot pot', 'Sukiyaki hot pot', 'Hot pot meal'],
+  'fermented-fish': ['Som tum pla ra', 'Pla ra thai'],
+
+  // Supplements
+  'chicken-essence': ['Essence of chicken', 'Chicken soup bowl', 'Clear chicken broth'],
+  'birds-nest': ['Birds nest soup bowl', 'Edible bird nest', 'Birds nest dessert'],
+  'lingzhi-extract': ['Ganoderma lucidum mushroom', 'Lingzhi mushroom', 'Reishi mushroom'],
+  'cordyceps-extract': ['Cordyceps militaris mushroom', 'Cordyceps sinensis', 'Dried cordyceps'],
+  'mushroom-beta-glucan': ['Shiitake mushrooms on table', 'Lentinula edodes mushrooms', 'Fresh shiitake mushrooms'],
+  'cha-om': ['Acacia pennata leaves', 'Senegalia pennata', 'Cha-om']
 };
 
 interface CommonsResult {
@@ -122,7 +140,7 @@ async function downloadAndOptimize(url: string, destPath: string): Promise<boole
     execFileSync('curl', [
       '-sL',
       '-A',
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+      'KinAraiDaiBot/1.0 (https://github.com/demonmhon/kin-arai-dai; admin@kinaraidai.local)',
       '--max-time',
       '20',
       url,
@@ -211,9 +229,9 @@ async function main() {
     console.log(`\n🔍 Searching Creative Commons for: ${foodId} (${doc.name})...`);
     let found: CommonsResult | null = null;
     for (const q of queries) {
+      await sleep(1500);
       found = searchWikimedia(q);
       if (found) break;
-      await sleep(700);
     }
 
     if (!found) {

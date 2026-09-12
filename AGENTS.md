@@ -17,9 +17,25 @@ React.js web application. Buit the UI witn [Mantine UI](https://mantine.dev/)
 - แสดงที่มาด้วยว่า ทำไมไม่แนะนำ link แหล่งข้อมูล สำคัญมากเพราะถ้าไม่แน่ใจ ไม่มีข้อมูลแสดงผลไปเลยว่าไม่มีข้อมูล อย่าใช้แหล่งข้อมูลที่ไม่น่าเชื่อถือ
 - ในอนาคตอาจจะเพิ่มบทความสั้นๆ เช่น โพแทสเซียมทำงานกับไตอย่างไร ทำไมต้องระวัง อาหารแต่ละหมู่ส่งผลต่อไตอย่างไร
 
-## Foods Info
+## Foods Info & Image Guidelines (รูปภาพอาหาร)
 
-- ค้นหาและใช้รูปแบบ Creative Common ก่อน ถ้าไม่พบให้ใช้ nanobanana AI สร้างรูปภาพ ถ้าสร้างแล้วใช้ไม่ได้ให้หา icon แทน
+**ข้อกำหนดสำคัญ: ทุกครั้งที่เพิ่มเมนูอาหารหรือวัตถุดิบใหม่ ต้องจัดหารูปภาพให้ครบถ้วนตามลำดับขั้นตอนนี้เสมอ:**
+1. **ค้นหาและใช้รูปแบบ Creative Commons (CC) ก่อนเป็นอันดับแรก:**
+   - ค้นหาภาพถ่ายอาหารจริงที่ถูกต้องและชัดเจนจากแหล่งข้อมูลสาธารณะ/สัญญาอนุญาตเสรี เช่น Wikimedia Commons (CC0, CC BY, CC BY-SA, Public Domain)
+   - หากพบภาพที่เหมาะสม ให้บันทึกเครดิตผู้ถ่ายและสัญญาอนุญาตลงในฟิลด์ `imageCredit` เสมอ เช่น:
+     `imageCredit: Photo by [ชื่อผู้ถ่าย] on Wikimedia Commons ([License])`
+2. **สร้างรูปภาพด้วยโมเดล AI ที่รองรับ (Nanobanana AI / `generate_image`):**
+   - หากค้นหา Creative Commons ไม่พบ หรือภาพไม่ตรงกับลักษณะอาหารไทย/ไม่น่ารับประทาน ให้ใช้ Nanobanana AI (`generate_image`) สร้างภาพถ่ายอาหารที่สมจริง น่ารับประทาน (Close-up, warm natural light, food photography)
+   - ระบุเครดิต: `imageCredit: AI-generated illustration by Nanobanana`
+   - หากสร้างแล้วใช้ไม่ได้หรือไม่รองรับ จึงให้ใช้ icon แทนเป็นทางเลือกสุดท้าย
+3. **มาตรฐานการประมวลผลรูปภาพ (Image Optimization Standard):**
+   - รูปภาพทั้งหมดต้องถูกบันทึกลงที่ `public/images/foods/{food-id}.jpg`
+   - ปรับขนาดเป็นสี่เหลี่ยมจัตุรัส **400x400 พิกเซล** (Center Crop)
+   - แปลงเป็น **Progressive JPEG คุณภาพ 80-82%** (ด้วย `sharp`)
+   - ขนาดไฟล์ต้องกะทัดรัด (ประมาณ **20–50 KB**) เพื่อประหยัดแบนด์วิธและโหลดได้รวดเร็ว
+4. **การ Rebuild & ตรวจสอบความครบถ้วน:**
+   - รัน `npm run build:db` เพื่ออัปเดต SQLite (`public/app.db`) และ `src/data/generated/foods.json`
+   - รัน `npx tsx scripts/find-missing-images.ts` เพื่อยืนยันว่าไม่มีรายการใดที่ขาดรูปภาพ
 
 ## Deploy
 

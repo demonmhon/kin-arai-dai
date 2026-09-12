@@ -56,7 +56,20 @@ const VALID_CATEGORIES: FoodCategory[] = [
   'condiment',
   'drink',
   'dish',
+  'supplement',
 ];
+
+export const CATEGORY_LABELS: Record<FoodCategory, string> = {
+  all: 'ทุกหมวดหมู่อาหาร',
+  fruit: 'ผลไม้',
+  vegetable: 'ผัก',
+  protein: 'เนื้อสัตว์/โปรตีน',
+  carb: 'ข้าว-แป้ง',
+  condiment: 'เครื่องปรุง',
+  drink: 'เครื่องดื่ม/ของหวาน',
+  dish: 'อาหารจานเดียว/ฟาสต์ฟู้ด',
+  supplement: 'อาหารเสริม/สารสกัด',
+};
 
 export const CatalogPage: React.FC<CatalogPageProps> = ({
   selectedStage,
@@ -172,6 +185,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
       condiment: 0,
       drink: 0,
       dish: 0,
+      supplement: 0,
     };
     foods.forEach((item) => {
       counts[item.category]++;
@@ -456,18 +470,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
                           />
                         }
                       >
-                        หมวด:{' '}
-                        {categoryFilter === 'fruit'
-                          ? 'ผลไม้'
-                          : categoryFilter === 'vegetable'
-                          ? 'ผัก'
-                          : categoryFilter === 'protein'
-                          ? 'เนื้อสัตว์/โปรตีน'
-                          : categoryFilter === 'carb'
-                          ? 'ข้าว-แป้ง'
-                          : categoryFilter === 'condiment'
-                          ? 'เครื่องปรุง'
-                          : 'เครื่องดื่ม/ของหวาน'}
+                        หมวด: {CATEGORY_LABELS[categoryFilter] || categoryFilter}
                       </Badge>
                     )}
 
