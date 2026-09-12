@@ -1,0 +1,33 @@
+id: papaya
+name: มะละกอสุก
+category: fruit
+categoryName: ผลไม้
+icon: 🥭
+imageUrl: /images/foods/papaya.jpg
+imageCredit: Photo by Unsplash (CC0/Free License)
+tags:
+  - โพแทสเซียมปานกลาง
+  - ช่วยระบาย
+keywords:
+  - มะละกอ
+  - มะละกอสุก
+  - ผลไม้
+sources:
+  - name: โรงพยาบาลรามาธิบดี
+    url: https://www.rama.mahidol.ac.th/ramachannel/
+diseases:
+  ckd:
+    reason: ช่วยการขับถ่าย แต่มีโพแทสเซียมปานกลาง หากทานมากระดับโพแทสเซียมในเลือดจะสูงขึ้น
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้ 6-8 ชิ้นคำ
+      stage3:
+        level: caution
+        advice: จำกัด 4-5 ชิ้นคำ
+      stage4_5_pre:
+        level: caution
+        advice: จำกัด 3-4 ชิ้นคำ หรือเลี่ยงหากโพแทสเซียมในเลือดเกิน 5.0
+      dialysis:
+        level: caution
+        advice: จำกัด 3-4 ชิ้นคำ

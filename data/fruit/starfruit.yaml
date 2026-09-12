@@ -1,0 +1,36 @@
+id: starfruit
+name: มะเฟือง (อันตรายถึงชีวิต!)
+category: fruit
+categoryName: ผลไม้
+icon: ⭐
+imageUrl: /images/foods/starfruit.jpg
+imageCredit: Wikimedia Commons (CC BY-SA 3.0)
+tags:
+  - สารพิษ Caramboxin
+  - ออกซาเลตสูงจัด
+  - ห้ามเด็ดขาดทุกระยะ
+keywords:
+  - มะเฟือง
+  - น้ำมะเฟือง
+  - ผลไม้
+  - สารพิษ
+  - ห้ามกิน
+sources:
+  - name: สมาคมโรคไตแห่งประเทศไทย (ประกาศเตือนภัยมะเฟือง)
+    url: https://www.nephrothai.org/
+diseases:
+  ckd:
+    reason: มีสารพิษต่อระบบประสาทชื่อ Caramboxin ไตที่เสื่อมจะไม่สามารถขับออกได้ ทำให้สะอึกรุนแรง ชัก โคม่า ไตวายเฉียบพลัน และเสียชีวิตได้
+    stages:
+      stage1_2:
+        level: danger
+        advice: ห้ามรับประทานเด็ดขาด
+      stage3:
+        level: danger
+        advice: ห้ามรับประทานเด็ดขาด
+      stage4_5_pre:
+        level: danger
+        advice: อันตรายถึงชีวิต! ห้ามรับประทานเด็ดขาด
+      dialysis:
+        level: danger
+        advice: อันตรายถึงชีวิต! ห้ามรับประทานเด็ดขาด

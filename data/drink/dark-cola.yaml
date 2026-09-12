@@ -1,0 +1,35 @@
+id: dark-cola
+name: น้ำอัดลมสีดำ (โคล่า) / โกโก้ / ช็อกโกแลต
+category: drink
+categoryName: เครื่องดื่ม/ของหวาน
+icon: 🥤
+tags:
+  - กรดฟอสฟอริกสังเคราะห์
+  - ฟอสฟอรัสสูงจัด
+keywords:
+  - โคล่า
+  - เป๊ปซี่
+  - โค้ก
+  - น้ำอัดลม
+  - ช็อกโกแลต
+  - โกโก้
+  - เครื่องดื่ม
+sources:
+  - name: American Kidney Fund
+    url: https://www.kidneyfund.org/
+diseases:
+  ckd:
+    reason: น้ำอัดลมสีเข้มใส่กรดฟอสฟอริกสังเคราะห์ ร่างกายดูดซึมได้ 100% เร่งให้กระดูกพรุนและหลอดเลือดแข็งตัวอย่างรวดเร็ว ส่วนโกโก้มีฟอสฟอรัสธรรมชาติสูงมาก
+    stages:
+      stage1_2:
+        level: caution
+        advice: ลดให้น้อยลง มีน้ำตาลและฟอสเฟตสูง
+      stage3:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด
+      stage4_5_pre:
+        level: danger
+        advice: ห้ามดื่มเด็ดขาด
+      dialysis:
+        level: danger
+        advice: ห้ามดื่มเด็ดขาด ฟอสเฟตดูดซึมทันทีและฟอกออกยาก

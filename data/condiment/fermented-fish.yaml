@@ -1,0 +1,33 @@
+id: fermented-fish
+name: ปลาร้า / ปลาเจ่า / น้ำปลาร้า
+category: condiment
+categoryName: เครื่องปรุง
+icon: 🫙
+tags:
+  - โซเดียมสูงจัดที่สุด
+  - อันตราย
+keywords:
+  - ปลาร้า
+  - ปลาเจ่า
+  - น้ำปลาร้า
+  - ส้มตำ
+  - เครื่องปรุง
+sources:
+  - name: โรงพยาบาลศิริราช ปิยมหาราชการุณย์ (บทความโรคไต ภัยเงียบจากความเค็ม)
+    url: https://www.siphhospital.com/th/news/article/share/sodium-and-kidney-disease
+diseases:
+  ckd:
+    reason: เป็นเครื่องปรุงที่มีโซเดียมเข้มข้นที่สุดในอาหารไทย เพียงช้อนเดียวอาจเทียบเท่าโซเดียมทั้งวันที่ควรได้รับ
+    stages:
+      stage1_2:
+        level: danger
+        advice: ควรหลีกเลี่ยง โซเดียมสูงมาก
+      stage3:
+        level: danger
+        advice: ห้ามรับประทาน
+      stage4_5_pre:
+        level: danger
+        advice: ห้ามรับประทานเด็ดขาด
+      dialysis:
+        level: danger
+        advice: ห้ามรับประทานเด็ดขาด

@@ -1,0 +1,34 @@
+id: spinach-tamlueng
+name: ผักโขม / ตำลึง / ผักคะน้า / บรอกโคลี
+category: vegetable
+categoryName: ผัก
+icon: 🌿
+tags:
+  - โพแทสเซียมสูงมาก
+  - ออกซาเลตสูง
+keywords:
+  - ตำลึง
+  - ผักโขม
+  - คะน้า
+  - บรอกโคลี
+  - ผักใบเขียวเข้ม
+  - ผัก
+sources:
+  - name: สมาคมโรคไตแห่งประเทศไทย
+    url: https://www.nephrothai.org/
+diseases:
+  ckd:
+    reason: ผักใบเขียวเข้มมีโพแทสเซียมสูงมาก เมื่อทำให้สุกและยุบตัวจะได้รับโพแทสเซียมปริมาณมหาศาล
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้ปกติ แต่ต้มลวกดีกว่าทานสด
+      stage3:
+        level: caution
+        advice: เลี่ยงทานบ่อย หรือต้องต้มน้ำทิ้งอย่างน้อย 2 ครั้ง
+      stage4_5_pre:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด เสี่ยงหัวใจเต้นผิดจังหวะ
+      dialysis:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด

@@ -1,0 +1,35 @@
+id: banana
+name: กล้วยทุกชนิด (กล้วยหอม, น้ำว้า, ไข่)
+category: fruit
+categoryName: ผลไม้
+icon: 🍌
+imageUrl: /images/foods/banana.jpg
+imageCredit: Photo by Rodrigo dos Reis on Unsplash (CC0/Free License)
+tags:
+  - โพแทสเซียมสูงมาก
+  - เสี่ยงหัวใจเต้นผิดจังหวะ
+keywords:
+  - กล้วย
+  - กล้วยหอม
+  - กล้วยน้ำว้า
+  - กล้วยไข่
+  - ผลไม้
+sources:
+  - name: สมาคมโรคไตแห่งประเทศไทย
+    url: https://www.nephrothai.org/
+diseases:
+  ckd:
+    reason: กล้วยมีโพแทสเซียมสูงมาก (350-450 มก./100g) ทำให้โพแทสเซียมในเลือดพุ่งสูง เสี่ยงต่อภาวะหัวใจเต้นผิดจังหวะหรือหัวใจวาย
+    stages:
+      stage1_2:
+        level: caution
+        advice: ทานได้วันละ 1 ลูก (หากผลเลือดปกติ)
+      stage3:
+        level: danger
+        advice: ควรหลีกเลี่ยง หรือทานไม่เกิน 1/2 ลูกนานๆ ครั้ง
+      stage4_5_pre:
+        level: danger
+        advice: งดเด็ดขาด โพแทสเซียมสูงจัด เสี่ยงหัวใจวาย
+      dialysis:
+        level: danger
+        advice: งดเด็ดขาด โพแทสเซียมสะสมไวมากระหว่างรอบฟอก

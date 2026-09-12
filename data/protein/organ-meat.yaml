@@ -1,0 +1,34 @@
+id: organ-meat
+name: เครื่องในสัตว์ (ตับ, ไต, ไส้, ปอด)
+category: protein
+categoryName: เนื้อสัตว์/โปรตีน
+icon: 🫀
+tags:
+  - ฟอสฟอรัสเข้มข้นสูงสุด
+  - กรดยูริกสูงจัด
+keywords:
+  - ตับ
+  - เครื่องใน
+  - เครื่องในสัตว์
+  - ไตไก่
+  - หัวใจ
+  - ไส้หมู
+sources:
+  - name: โรงพยาบาลรามาธิบดี
+    url: https://www.rama.mahidol.ac.th/ramachannel/
+diseases:
+  ckd:
+    reason: เป็นแหล่งสะสมฟอสฟอรัสและพิวรีนเข้มข้นที่สุด ทำให้ระดับฟอสเฟตในเลือดสูงวิกฤต
+    stages:
+      stage1_2:
+        level: caution
+        advice: ไม่แนะนำ ทานได้ไม่เกินเดือนละครั้ง
+      stage3:
+        level: danger
+        advice: งดเด็ดขาด
+      stage4_5_pre:
+        level: danger
+        advice: งดเด็ดขาด
+      dialysis:
+        level: danger
+        advice: งดเด็ดขาด

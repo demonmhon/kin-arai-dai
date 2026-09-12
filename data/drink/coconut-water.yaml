@@ -1,0 +1,32 @@
+id: coconut-water
+name: น้ำมะพร้าวสด
+category: drink
+categoryName: เครื่องดื่ม/ของหวาน
+icon: 🥥
+tags:
+  - โพแทสเซียมสูงจัด
+  - เสี่ยงหัวใจหยุดเต้น
+keywords:
+  - น้ำมะพร้าว
+  - มะพร้าว
+  - เครื่องดื่ม
+  - ผลไม้
+sources:
+  - name: โรงพยาบาลรามาธิบดี
+    url: https://www.rama.mahidol.ac.th/ramachannel/
+diseases:
+  ckd:
+    reason: เป็นน้ำเกลือแร่ธรรมชาติที่มีโพแทสเซียมเข้มข้นที่สุด เพียงแก้วเดียวทำให้โพแทสเซียมในเลือดทะลุเกณฑ์วิกฤต
+    stages:
+      stage1_2:
+        level: caution
+        advice: ดื่มได้ครั้งคราว แก้วเล็ก
+      stage3:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด
+      stage4_5_pre:
+        level: danger
+        advice: ห้ามดื่มเด็ดขาด เสี่ยงหัวใจวาย
+      dialysis:
+        level: danger
+        advice: ห้ามดื่มเด็ดขาด

@@ -1,0 +1,33 @@
+id: potato
+name: มันฝรั่ง
+category: vegetable
+categoryName: ผัก
+icon: 🥔
+tags:
+  - โพแทสเซียมสูงมาก
+  - ลดได้ด้วยการแช่/ต้มทิ้งน้ำ
+keywords:
+  - มันฝรั่ง
+  - potato
+  - ผัก
+  - เฟรนช์ฟราย
+  - มันบด
+sources:
+  - name: National Kidney Foundation (บทความ Root Vegetables)
+    url: https://www.kidney.org/kidney-topics/root-vegetables
+diseases:
+  ckd:
+    reason: มันฝรั่งมีโพแทสเซียมสูงมาก โดยเฉพาะเปลือกและเนื้อใกล้เปลือก แต่สามารถลดปริมาณลงได้มากด้วยการหั่นแช่น้ำและต้มทิ้งน้ำก่อนปรุง
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้ตามปกติ (แนะนำต้มทิ้งน้ำก่อน)
+      stage3:
+        level: caution
+        advice: ต้องแช่น้ำ+ต้มทิ้งน้ำก่อนเสมอ ทานแต่พอเหมาะ
+      stage4_5_pre:
+        level: danger
+        advice: ควรหลีกเลี่ยง แม้ลดโพแทสเซียมแล้วยังเสี่ยงสูง
+      dialysis:
+        level: danger
+        advice: ควรหลีกเลี่ยง

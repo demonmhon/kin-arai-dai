@@ -1,0 +1,36 @@
+id: rose-apple
+name: ชมพู่
+category: fruit
+categoryName: ผลไม้
+icon: 🍐
+imageUrl: /images/foods/rose-apple.jpg
+imageCredit: Wikimedia Commons (CC BY-SA 3.0)
+tags:
+  - โพแทสเซียมต่ำ
+  - น้ำตาลน้อย
+  - สดชื่น
+keywords:
+  - ชมพู่
+  - ผลไม้
+  - ผลไม้ไทย
+  - ผลไม้โพแทสเซียมต่ำ
+  - ของว่าง
+sources:
+  - name: ฝ่ายโภชนาการ โรงพยาบาลรามาธิบดี
+    url: https://www.rama.mahidol.ac.th/ramachannel/
+diseases:
+  ckd:
+    reason: ผลไม้โพแทสเซียมต่ำมาก เนื้อกรอบฉ่ำน้ำ ไม่เพิ่มภาระขับโพแทสเซียมให้ไต
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้ตามชอบ 3-4 ผล
+      stage3:
+        level: safe
+        advice: ทานได้มื้อละ 2-3 ผล
+      stage4_5_pre:
+        level: safe
+        advice: ทานได้ครั้งละ 1-2 ผล
+      dialysis:
+        level: safe
+        advice: ทานได้ 1-2 ผล (นับรวมในโควตาน้ำดื่มประจำวัน)

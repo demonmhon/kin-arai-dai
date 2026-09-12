@@ -1,0 +1,32 @@
+id: tomato
+name: มะเขือเทศ / ซอสมะเขือเทศ
+category: vegetable
+categoryName: ผัก
+icon: 🍅
+tags:
+  - โพแทสเซียมสูงจัด
+  - ไลโคปีน
+keywords:
+  - มะเขือเทศ
+  - ซอสมะเขือเทศ
+  - ผัก
+  - สลัด
+sources:
+  - name: American Kidney Fund
+    url: https://www.kidneyfund.org/
+diseases:
+  ckd:
+    reason: มะเขือเทศสดและซอสมะเขือเทศเข้มข้นมีโพแทสเซียมสูงมาก ซอสและน้ำพริกอ่องมักทำให้โพแทสเซียมพุ่งขึ้นสูง
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานผลสดได้ 1 ลูกกลาง
+      stage3:
+        level: caution
+        advice: จำกัดปริมาณ เลี่ยงซอสมะเขือเทศเข้มข้น
+      stage4_5_pre:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด
+      dialysis:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด

@@ -1,0 +1,34 @@
+id: pineapple
+name: สับปะรด
+category: fruit
+categoryName: ผลไม้
+icon: 🍍
+imageUrl: /images/foods/pineapple.jpg
+imageCredit: Photo by Pineapple Supply Co. on Unsplash (CC0/Free License)
+tags:
+  - โพแทสเซียมต่ำ
+  - เอนไซม์ย่อยโปรตีน
+keywords:
+  - สับปะรด
+  - ผลไม้
+  - ผลไม้เปรี้ยว
+  - ของหวาน
+sources:
+  - name: National Kidney Foundation (NKF)
+    url: https://www.kidney.org/atoz/content/kidney-friendly-fruits
+diseases:
+  ckd:
+    reason: มีโพแทสเซียมต่ำเมื่อเทียบกับผลไม้รสหวานอื่น และมีเอนไซม์โบรมีเลนช่วยย่อยอาหาร
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้ 6-8 ชิ้นคำ
+      stage3:
+        level: safe
+        advice: ทานได้ 4-6 ชิ้นคำ
+      stage4_5_pre:
+        level: safe
+        advice: ทานได้ 3-4 ชิ้นคำพอดี
+      dialysis:
+        level: safe
+        advice: ทานได้ 4 ชิ้นคำ

@@ -1,0 +1,32 @@
+id: pumpkin
+name: ฟักทอง
+category: vegetable
+categoryName: ผัก
+icon: 🎃
+tags:
+  - โพแทสเซียมสูงมาก
+  - คาร์โบไฮเดรต
+keywords:
+  - ฟักทอง
+  - ผัก
+  - ขนมไทย
+  - แกงบวด
+sources:
+  - name: โรงพยาบาลรามาธิบดี
+    url: https://www.rama.mahidol.ac.th/ramachannel/
+diseases:
+  ckd:
+    reason: มีโพแทสเซียมสูงมาก แม้จะต้มแล้วก็ยังมีความเข้มข้นสูงในเนื้อ
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้พอเหมาะ
+      stage3:
+        level: caution
+        advice: ทานได้แต่น้อย ครั้งละ 1-2 ชิ้นเล็ก
+      stage4_5_pre:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด
+      dialysis:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด

@@ -1,0 +1,34 @@
+id: sago
+name: สาคู / แป้งสลิ่ม / ลอดช่องสิงคโปร์
+category: carb
+categoryName: ข้าว-แป้ง
+icon: 🥣
+tags:
+  - แป้งปลอดโปรตีน
+  - พลังงานสะอาด
+  - ไร้ของเสีย
+keywords:
+  - สาคู
+  - แป้งสลิ่ม
+  - ลอดช่อง
+  - ขนมหวาน
+  - แป้งปลอดโปรตีน
+sources:
+  - name: สมาคมโรคไตแห่งประเทศไทย
+    url: https://www.nephrothai.org/
+diseases:
+  ckd:
+    reason: ทำจากแป้งมันสำปะหลัง จัดเป็นแป้งปลอดโปรตีน ไม่สร้างภาระยูเรียคั่งในไต
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้พอเหมาะ
+      stage3:
+        level: safe
+        advice: ทานเป็นของว่างเสริมพลังงาน
+      stage4_5_pre:
+        level: safe
+        advice: 🌟 เหมาะมากสำหรับเสริมพลังงานไม่ให้ผอมแห้ง
+      dialysis:
+        level: safe
+        advice: ทานได้พอเหมาะ

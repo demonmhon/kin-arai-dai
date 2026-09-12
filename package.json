@@ -4,8 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "tsx scripts/build-db.ts && vite",
+    "build:db": "tsx scripts/build-db.ts",
+    "build": "tsx scripts/build-db.ts && tsc -b && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -17,13 +18,19 @@
     "react-router-dom": "^7.18.3"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.13.5",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
+    "better-sqlite3": "^13.0.3",
+    "glob": "^13.0.6",
+    "js-yaml": "^5.4.1",
     "postcss": "^8.5.3",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
+    "tsx": "^4.23.13",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"
   }

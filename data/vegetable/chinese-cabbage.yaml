@@ -1,0 +1,34 @@
+id: chinese-cabbage
+name: ผักกาดขาว
+category: vegetable
+categoryName: ผัก
+icon: 🥬
+tags:
+  - โพแทสเซียมต่ำ
+  - ย่อยง่าย
+  - น้ำเยอะ
+keywords:
+  - ผักกาดขาว
+  - ผัก
+  - ต้มจืด
+  - โพแทสเซียมต่ำ
+  - ผักใบอ่อน
+sources:
+  - name: สมาคมโรคไตแห่งประเทศไทย
+    url: https://www.nephrothai.org/
+diseases:
+  ckd:
+    reason: ผักสีซีดโพแทสเซียมต่ำ ย่อยง่าย อ่อนโยนต่อทางเดินอาหารและไต
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้ตามปกติ
+      stage3:
+        level: safe
+        advice: ทานได้ดีทุกวัน
+      stage4_5_pre:
+        level: safe
+        advice: ทานได้ ปรุงสุกน้ำใส
+      dialysis:
+        level: safe
+        advice: ทานได้ดี

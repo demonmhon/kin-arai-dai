@@ -1,0 +1,35 @@
+id: cow-milk
+name: นมวัว (จืด/หวาน/พร่องมันเนย)
+category: drink
+categoryName: เครื่องดื่ม/ของหวาน
+icon: 🥛
+tags:
+  - ฟอสฟอรัสสูงมาก
+  - โพแทสเซียมสูง
+  - ควรจำกัดทุกระยะ
+keywords:
+  - นมวัว
+  - นม
+  - นมสด
+  - นมจืด
+  - นมหวาน
+  - เครื่องดื่ม
+sources:
+  - name: National Kidney Foundation (บทความ Dairy and Our Kidneys)
+    url: https://www.kidney.org/kidney-topics/dairy-and-our-kidneys
+diseases:
+  ckd:
+    reason: นมวัวมีทั้งฟอสฟอรัสและโพแทสเซียมสูงมากในปริมาณเข้มข้น เป็นสาเหตุหลักที่ทำให้ค่าฟอสเฟตในเลือดของผู้ป่วยไตพุ่งสูงหากดื่มเป็นประจำ
+    stages:
+      stage1_2:
+        level: caution
+        advice: ดื่มได้ไม่เกิน 1 แก้วเล็ก/วัน
+      stage3:
+        level: caution
+        advice: จำกัดไม่เกิน 1/2 แก้ว/วัน หรือน้อยกว่า
+      stage4_5_pre:
+        level: danger
+        advice: ควรหลีกเลี่ยง หรือเลือกนมสูตรเฉพาะโรคไตแทน
+      dialysis:
+        level: danger
+        advice: ควรหลีกเลี่ยง ฟอสฟอรัสสะสมเร็วมาก

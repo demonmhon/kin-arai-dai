@@ -1,0 +1,32 @@
+id: soy-milk-unsweetened
+name: นมถั่วเหลือง (สูตรไม่หวาน/ไม่เสริมแคลเซียม)
+category: drink
+categoryName: เครื่องดื่ม/ของหวาน
+icon: 🥛
+tags:
+  - ฟอสฟอรัสน้อยกว่านมวัว
+  - โปรตีนพืช
+keywords:
+  - นมถั่วเหลือง
+  - นมถั่ว
+  - เครื่องดื่ม
+  - โปรตีนพืช
+sources:
+  - name: National Kidney Foundation (บทความ Plant Based Milk and Kidney Disease)
+    url: https://www.kidney.org/kidney-topics/milk-alternatives
+diseases:
+  ckd:
+    reason: มีฟอสฟอรัสและโพแทสเซียมต่ำกว่านมวัวพอสมควร เป็นทางเลือกที่ดีกว่าสำหรับผู้ที่ต้องจำกัดฟอสฟอรัส แต่สูตรเสริมแคลเซียม/เสริมสารอาหารบางยี่ห้ออาจมีฟอสฟอรัสสูงขึ้น ควรอ่านฉลาก
+    stages:
+      stage1_2:
+        level: safe
+        advice: ดื่มได้ตามปกติ เลือกสูตรไม่หวาน
+      stage3:
+        level: safe
+        advice: ดื่มได้วันละ 1 แก้ว
+      stage4_5_pre:
+        level: caution
+        advice: จำกัดปริมาณ เลือกสูตรไม่เสริมแคลเซียม
+      dialysis:
+        level: caution
+        advice: จำกัดปริมาณ

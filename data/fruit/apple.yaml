@@ -1,0 +1,43 @@
+id: apple
+name: แอปเปิ้ล (เขียว/แดง)
+category: fruit
+categoryName: ผลไม้
+icon: 🍎
+imageUrl: /images/foods/apple.jpg
+imageCredit: Photo by Tom Hermans on Unsplash (CC0/Free License)
+tags:
+  - โพแทสเซียมต่ำ
+  - กากใยสูง
+  - มีเพคติน
+keywords:
+  - แอปเปิ้ล
+  - apple
+  - ผลไม้
+  - ผลไม้โพแทสเซียมต่ำ
+  - ของว่าง
+  - ของหวาน
+sources:
+  - name: สมาคมโรคไตแห่งประเทศไทย
+    url: https://www.nephrothai.org/
+diseases:
+  ckd:
+    reason: โพแทสเซียมต่ำมาก (ประมาณ 100-120 มก./ผล) มีสารเพคตินช่วยลดระดับคอเลสเตอรอลในเลือด ปลอดภัยต่อไตทุกระยะ
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้ตามปกติ 1-2 ผล/วัน
+      stage3:
+        level: safe
+        advice: ทานได้วันละ 1 ผลขนาดกลาง
+      stage4_5_pre:
+        level: safe
+        advice: ทานได้วันละ 1/2 - 1 ผล ควรปอกเปลือก
+      dialysis:
+        level: safe
+        advice: ทานได้วันละ 1/2 - 1 ผล ระวังเรื่องน้ำในผลไม้
+  diabetes:
+    reason: ดัชนีน้ำตาล (GI) ต่ำ-ปานกลาง และมีกากใยช่วยชะลอการดูดซึมน้ำตาลเข้าสู่กระแสเลือด เหมาะเป็นผลไม้ทดแทนของหวาน
+    stages:
+      general:
+        level: safe
+        advice: ทานได้วันละ 1 ผลขนาดกลาง แทนของหวานหลังมื้ออาหาร ไม่ควรทานเป็นน้ำคั้น

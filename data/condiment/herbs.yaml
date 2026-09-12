@@ -1,0 +1,36 @@
+id: herbs
+name: สมุนไพรสด (ข่า ตะไคร้ ใบมะกรูด กระเทียม พริก)
+category: condiment
+categoryName: เครื่องปรุง
+icon: 🌿
+tags:
+  - โซเดียม 0%
+  - กลิ่นหอมธรรมชาติ
+  - ชูรสปลอดภัย
+keywords:
+  - สมุนไพร
+  - พริก
+  - กระเทียม
+  - ข่า
+  - ตะไคร้
+  - ใบมะกรูด
+  - เครื่องปรุง
+sources:
+  - name: กรมอนามัย กระทรวงสาธารณสุข
+    url: https://multimedia.anamai.moph.go.th/
+diseases:
+  ckd:
+    reason: สมุนไพรสดไม่มีเกลือโซเดียม ช่วยเพิ่มกลิ่นและรสชาติให้อาหารกลมกล่อม เจริญอาหารโดยไม่ต้องพึ่งน้ำปลา
+    stages:
+      stage1_2:
+        level: safe
+        advice: ใช้ปรุงแต่งได้เต็มที่
+      stage3:
+        level: safe
+        advice: ใช้ช่วยชูรสเพื่อลดการใส่เกลือ
+      stage4_5_pre:
+        level: safe
+        advice: ปลอดภัยมาก ช่วยให้ทานอาหารรสจืดได้อร่อยขึ้น
+      dialysis:
+        level: safe
+        advice: ปลอดภัยมาก

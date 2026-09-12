@@ -1,0 +1,36 @@
+id: processed-meat
+name: เนื้อสัตว์แปรรูป (ไส้กรอก, เบคอน, กุนเชียง, หมูยอ, ลูกชิ้น)
+category: protein
+categoryName: เนื้อสัตว์/โปรตีน
+icon: 🥓
+tags:
+  - ฟอสเฟตสังเคราะห์ (ดูดซึม 100%)
+  - โซเดียมสูงจัด
+  - อันตราย
+keywords:
+  - ไส้กรอก
+  - เบคอน
+  - กุนเชียง
+  - หมูยอ
+  - ลูกชิ้น
+  - เนื้อแปรรูป
+  - แฮม
+sources:
+  - name: สมาคมโรคไตแห่งประเทศไทย
+    url: https://www.nephrothai.org/
+diseases:
+  ckd:
+    reason: ผสมสารฟอสเฟตสังเคราะห์ ร่างกายดูดซึมเข้ากระแสเลือดเกือบ 100% ทำให้ฟอสฟอรัสพุ่งสูงทันที และมีโซเดียมมหาศาลเร่งไตวาย
+    stages:
+      stage1_2:
+        level: caution
+        advice: ควรลดให้น้อยที่สุด มีโซเดียมและฟอสเฟตสูง
+      stage3:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด
+      stage4_5_pre:
+        level: danger
+        advice: ห้ามรับประทานเด็ดขาด
+      dialysis:
+        level: danger
+        advice: ห้ามรับประทานเด็ดขาด

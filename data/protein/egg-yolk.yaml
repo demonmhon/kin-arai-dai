@@ -1,0 +1,33 @@
+id: egg-yolk
+name: ไข่แดง
+category: protein
+categoryName: เนื้อสัตว์/โปรตีน
+icon: 🍳
+tags:
+  - ฟอสฟอรัสสูงมาก
+  - คอเลสเตอรอล
+keywords:
+  - ไข่แดง
+  - ไข่
+  - ฟอสฟอรัส
+  - ไข่ดาว
+  - ไข่ต้ม
+sources:
+  - name: สมาคมโรคไตแห่งประเทศไทย
+    url: https://www.nephrothai.org/
+diseases:
+  ckd:
+    reason: ไข่แดง 1 ฟองมีฟอสฟอรัสสูง หากไตขับไม่ออก จะสะสมจนดึงแคลเซียมออกจากกระดูก ทำให้คันตามผิวและกระดูกเปราะหักง่าย
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้วันละ 1 ฟอง
+      stage3:
+        level: caution
+        advice: จำกัดสัปดาห์ละ 2-3 ฟอง
+      stage4_5_pre:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด หรือไม่เกินสัปดาห์ละ 1 ฟอง
+      dialysis:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด ฟอสฟอรัสในไข่แดงฟอกออกยากมาก

@@ -1,0 +1,33 @@
+id: coffee
+name: กาแฟ (ดำ/ใส่นม)
+category: drink
+categoryName: เครื่องดื่ม/ของหวาน
+icon: ☕
+tags:
+  - คาเฟอีน
+  - โพแทสเซียมปานกลางถ้าไม่ใส่นม
+  - เลี่ยงกาแฟ 3-in-1
+keywords:
+  - กาแฟ
+  - กาแฟดำ
+  - คาเฟอีน
+  - เครื่องดื่ม
+sources:
+  - name: 'National Kidney Foundation (บทความ Coffee and Kidney Disease: Is it Safe?)'
+    url: https://www.kidney.org/news-stories/coffee-and-kidney-disease-it-safe
+diseases:
+  ckd:
+    reason: กาแฟดำมีโพแทสเซียมไม่สูงมากหากดื่มในปริมาณพอเหมาะ แต่หากใส่นมหรือครีมเทียมจะเพิ่มฟอสฟอรัสและโพแทสเซียมตามไปด้วย ⚠️ หลีกเลี่ยงกาแฟ 3-in-1 หรือกาแฟกระป๋องสำเร็จรูป เพราะมีครีมเทียม ไขมันทรานส์ และสารฟอสเฟตสังเคราะห์
+    stages:
+      stage1_2:
+        level: safe
+        advice: ดื่มได้ตามปกติ ไม่เกิน 2-3 แก้ว/วัน
+      stage3:
+        level: caution
+        advice: ดื่มกาแฟดำ ไม่เกิน 1-2 แก้ว/วัน
+      stage4_5_pre:
+        level: caution
+        advice: จำกัดเป็นกาแฟดำเท่านั้น ไม่เกิน 1 แก้ว/วัน
+      dialysis:
+        level: caution
+        advice: นับรวมในโควตาน้ำดื่มประจำวัน

@@ -1,0 +1,33 @@
+id: mushroom
+name: เห็ดทุกชนิด (เห็ดฟาง, เห็ดนางฟ้า, เห็ดหอม)
+category: vegetable
+categoryName: ผัก
+icon: 🍄
+tags:
+  - โพแทสเซียมสูง
+  - ฟอสฟอรัสปานกลาง-สูง
+keywords:
+  - เห็ด
+  - เห็ดฟาง
+  - เห็ดนางฟ้า
+  - เห็ดหอม
+  - ผัก
+sources:
+  - name: National Kidney Foundation (บทความ Potassium in Your CKD Diet)
+    url: https://www.kidney.org/kidney-topics/potassium-your-ckd-diet
+diseases:
+  ckd:
+    reason: เห็ดมีโพแทสเซียมและฟอสฟอรัสค่อนข้างสูงเมื่อเทียบกับผักทั่วไป โดยเฉพาะเห็ดหอมแห้ง
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้ตามปกติ
+      stage3:
+        level: caution
+        advice: จำกัดปริมาณ ครั้งละ 3-4 ดอก
+      stage4_5_pre:
+        level: danger
+        advice: ควรหลีกเลี่ยง โดยเฉพาะเห็ดหอมแห้ง
+      dialysis:
+        level: caution
+        advice: ทานได้น้อยมากเป็นครั้งคราว

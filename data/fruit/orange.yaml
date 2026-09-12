@@ -1,0 +1,35 @@
+id: orange
+name: ส้ม / น้ำส้มคั้น
+category: fruit
+categoryName: ผลไม้
+icon: 🍊
+imageUrl: /images/foods/orange.jpg
+imageCredit: Photo by Mae Mu on Unsplash (CC0/Free License)
+tags:
+  - โพแทสเซียมสูงมาก
+  - กรดซิตริก
+keywords:
+  - ส้ม
+  - น้ำส้ม
+  - ส้มเขียวหวาน
+  - ส้มโอ
+  - ผลไม้
+sources:
+  - name: สมาคมโรคไตแห่งประเทศไทย
+    url: https://www.nephrothai.org/
+diseases:
+  ckd:
+    reason: ส้มและน้ำส้มมีโพแทสเซียมสูงจัด โดยเฉพาะน้ำส้มคั้น 1 แก้วเทียบเท่าส้ม 3-4 ผล ทำให้โพแทสเซียมในเลือดพุ่งขึ้นอย่างรวดเร็ว
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานผลสดได้วันละ 1 ผล เลี่ยงน้ำส้มคั้น
+      stage3:
+        level: caution
+        advice: ทานได้ไม่เกิน 1 ผลเล็ก งดน้ำส้มคั้น
+      stage4_5_pre:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด โพแทสเซียมสูงเกินไตขับ
+      dialysis:
+        level: danger
+        advice: หลีกเลี่ยงเด็ดขาด เสี่ยงหัวใจเต้นผิดจังหวะ

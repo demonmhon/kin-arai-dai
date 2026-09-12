@@ -1,0 +1,33 @@
+id: cucumber
+name: แตงกวา / แตงร้าน
+category: vegetable
+categoryName: ผัก
+icon: 🥒
+tags:
+  - โพแทสเซียมต่ำ
+  - สดชื่น
+keywords:
+  - แตงกวา
+  - แตงร้าน
+  - ผัก
+  - ผักสลัด
+  - แตง
+sources:
+  - name: กรมอนามัย กระทรวงสาธารณสุข
+    url: https://multimedia.anamai.moph.go.th/
+diseases:
+  ckd:
+    reason: โพแทสเซียมและฟอสฟอรัสต่ำมาก ปลอดภัยสูง
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานสดหรือผัดได้ตามชอบ
+      stage3:
+        level: safe
+        advice: ปอกเปลือกแล้วทานได้
+      stage4_5_pre:
+        level: safe
+        advice: ปอกเปลือกและทานแต่พอเหมาะ
+      dialysis:
+        level: safe
+        advice: ปอกเปลือก (ระวังเรื่องน้ำถ้ามีอาการบวม)

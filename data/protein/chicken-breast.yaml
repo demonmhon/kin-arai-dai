@@ -1,0 +1,32 @@
+id: chicken-breast
+name: อกไก่ไม่ติดหนัง
+category: protein
+categoryName: เนื้อสัตว์/โปรตีน
+icon: 🍗
+tags:
+  - โปรตีนไขมันต่ำ
+  - ฟอสฟอรัสปานกลาง
+keywords:
+  - อกไก่
+  - ไก่
+  - เนื้อไก่
+  - โปรตีน
+sources:
+  - name: สมาคมโรคไตแห่งประเทศไทย
+    url: https://www.nephrothai.org/
+diseases:
+  ckd:
+    reason: เป็นเนื้อสัตว์ไม่ติดมันที่ย่อยง่าย มีฟอสฟอรัสน้อยกว่าเนื้อแดง แต่ยังต้องคุมปริมาณในระยะก่อนฟอก
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้มื้อละ 3-4 ช้อนโต๊ะ
+      stage3:
+        level: safe
+        advice: ทานมื้อละ 2-3 ช้อนโต๊ะ
+      stage4_5_pre:
+        level: caution
+        advice: จำกัดมื้อละ 1-2 ช้อนโต๊ะ สลับกับไข่ขาว
+      dialysis:
+        level: safe
+        advice: ทานได้มื้อละ 3-4 ช้อนโต๊ะ

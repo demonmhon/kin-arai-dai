@@ -1,0 +1,34 @@
+id: cabbage
+name: กะหล่ำปลี
+category: vegetable
+categoryName: ผัก
+icon: 🥬
+tags:
+  - โพแทสเซียมต่ำมาก
+  - ไฟเบอร์สูง
+  - ปลอดภัยสูงสุด
+keywords:
+  - กะหล่ำปลี
+  - ผัก
+  - ผักกะหล่ำ
+  - ผักใบขาว
+  - โพแทสเซียมต่ำ
+sources:
+  - name: American Kidney Fund
+    url: https://www.kidneyfund.org/
+diseases:
+  ckd:
+    reason: เป็นผักสีขาว/อ่อนที่มีโพแทสเซียมต่ำมาก โซเดียมต่ำ และมีวิตามิน C, K เหมาะกับโรคไตทุกระยะ
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้ตามสบาย
+      stage3:
+        level: safe
+        advice: ทานได้ดี เหมาะเป็นผักประจำวัน
+      stage4_5_pre:
+        level: safe
+        advice: ปลอดภัย แนะนำลวกน้ำทิ้งก่อนปรุง
+      dialysis:
+        level: safe
+        advice: ปลอดภัย แนะนำลวกน้ำทิ้งก่อน

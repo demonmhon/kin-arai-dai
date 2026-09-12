@@ -1,0 +1,32 @@
+id: carrot
+name: แครอท
+category: vegetable
+categoryName: ผัก
+icon: 🥕
+tags:
+  - โพแทสเซียมปานกลาง
+  - เบต้าแคโรทีน
+keywords:
+  - แครอท
+  - ผัก
+  - ผักสีส้ม
+  - ต้มซุป
+sources:
+  - name: National Kidney Foundation
+    url: https://www.kidney.org/
+diseases:
+  ckd:
+    reason: แครอทดิบมีโพแทสเซียมระดับปานกลางค่อนข้างสูง แต่สามารถลดลงได้ด้วยการหั่นต้มน้ำทิ้ง
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้ตามปกติ
+      stage3:
+        level: caution
+        advice: ต้มลวกน้ำทิ้งก่อนรับประทาน
+      stage4_5_pre:
+        level: caution
+        advice: จำกัดปริมาณ ต้องต้มน้ำทิ้งเท่านั้น
+      dialysis:
+        level: caution
+        advice: จำกัดปริมาณ ต้มน้ำทิ้ง

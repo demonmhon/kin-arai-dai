@@ -1,0 +1,32 @@
+id: tofu
+name: เต้าหู้ (เต้าหู้ขาว/เต้าหู้หลอด)
+category: protein
+categoryName: เนื้อสัตว์/โปรตีน
+icon: 🧊
+tags:
+  - โปรตีนพืชคุณภาพดี
+  - ฟอสฟอรัสปานกลาง
+keywords:
+  - เต้าหู้
+  - เต้าหู้ขาว
+  - เต้าหู้หลอด
+  - โปรตีนพืช
+sources:
+  - name: National Kidney Foundation (บทความ Tofu and Kidney Disease)
+    url: https://www.kidney.org/kidney-topics/tofu
+diseases:
+  ckd:
+    reason: เป็นโปรตีนทางเลือกที่ย่อยง่าย มีฟอสฟอรัสน้อยกว่าเนื้อสัตว์แปรรูปและถั่วเมล็ดแห้ง เหมาะเป็นโปรตีนสลับมื้อ
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้ตามปกติ
+      stage3:
+        level: safe
+        advice: ทานมื้อละ 2-3 ช้อนโต๊ะ สลับกับเนื้อสัตว์
+      stage4_5_pre:
+        level: caution
+        advice: จำกัดปริมาณตามโควตาโปรตีนรวมต่อวัน
+      dialysis:
+        level: safe
+        advice: ทานได้ดี เป็นโปรตีนเสริม

@@ -1,0 +1,33 @@
+id: soysauce-measured
+name: ซีอิ๊วขาวธรรมดา / น้ำปลาแท้ (แบบตวงช้อน)
+category: condiment
+categoryName: เครื่องปรุง
+icon: 🥢
+tags:
+  - โซเดียมมาตรฐาน
+  - ต้องตวงช้อนเท่านั้น
+keywords:
+  - ซีอิ๊ว
+  - น้ำปลา
+  - เกลือ
+  - เครื่องปรุง
+  - ซอสปรุงรส
+sources:
+  - name: สมาคมโรคไตแห่งประเทศไทย
+    url: https://www.nephrothai.org/
+diseases:
+  ckd:
+    reason: แม้มีโซเดียม แต่สามารถคำนวณและควบคุมปริมาณได้ชัดเจน ปลอดภัยกว่าเกลือลดโซเดียมที่แอบเติมโพแทสเซียม
+    stages:
+      stage1_2:
+        level: caution
+        advice: คุมไม่เกิน 3 ช้อนชา/วัน
+      stage3:
+        level: caution
+        advice: คุมไม่เกิน 2-3 ช้อนชา/วัน
+      stage4_5_pre:
+        level: caution
+        advice: คุมไม่เกิน 1-2 ช้อนชา/วัน ตวงช้อนเท่านั้น
+      dialysis:
+        level: caution
+        advice: คุมไม่เกิน 1-2 ช้อนชา/วัน ป้องกันภาวะน้ำท่วมปอด

@@ -1,0 +1,34 @@
+id: guava
+name: ฝรั่ง
+category: fruit
+categoryName: ผลไม้
+icon: 🍈
+imageUrl: /images/foods/guava.jpg
+imageCredit: Photo by Midori on Wikimedia Commons (CC BY-SA 3.0)
+tags:
+  - โพแทสเซียมปานกลาง
+  - วิตามินซีสูง
+keywords:
+  - ฝรั่ง
+  - ผลไม้
+  - วิตามินซี
+  - ของว่าง
+sources:
+  - name: คณะแพทยศาสตร์ศิริราชพยาบาล
+    url: https://www.si.mahidol.ac.th/
+diseases:
+  ckd:
+    reason: มีวิตามินซีสูงมาก แต่มีโพแทสเซียมในระดับปานกลางค่อนข้างสูง (ประมาณ 180-250 มก./100 กรัม)
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้ 1/2 ถึง 1 ผล
+      stage3:
+        level: caution
+        advice: คุมปริมาณครั้งละ 1/3 - 1/2 ผล สัปดาห์ละ 2-3 ครั้ง
+      stage4_5_pre:
+        level: danger
+        advice: ควรหลีกเลี่ยง เพราะโพแทสเซียมสะสมไวมากในระยะนี้
+      dialysis:
+        level: caution
+        advice: ทานได้นานๆ ครั้ง ครั้งละ 2-3 ชิ้นคำ

@@ -1,0 +1,32 @@
+id: pickled-vegetable
+name: ผักดอง / ไชโป๊ว / กิมจิ
+category: condiment
+categoryName: เครื่องปรุง
+icon: 🥒
+tags:
+  - โซเดียมสูงมาก
+keywords:
+  - ผักดอง
+  - ไชโป๊ว
+  - กิมจิ
+  - ผักกาดดอง
+  - เครื่องปรุง
+sources:
+  - name: โรงพยาบาลศิริราช ปิยมหาราชการุณย์ (บทความโรคไต ภัยเงียบจากความเค็ม)
+    url: https://www.siphhospital.com/th/news/article/share/sodium-and-kidney-disease
+diseases:
+  ckd:
+    reason: กระบวนการดองใช้เกลือปริมาณมาก ทำให้โซเดียมสูงมากแม้จะเป็นผัก และยังมีโพแทสเซียมจากน้ำดองสะสมด้วย
+    stages:
+      stage1_2:
+        level: caution
+        advice: ทานได้น้อยมาก ล้างน้ำก่อน
+      stage3:
+        level: danger
+        advice: ควรหลีกเลี่ยง
+      stage4_5_pre:
+        level: danger
+        advice: ห้ามรับประทาน
+      dialysis:
+        level: danger
+        advice: ห้ามรับประทาน

@@ -1,0 +1,35 @@
+id: durian
+name: ทุเรียน
+category: fruit
+categoryName: ผลไม้
+icon: 🍈
+imageUrl: /images/foods/durian.jpg
+imageCredit: Photo by Hafiz Issadeen on Wikimedia Commons (CC BY-SA 4.0)
+tags:
+  - โพแทสเซียมสูงลิ่ว
+  - ฟอสฟอรัสสูง
+  - น้ำตาลสูง
+keywords:
+  - ทุเรียน
+  - ผลไม้
+  - ทุเรียนกวน
+  - ผลไม้หวานจัด
+sources:
+  - name: กรมอนามัย กระทรวงสาธารณสุข
+    url: https://multimedia.anamai.moph.go.th/
+diseases:
+  ckd:
+    reason: อุดมด้วยโพแทสเซียม ฟอสฟอรัส และพลังงานเข้มข้น ไตขับไม่ทันอย่างแน่นอน
+    stages:
+      stage1_2:
+        level: caution
+        advice: ทานได้ไม่เกิน 1 เม็ดเล็กนานๆ ครั้ง
+      stage3:
+        level: danger
+        advice: ควรหลีกเลี่ยงเด็ดขาด
+      stage4_5_pre:
+        level: danger
+        advice: ห้ามรับประทานเด็ดขาด
+      dialysis:
+        level: danger
+        advice: ห้ามรับประทานเด็ดขาด

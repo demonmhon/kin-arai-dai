@@ -1,0 +1,34 @@
+id: white-rice
+name: ข้าวสวยขัดขาว / เส้นเล็ก / เส้นใหญ่
+category: carb
+categoryName: ข้าว-แป้ง
+icon: 🍚
+tags:
+  - ฟอสฟอรัสต่ำกว่าข้าวกล้อง
+  - ย่อยง่าย
+keywords:
+  - ข้าวขาว
+  - ข้าวสวย
+  - เส้นเล็ก
+  - เส้นใหญ่
+  - ก๋วยเตี๋ยว
+  - แป้ง
+sources:
+  - name: ฝ่ายโภชนาการ ศิริราชพยาบาล
+    url: https://www.si.mahidol.ac.th/
+diseases:
+  ckd:
+    reason: การขัดสีเอาเปลือกออกทำให้ฟอสฟอรัสและโพแทสเซียมลดลงมาก ปลอดภัยต่อไตมากกว่าข้าวกล้อง
+    stages:
+      stage1_2:
+        level: safe
+        advice: ทานได้ตามปกติ
+      stage3:
+        level: safe
+        advice: ทานได้มื้อละ 1-2 ทัพพี
+      stage4_5_pre:
+        level: safe
+        advice: ทานได้มื้อละ 1-2 ทัพพี (ดีกว่าข้าวกล้อง)
+      dialysis:
+        level: safe
+        advice: ทานได้ตามความต้องการพลังงาน

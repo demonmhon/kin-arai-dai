@@ -1,0 +1,34 @@
+id: instant-noodle
+name: บะหมี่กึ่งสำเร็จรูป
+category: carb
+categoryName: ข้าว-แป้ง
+icon: 🍥
+tags:
+  - โซเดียมสูงจัด
+  - ฟอสเฟตสังเคราะห์
+  - อันตราย
+keywords:
+  - บะหมี่กึ่งสำเร็จรูป
+  - มาม่า
+  - ไวไว
+  - ยำยำ
+  - บะหมี่ซอง
+sources:
+  - name: โรงพยาบาลพระรามเก้า (บทความอาหารผู้ป่วยโรคไตวายเรื้อรัง)
+    url: https://praram9.com/th/articles/food-for-ckd-patients
+diseases:
+  ckd:
+    reason: ผงปรุงรสมีโซเดียมสูงมากในซองเดียว และเส้นมักผสมสารฟอสเฟตเพื่อความเหนียวนุ่ม ซึ่งร่างกายดูดซึมได้เกือบทั้งหมด
+    stages:
+      stage1_2:
+        level: caution
+        advice: ทานได้นานๆ ครั้ง ใช้ผงปรุงรสน้อยกว่าครึ่งซอง
+      stage3:
+        level: danger
+        advice: ควรหลีกเลี่ยง โซเดียมสูงเกินไป
+      stage4_5_pre:
+        level: danger
+        advice: ห้ามรับประทาน
+      dialysis:
+        level: danger
+        advice: ห้ามรับประทาน เสี่ยงบวมน้ำและฟอสเฟตพุ่ง

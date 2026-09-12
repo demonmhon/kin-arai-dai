@@ -1,0 +1,33 @@
+id: avocado
+name: อะโวคาโด
+category: fruit
+categoryName: ผลไม้
+icon: 🥑
+tags:
+  - โพแทสเซียมสูงมาก
+  - ไขมันดีสูง
+keywords:
+  - อะโวคาโด
+  - avocado
+  - ผลไม้
+  - ไขมันดี
+  - สลัด
+sources:
+  - name: National Kidney Foundation (เอกสารเจาะลึกเรื่องอะโวคาโด)
+    url: https://www.kidney.org/sites/default/files/441-9152_2210_patflyer_superfood-avocado.pdf
+diseases:
+  ckd:
+    reason: แม้จะมีไขมันดีและใยอาหารสูง แต่อะโวคาโดมีโพแทสเซียมสูงมาก (สูงกว่ากล้วยเมื่อเทียบต่อน้ำหนัก) ผู้ป่วยไตขับออกไม่ทัน
+    stages:
+      stage1_2:
+        level: caution
+        advice: ทานได้ครั้งละ 2-3 ช้อนโต๊ะ ไม่บ่อย
+      stage3:
+        level: caution
+        advice: จำกัดครั้งละ 1-2 ช้อนโต๊ะ สัปดาห์ละ 1-2 ครั้ง
+      stage4_5_pre:
+        level: danger
+        advice: ควรหลีกเลี่ยง โพแทสเซียมสูงเกินไตขับ
+      dialysis:
+        level: danger
+        advice: ควรหลีกเลี่ยง
