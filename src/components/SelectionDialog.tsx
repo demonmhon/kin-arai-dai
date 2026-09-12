@@ -137,6 +137,8 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
   const handleSelectDisease = (id: string) => {
     setPendingDiseaseId(id);
     setPendingStage(resolveStageForDisease(id, pendingStage));
+    // Immediately advance to Step 2 so users don't need to scroll down to find next button
+    setStep(2);
   };
 
   const handleConfirm = () => {
@@ -145,48 +147,62 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
   };
 
   const renderStep2Footer = () => (
-    <Stack gap="xs" mt="xs">
-      <Group justify="space-between">
-        <Button
-          variant="default"
-          size="sm"
-          radius="xl"
-          leftSection={<ArrowLeft size={16} />}
-          onClick={() => setStep(1)}
-        >
-          ย้อนกลับ: เลือกภาวะสุขภาพ
-        </Button>
-        <Button
-          variant="filled"
-          color="emerald"
-          size="sm"
-          radius="xl"
-          onClick={handleConfirm}
-          leftSection={isOnboarding ? <Save size={16} /> : undefined}
-          styles={{
-            root: {
-              fontWeight: 600,
-            },
-          }}
-        >
-          {isOnboarding ? 'บันทึกและเริ่มต้นค้นหาอาหาร' : 'ตกลง / นำเกณฑ์นี้ไปใช้'}
-        </Button>
-      </Group>
-
-      {isOnboarding && (
-        <Stack gap={6} mt={2}>
-          <Button variant="subtle" color="gray" size="xs" onClick={onClose}>
-            ยังไม่เลือกตอนนี้
+    <Box
+      style={{
+        position: 'sticky',
+        bottom: -20,
+        backgroundColor: 'rgba(255, 255, 255, 0.96)',
+        backdropFilter: 'blur(8px)',
+        paddingTop: 12,
+        paddingBottom: 4,
+        marginTop: 8,
+        borderTop: '1px solid #f1f5f9',
+        zIndex: 10,
+      }}
+    >
+      <Stack gap="xs">
+        <Group justify="space-between" wrap="nowrap" gap="xs">
+          <Button
+            variant="default"
+            size="xs"
+            radius="xl"
+            leftSection={<ArrowLeft size={14} />}
+            onClick={() => setStep(1)}
+          >
+            ย้อนกลับ
           </Button>
-          <Group justify="center" gap={6} c="dimmed">
-            <ShieldCheck size={14} />
-            <Text size="11px" c="dimmed">
-              บันทึกข้อมูลเฉพาะในเบราว์เซอร์นี้ (คุณสามารถกดเปลี่ยนภาวะสุขภาพและระยะได้ตลอดเวลาที่แถบด้านบน)
-            </Text>
-          </Group>
-        </Stack>
-      )}
-    </Stack>
+          <Button
+            variant="filled"
+            color="emerald"
+            size="sm"
+            radius="xl"
+            onClick={handleConfirm}
+            leftSection={isOnboarding ? <Save size={15} /> : undefined}
+            styles={{
+              root: {
+                fontWeight: 600,
+              },
+            }}
+          >
+            {isOnboarding ? 'บันทึกและเริ่มต้นใช้งาน' : 'ตกลง / นำเกณฑ์นี้ไปใช้'}
+          </Button>
+        </Group>
+
+        {isOnboarding && (
+          <Stack gap={4} mt={2}>
+            <Button variant="subtle" color="gray" size="compact-xs" onClick={onClose}>
+              ยังไม่เลือกตอนนี้
+            </Button>
+            <Group justify="center" gap={4} c="dimmed">
+              <ShieldCheck size={13} />
+              <Text size="xs" c="dimmed">
+                บันทึกข้อมูลเฉพาะในเบราว์เซอร์นี้ (เปลี่ยนได้ตลอดเวลาที่แถบด้านบน)
+              </Text>
+            </Group>
+          </Stack>
+        )}
+      </Stack>
+    </Box>
   );
 
   return (
@@ -304,7 +320,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
         <Stack gap="xs" mt={isOnboarding ? 0 : 'xs'}>
           {!isOnboarding && (
             <Text size="xs" c="dimmed">
-              เลือกภาวะสุขภาพเพื่อปรับเกณฑ์การประเมินความปลอดภัยและโภชนาการที่เหมาะสม:
+              แตะเลือกภาวะสุขภาพ เพื่อเข้าสู่การเลือกระยะและปรับเกณฑ์อาหาร:
             </Text>
           )}
 
@@ -360,7 +376,14 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
                     </Box>
                   </Group>
 
-                  {isSelected && <Check size={18} color="#059669" />}
+                  {isActive ? (
+                    <Group gap={4} wrap="nowrap" c="emerald.7" style={{ flexShrink: 0 }}>
+                      <Text size="xs" fw={600} visibleFrom="xs">
+                        เลือกระยะ
+                      </Text>
+                      <ArrowRight size={16} />
+                    </Group>
+                  ) : null}
                 </Group>
               </Card>
             );

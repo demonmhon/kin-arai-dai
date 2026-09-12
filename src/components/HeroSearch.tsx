@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Box, Title, Text, TextInput, ActionIcon, Badge } from '@mantine/core';
 import { Search, X } from 'lucide-react';
 
@@ -15,22 +15,30 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
   onSelectSuggestion,
   diseaseId = 'ckd',
 }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const suggestions =
     diseaseId === 'gout'
       ? ['เชอร์รี่', 'อกไก่', 'ยอดผัก', 'เบียร์', 'เครื่องใน', 'ไข่ขาว']
       : ['ผลไม้', 'ผัก', 'ไข่ขาว', 'วุ้นเส้น', 'เครื่องปรุง', 'ปลา'];
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
+  };
 
   return (
     <Box
-      p={{ base: 'md', sm: 'xl' }}
+      p={{ base: 'sm', sm: 'xl' }}
       style={{
         background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #064e3b 100%)',
-        borderRadius: 20,
+        borderRadius: 16,
         color: '#ffffff',
         position: 'relative',
         overflow: 'hidden',
-        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
       }}
     >
       {/* Decorative ambient blur circle */}
@@ -55,6 +63,7 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
           size="sm"
           radius="xl"
           mb="xs"
+          visibleFrom="sm"
           styles={{
             root: {
               backgroundColor: 'rgba(16, 185, 129, 0.2)',
@@ -68,12 +77,13 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
           ● เช็กความปลอดภัยแบบเฉพาะเจาะจงระยะและสภาวะสุขภาพ
         </Badge>
 
-        <Title order={2} fz={{ base: 20, sm: 26 }} fw={700} c="white" mb={6}>
+        <Title order={2} fz={{ base: 18, sm: 24 }} fw={700} c="white" mb={{ base: 4, sm: 6 }}>
           สงสัยอาหารชนิดไหน? พิมพ์เช็กได้ทันที
         </Title>
 
-        <Text size="sm" c="#cbd5e1" fw={300} mb="md" lh={1.6}>
-          พิมพ์ชื่ออาหาร, วัตถุดิบ, หรือค้นหาตามหมวด เช่น{' '}
+        <Text size="xs" c="#cbd5e1" fw={300} mb={{ base: 8, sm: 'md' }} lh={1.4}>
+          <Text span visibleFrom="sm">พิมพ์ชื่ออาหาร, วัตถุดิบ, หรือค้นหาตามหมวด เช่น </Text>
+          <Text span hiddenFrom="sm">ค้นหาเช่น: </Text>
           {suggestions.map((item, idx) => (
             <React.Fragment key={item}>
               <Text
@@ -94,11 +104,23 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
           ))}
         </Text>
 
-        <Box style={{ position: 'relative' }}>
+        <Box component="form" role="search" action="" onSubmit={handleSubmit} style={{ position: 'relative' }}>
           <TextInput
+            ref={inputRef}
+            type="search"
+            inputMode="search"
+            enterKeyHint="search"
+            autoComplete="off"
+            autoCorrect="off"
+            spellCheck={false}
             placeholder="ค้นหาชื่ออาหาร เช่น ส้ม, กะหล่ำปลี, วุ้นเส้น, ชาเขียว..."
             value={searchTerm}
             onChange={(e) => onSearchChange(e.currentTarget.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.currentTarget.blur();
+              }
+            }}
             size="md"
             radius="xl"
             leftSection={<Search size={20} color="#94a3b8" />}
@@ -121,7 +143,13 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
                 backdropFilter: 'blur(10px)',
                 borderColor: 'rgba(255, 255, 255, 0.25)',
                 color: '#ffffff',
-                fontSize: 14,
+                fontSize: 16, // 16px prevents iOS Safari from automatically zooming into inputs
+                '&::-webkit-search-cancel-button': {
+                  display: 'none',
+                },
+                '&::-webkit-search-decoration': {
+                  display: 'none',
+                },
                 '&::placeholder': {
                   color: '#94a3b8',
                 },
