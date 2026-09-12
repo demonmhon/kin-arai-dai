@@ -46,3 +46,5 @@ diseases:
       gout_flare:
         level: danger
         advice: งดทานช่วงข้ออักเสบ เห็ดมีพิวรีนสะสมสูงกว่าผักทั่วไป
+imageUrl: /images/foods/mushroom.jpg
+imageCredit: Photo by Bernie on Wikimedia Commons (Public domain)

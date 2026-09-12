@@ -75,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   c="slate.9"
                   style={{ lineHeight: 1.2, whiteSpace: 'nowrap' }}
                 >
-                  กินอะไรได้บ้าง?
+                  กินอะไรได้?
                 </Text>
               </Group>
 

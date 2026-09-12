@@ -46,3 +46,5 @@ diseases:
       gout_flare:
         level: safe
         advice: ทานได้ แต่ไม่ควรปรุงรสหวานจัด
+imageUrl: /images/foods/sago.jpg
+imageCredit: Photo by mccheng from (optional) on Wikimedia Commons (CC BY-SA 2.0)

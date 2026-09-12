@@ -102,7 +102,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 }}
                 leftSection={<Lightbulb size={13} color="#6ee7b7" />}
               >
-                เจตนารมณ์ของ "กินอะไรได้บ้าง"
+                เจตนารมณ์ของ "กินอะไรได้"
               </Badge>
 
               <Title
@@ -124,7 +124,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 การค้นหาใน Search Engine หรือถาม AI ทั่วไป มักได้คำตอบกว้างๆ หรือข้อมูลที่ขัดแย้งกัน
                 จนต้องเสียเวลา Fact-check ซ้ำๆ
                 <br /><br />
-                <Text span c="#6ee7b7" fw={600}>"กินอะไรได้บ้าง"</Text> ตั้งใจสร้างขึ้นมาเพื่อให้คุณเข้ามาเช็กได้ไวในไม่กี่วินาที
+                <Text span c="#6ee7b7" fw={600}>"กินอะไรได้"</Text> ตั้งใจสร้างขึ้นมาเพื่อให้คุณเข้ามาเช็กได้ไวในไม่กี่วินาที
                 ประเมินง่ายๆด้วยเกณฑ์ไฟจราจร{' '}
                 <Text span fw={600} c="#34d399" style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
                   <CheckCircle2 size={13} /> เขียว (ปลอดภัย)

@@ -20,7 +20,7 @@ sources:
     url: https://thairheumatology.org/
 diseases:
   ckd:
-    reason: เป็นแป้งปลอดโปรตีน ให้พลังงานแก่ร่างกายโดยไม่สร้างของเสียยูเรีย เหมาะที่สุดสำหรับผู้ป่วยไตที่ต้องจำกัดโปรตีนแต่ต้องการพลังงานไม่ให้น้ำหนักลด
+    reason: เป็นแป้งปลอดโปรตีน ให้พลังงานแก่ร่างกายโดยไม่สร้างของเสียยูเรีย เหมาะที่สุดสำหรับผู้มีภาวะไตที่ต้องจำกัดโปรตีนแต่ต้องการพลังงานไม่ให้น้ำหนักลด
     stages:
       stage1_2:
         level: safe
@@ -47,3 +47,5 @@ diseases:
       gout_flare:
         level: safe
         advice: ทานได้ตามปกติ ปราศจากพิวรีน ไม่กระตุ้นข้ออักเสบ
+imageUrl: /images/foods/glass-noodle.jpg
+imageCredit: Photo by Jason M. C., Han on Wikimedia Commons (CC BY-SA 4.0)

@@ -314,7 +314,7 @@ export const App: React.FC = () => {
       </Box>
 
       {/* Footer */}
-      <Footer />
+      <Footer onOpenGuideModal={() => setGuideModalOpen(true)} />
 
       {/* Food Detail Modal */}
       <FoodDetailModal

@@ -14,7 +14,7 @@ keywords:
   - ยำยำ
   - บะหมี่ซอง
 sources:
-  - name: โรงพยาบาลพระรามเก้า (บทความอาหารผู้ป่วยโรคไตวายเรื้อรัง)
+  - name: โรงพยาบาลพระรามเก้า (บทความอาหารผู้มีภาวะโรคไตวายเรื้อรัง)
     url: https://praram9.com/th/articles/food-for-ckd-patients
   - name: สมาคมรูมาติสซั่มแห่งประเทศไทย
     url: https://thairheumatology.org/
@@ -47,3 +47,5 @@ diseases:
       gout_flare:
         level: danger
         advice: งดเด็ดขาดช่วงข้ออักเสบ ผงซุปเข้มข้นและเกลือโซเดียมกระตุ้นให้ยูริกคั่ง
+imageUrl: /images/foods/instant-noodle.jpg
+imageCredit: Photo by kc7fys on Wikimedia Commons (CC BY-SA 2.0)

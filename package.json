@@ -31,6 +31,7 @@
     "postcss": "^8.5.3",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
+    "sharp": "^0.35.4",
     "tsx": "^4.23.13",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"

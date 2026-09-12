@@ -93,7 +93,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
           <Logo size={28} />
           <Box>
             <Text fw={700} size="sm" c="slate.9">
-              กินอะไรได้บ้าง?
+              กินอะไรได้?
             </Text>
           </Box>
         </Group>

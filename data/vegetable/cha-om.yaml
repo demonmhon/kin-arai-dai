@@ -21,7 +21,7 @@ sources:
     url: https://thairheumatology.org/
 diseases:
   ckd:
-    reason: ชะอมและยอดผักมีโพแทสเซียมและฟอสฟอรัสสูง ผู้ป่วยไตระยะ 3-5 ควรหลีกเลี่ยง
+    reason: ชะอมและยอดผักมีโพแทสเซียมและฟอสฟอรัสสูง ผู้มีภาวะไตระยะ 3-5 ควรหลีกเลี่ยง
     stages:
       stage1_2:
         level: safe
