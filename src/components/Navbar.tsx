@@ -106,7 +106,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   color="emerald"
                   size="sm"
                   radius="xl"
-                  onClick={onOpenStageModal}
+                  onClick={onOpenDiseaseModal}
                   leftSection={<IconSearch size={15} />}
                   styles={{
                     root: {
@@ -117,10 +117,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }}
                 >
                   <Text span visibleFrom="xs">
-                    เลือกโรค & ค้นหาอาหาร
+                    เลือกโรคและระยะ
                   </Text>
                   <Text span hiddenFrom="xs">
-                    ค้นหาอาหาร
+                    เลือกโรคและระยะ
                   </Text>
                 </Button>
 
@@ -201,7 +201,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       display: 'inline-block',
                     }}
                   >
-                    {currentDiseaseName.replace('โรคไตวายเรื้อรัง', 'โรคไต')}
+                    {currentDiseaseName.replace('โรคไตเรื้อรัง (CKD)', 'โรคไต')}
                   </Text>
                 </Button>
 

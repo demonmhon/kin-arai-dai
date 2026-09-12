@@ -22,21 +22,19 @@ import {
   IconCheck,
   IconAlertTriangle,
 } from '@tabler/icons-react';
-import { KidneyStageId, GoutStageId } from '../types/food';
+import { KidneyStageId } from '../types/food';
 import { diseases } from '../data/diseases';
 
 interface LandingPageProps {
   onSelectCkdStage: (stage: KidneyStageId) => void;
-  onSelectGoutStage?: (stage: GoutStageId) => void;
-  onOpenStageModal: () => void;
+  onOpenSelectionDialog: (diseaseId?: string) => void;
   onOpenGuideModal: () => void;
   onNavigateReferences?: () => void;
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({
   onSelectCkdStage,
-  onSelectGoutStage,
-  onOpenStageModal,
+  onOpenSelectionDialog,
   onOpenGuideModal,
   onNavigateReferences,
 }) => {
@@ -131,7 +129,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   color="emerald"
                   radius="xl"
                   rightSection={<IconArrowRight size={18} />}
-                  onClick={onOpenStageModal}
+                  onClick={() => onOpenSelectionDialog()}
                   styles={{
                     root: {
                       fontWeight: 700,
@@ -139,7 +137,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     },
                   }}
                 >
-                  เลือกระยะโรคไต & เริ่มค้นหาอาหารทันที
+                  เลือกโรคและระยะ & เริ่มค้นหาอาหารทันที
                 </Button>
 
                 <Button
@@ -353,8 +351,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                       radius="lg"
                       withBorder
                       onClick={() => {
-                        if (isActive && d.id === 'gout' && onSelectGoutStage) {
-                          onSelectGoutStage('gout_remission');
+                        if (isActive) {
+                          onOpenSelectionDialog(d.id);
                         }
                       }}
                       style={{

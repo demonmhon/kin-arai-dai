@@ -14,14 +14,12 @@ import { Footer } from './components/Footer';
 import { LandingPage } from './components/LandingPage';
 import { ReferencesPage } from './components/ReferencesPage';
 import { CatalogPage } from './components/CatalogPage';
-import { KidneyStageModal } from './components/KidneyStageModal';
-import { GoutStageModal } from './components/GoutStageModal';
 import { FoodDetailModal } from './components/FoodDetailModal';
-import { DiseaseModal } from './components/DiseaseModal';
+import { SelectionDialog } from './components/SelectionDialog';
 import { EducationalModal } from './components/EducationalModal';
 import { OnboardingModal } from './components/OnboardingModal';
 
-import { FoodItem, KidneyStageId, GoutStageId } from './types/food';
+import { FoodItem, KidneyStageId } from './types/food';
 import { diseases } from './data/diseases';
 import { slugToDiseaseAndStage, STAGE_TO_SLUG } from './utils/url';
 import { getStageMeta } from './utils/diseaseHelper';
@@ -104,9 +102,25 @@ export const App: React.FC = () => {
   });
 
   const [detailFood, setDetailFood] = useState<FoodItem | null>(null);
-  const [diseaseModalOpen, setDiseaseModalOpen] = useState<boolean>(false);
-  const [stageModalOpen, setStageModalOpen] = useState<boolean>(false);
   const [guideModalOpen, setGuideModalOpen] = useState<boolean>(false);
+
+  // Shared disease + stage selection dialog (step 1: disease, step 2: stage), used by both
+  // the landing page CTA and the global navbar's disease/stage pills.
+  const [selectionDialogOpen, setSelectionDialogOpen] = useState<boolean>(false);
+  const [selectionDialogStep, setSelectionDialogStep] = useState<1 | 2>(1);
+  const [selectionDialogDiseaseId, setSelectionDialogDiseaseId] = useState<string | undefined>(undefined);
+
+  const openDiseaseSelection = useCallback((diseaseId?: string) => {
+    setSelectionDialogStep(1);
+    setSelectionDialogDiseaseId(diseaseId);
+    setSelectionDialogOpen(true);
+  }, []);
+
+  const openStageSelection = useCallback(() => {
+    setSelectionDialogStep(2);
+    setSelectionDialogDiseaseId(undefined);
+    setSelectionDialogOpen(true);
+  }, []);
 
   // Callback to sync active disease and stage from URL permalink
   const handleRouteActive = useCallback((diseaseId: string, stageId: string) => {
@@ -139,8 +153,8 @@ export const App: React.FC = () => {
         currentDiseaseName={currentDisease.name}
         currentStageBadge={!isLandingView ? currentStageMeta.badge : undefined}
         isLandingView={isLandingView}
-        onOpenDiseaseModal={() => setDiseaseModalOpen(true)}
-        onOpenStageModal={() => setStageModalOpen(true)}
+        onOpenDiseaseModal={openDiseaseSelection}
+        onOpenStageModal={openStageSelection}
         onOpenGuideModal={() => setGuideModalOpen(true)}
         onGoHome={() => navigate('/')}
       />
@@ -154,8 +168,7 @@ export const App: React.FC = () => {
             element={
               <LandingPage
                 onSelectCkdStage={(stage) => handleSelectStage('ckd', stage)}
-                onSelectGoutStage={(stage) => handleSelectStage('gout', stage)}
-                onOpenStageModal={() => setStageModalOpen(true)}
+                onOpenSelectionDialog={openDiseaseSelection}
                 onOpenGuideModal={() => setGuideModalOpen(true)}
                 onNavigateReferences={() => navigate('/references')}
               />
@@ -180,7 +193,7 @@ export const App: React.FC = () => {
               <StageCatalogRoute
                 selectedDiseaseId={selectedDiseaseId}
                 selectedStage={selectedStage}
-                onOpenStageModal={() => setStageModalOpen(true)}
+                onOpenStageModal={openStageSelection}
                 onOpenDetail={(food) => setDetailFood(food)}
                 onRouteActive={handleRouteActive}
               />
@@ -204,22 +217,15 @@ export const App: React.FC = () => {
         onClose={() => setDetailFood(null)}
       />
 
-      {/* Disease Selection Modal */}
-      <DiseaseModal
-        opened={diseaseModalOpen}
-        onClose={() => setDiseaseModalOpen(false)}
+      {/* Shared Disease + Stage Selection Dialog (Step 1: Disease -> Step 2: Stage) */}
+      <SelectionDialog
+        opened={selectionDialogOpen}
+        onClose={() => setSelectionDialogOpen(false)}
+        initialStep={selectionDialogStep}
+        initialDiseaseId={selectionDialogDiseaseId}
         selectedDiseaseId={selectedDiseaseId}
-        onSelectDisease={(id) => {
-          setSelectedDiseaseId(id);
-          setDiseaseModalOpen(false);
-          if (id === 'ckd') {
-            const nextStage = selectedStage.startsWith('stage') || selectedStage === 'dialysis' ? selectedStage : 'stage4_5_pre';
-            handleSelectStage('ckd', nextStage);
-          } else if (id === 'gout') {
-            const nextStage = selectedStage.startsWith('gout') ? selectedStage : 'gout_remission';
-            handleSelectStage('gout', nextStage);
-          }
-        }}
+        selectedStage={selectedStage}
+        onConfirm={(diseaseId, stageId) => handleSelectStage(diseaseId, stageId)}
       />
 
       {/* Educational Guide Modal */}
@@ -227,32 +233,6 @@ export const App: React.FC = () => {
         opened={guideModalOpen}
         onClose={() => setGuideModalOpen(false)}
       />
-
-      {/* Kidney Stage Selection Modal */}
-      {selectedDiseaseId === 'ckd' && (
-        <KidneyStageModal
-          opened={stageModalOpen}
-          onClose={() => setStageModalOpen(false)}
-          selectedStage={(selectedStage as KidneyStageId) || 'stage4_5_pre'}
-          onSelectStage={(stg) => {
-            setStageModalOpen(false);
-            handleSelectStage('ckd', stg);
-          }}
-        />
-      )}
-
-      {/* Gout Condition Selection Modal */}
-      {selectedDiseaseId === 'gout' && (
-        <GoutStageModal
-          opened={stageModalOpen}
-          onClose={() => setStageModalOpen(false)}
-          selectedStage={(selectedStage as GoutStageId) || 'gout_remission'}
-          onSelectStage={(stg) => {
-            setStageModalOpen(false);
-            handleSelectStage('gout', stg);
-          }}
-        />
-      )}
 
       {/* First-Visit Onboarding Modal (Kidney Focus) */}
       <OnboardingModal
