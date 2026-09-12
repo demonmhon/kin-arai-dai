@@ -25,6 +25,7 @@ import {
   Soup,
   Utensils,
   Settings,
+  Pill,
 } from 'lucide-react';
 import { FoodCategory, StageLevel } from '../types/food';
 import { getStageMeta } from '../utils/diseaseHelper';
@@ -118,6 +119,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
     { id: 'condiment', label: 'เครื่องปรุง', icon: <Sparkles size={15} />, count: categoryCounts.condiment },
     { id: 'drink', label: 'เครื่องดื่ม/ของหวาน', icon: <Coffee size={15} />, count: categoryCounts.drink },
     { id: 'dish', label: 'อาหารจานเดียว/ฟาสต์ฟู้ด', icon: <Soup size={15} />, count: categoryCounts.dish },
+    { id: 'supplement', label: 'อาหารเสริม/สารสกัด', icon: <Pill size={15} />, count: categoryCounts.supplement },
   ];
 
   return (

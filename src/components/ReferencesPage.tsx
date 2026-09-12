@@ -40,19 +40,81 @@ export const ReferencesPage: React.FC<ReferencesPageProps> = ({
     {
       title: 'สมาคมโรคไตแห่งประเทศไทย (The Nephrology Society of Thailand)',
       category: 'สมาคมวิชาชีพทางการแพทย์',
+      condition: 'โรคไตเรื้อรัง (CKD)',
+      conditionColor: 'emerald',
       url: 'https://www.nephrothai.org/',
       topics: [
         'คำแนะนำการบริโภคอาหารและโภชนบำบัดสำหรับภาวะโรคไตเรื้อรัง',
         'ตารางการควบคุมแร่ธาตุ โพแทสเซียม ฟอสฟอรัส และโซเดียม',
-        'ประกาศเตือนภัยทางการแพทย์กรณีสารพิษ Caramboxin ในมะเฟือง',
+        'ประกาศเตือนภัยทางการแพทย์กรณีสารพิษ Caramboxin ในมะเฟือง และถั่งเช่าสกัด',
         'แนวทางเวชปฏิบัติสำหรับโรคไตเรื้อรังก่อนการบำบัดทดแทนไต',
       ],
       description:
         'องค์กรหลักด้านโรคไตของประเทศไทย เป็นแหล่งข้อมูลมาตรฐานในการอ้างอิงคำแนะนำทางเวชปฏิบัติและโภชนบำบัดสำหรับผู้มีภาวะโรคไตทุกระยะในระบบสาธารณสุขไทย',
     },
     {
+      title: 'คณะแพทยศาสตร์ศิริราชพยาบาล มหาวิทยาลัยมหิดล (Siriraj Hospital)',
+      category: 'โรงพยาบาลมหาวิทยาลัยชั้นนำ',
+      condition: 'ผู้ตัดถุงน้ำดี (Cholecystectomy)',
+      conditionColor: 'teal',
+      url: 'https://www.si.mahidol.ac.th/',
+      topics: [
+        'คำแนะนำการปฏิบัติตัวและโภชนาการหลังการผ่าตัดถุงน้ำดี (Post-Cholecystectomy Care)',
+        'สรีรวิทยาของกรดน้ำดีที่หลั่งลงลำไส้โดยตรง และการปรับตัวของระบบทางเดินอาหาร',
+        'เกณฑ์การจำกัดไขมันไม่เกิน 30-40 กรัม/วัน ในระยะแรกหลังผ่าตัด',
+        'การกระจายมื้ออาหารเป็นมื้อเล็ก 4-5 มื้อ เพื่อป้องกันอาการท้องอืดและท้องเสียฉับพลัน',
+      ],
+      description:
+        'โรงเรียนแพทย์แห่งแรกของไทยและศูนย์ความเป็นเลิศทางการแพทย์ด้านศัลยศาสตร์ ให้แนวทางเวชปฏิบัติและโภชนบำบัดสำหรับผู้ป่วยหลังผ่าตัดถุงน้ำดี เพื่อการฟื้นตัวอย่างปลอดภัยและป้องกันภาวะแทรกซ้อนทางเดินอาหาร',
+    },
+    {
+      title: 'Mayo Clinic (ศูนย์การแพทย์เมโย คลินิก สหรัฐอเมริกา)',
+      category: 'สถาบันการแพทย์ระดับโลก',
+      condition: 'ผู้ตัดถุงน้ำดี (Cholecystectomy)',
+      conditionColor: 'teal',
+      url: 'https://www.mayoclinic.org/tests-procedures/cholecystectomy/expert-answers/gallbladder-removal-diet/faq-20057813',
+      topics: [
+        'Gallbladder Removal Diet: Expert Guidance on Fat Management (Dept. of Gastroenterology)',
+        'บทบาทของใยอาหารชนิดละลายน้ำ (Soluble Fiber) ในการดักจับกรดน้ำดีส่วนเกิน',
+        'การหลีกเลี่ยงสารกระตุ้นลำไส้ เช่น อาหารทอด อาหารมัน ครีมเนย และเครื่องดื่มคาเฟอีน',
+        'การสังเกตการตอบสนองเฉพาะบุคคล (Individual Tolerance) ต่อชนิดอาหาร',
+      ],
+      description:
+        'สถาบันการแพทย์อันดับหนึ่งของโลก ให้แนวทางการจัดการอาหารหลังการผ่าตัดนำถุงน้ำดีออก โดยเน้นการลดอาหารไขมันสูง ค่อยๆ เพิ่มใยอาหาร และการรับประทานอาหารมื้อย่อย',
+    },
+    {
+      title: 'National Health Service (NHS, สหราชอาณาจักร)',
+      category: 'ระบบบริการสุขภาพแห่งชาติ',
+      condition: 'ผู้ตัดถุงน้ำดี (Cholecystectomy)',
+      conditionColor: 'teal',
+      url: 'https://www.nhs.uk/conditions/gallbladder-removal/recovery/',
+      topics: [
+        'Cholecystectomy Recovery: Diet and Lifestyle After Surgery',
+        'การค่อยๆ เริ่มนำไขมันคุณภาพดีกลับเข้าสู่อาหารประจำวันอย่างเป็นขั้นตอน',
+        'การจัดการปัญหาแก๊สในกระเพาะ แน่นท้อง และอาการท้องเสียจากกรดน้ำดี (Bile Acid Diarrhea)',
+      ],
+      description:
+        'ระบบสาธารณสุขมาตรฐานของสหราชอาณาจักร รวบรวมคำแนะนำการดูแลตนเองและโภชนาการหลังการผ่าตัดถุงน้ำดีผ่านกล้องและแบบเปิด',
+    },
+    {
+      title: 'สมาคมรูมาติสซั่มแห่งประเทศไทย (Thai Rheumatism Association)',
+      category: 'สมาคมวิชาชีพทางการแพทย์',
+      condition: 'โรคเกาต์ (Gout)',
+      conditionColor: 'indigo',
+      url: 'https://thairheumatology.org/',
+      topics: [
+        'แนวทางเวชปฏิบัติการดูแลรักษาโรคข้ออักเสบเกาต์ (Thailand Gout Guidelines)',
+        'ตารางจัดกลุ่มอาหารตามปริมาณพิวรีน (พิวรีนสูงมาก / ปานกลาง / ต่ำ)',
+        'คำเตือนเรื่องน้ำเชื่อมฟรุกโตส ซุปเคี่ยวสกัด และเครื่องดื่มแอลกอฮอล์',
+      ],
+      description:
+        'องค์กรหลักด้านโรคข้อและรูมาติสซั่มในประเทศไทย ผู้กำหนดแนวทางเวชปฏิบัติการรักษาโรคข้ออักเสบเกาต์และมาตรฐานการควบคุมระดับกรดยูริกในเลือด',
+    },
+    {
       title: 'ฝ่ายโภชนาการ คณะแพทยศาสตร์โรงพยาบาลรามาธิบดี มหาวิทยาลัยมหิดล (Rama Channel)',
       category: 'โรงพยาบาลมหาวิทยาลัยชั้นนำ',
+      condition: 'โภชนาการทางการแพทย์',
+      conditionColor: 'emerald',
       url: 'https://www.rama.mahidol.ac.th/ramachannel/',
       topics: [
         'ตารางแบ่งหมวดหมู่ผักและผลไม้ตามระดับโพแทสเซียม (ต่ำ / ปานกลาง / สูง)',
@@ -65,6 +127,8 @@ export const ReferencesPage: React.FC<ReferencesPageProps> = ({
     {
       title: 'สำนักโภชนาการ กรมอนามัย กระทรวงสาธารณสุข',
       category: 'หน่วยงานรัฐบาล',
+      condition: 'ฐานข้อมูลอาหารไทย',
+      conditionColor: 'blue',
       url: 'https://nutrition2.anamai.moph.go.th/',
       topics: [
         'ตารางแสดงคุณค่าทางโภชนาการของอาหารไทย (Food Composition Table of Thai Foods)',
@@ -76,6 +140,8 @@ export const ReferencesPage: React.FC<ReferencesPageProps> = ({
     {
       title: 'Kidney Disease: Improving Global Outcomes (KDIGO)',
       category: 'องค์กรสากลด้านโรคไต',
+      condition: 'โรคไตเรื้อรัง (CKD)',
+      conditionColor: 'emerald',
       url: 'https://kdigo.org/',
       topics: [
         'KDIGO Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease',
@@ -190,12 +256,19 @@ export const ReferencesPage: React.FC<ReferencesPageProps> = ({
                 >
                   <Box>
                     <Group justify="space-between" align="flex-start" mb="xs">
-                      <ThemeIcon size={40} radius="md" color="emerald" variant="light">
+                      <ThemeIcon size={40} radius="md" color={src.conditionColor || 'emerald'} variant="light">
                         <IconBuildingHospital size={22} />
                       </ThemeIcon>
-                      <Badge size="xs" variant="light" color="gray">
-                        {src.category}
-                      </Badge>
+                      <Group gap={6} justify="flex-end" wrap="wrap">
+                        {src.condition && (
+                          <Badge size="xs" variant="outline" color={src.conditionColor || 'teal'}>
+                            {src.condition}
+                          </Badge>
+                        )}
+                        <Badge size="xs" variant="light" color="gray">
+                          {src.category}
+                        </Badge>
+                      </Group>
                     </Group>
 
                     <Text fw={700} size="sm" c="slate.9" mb={4} lh={1.4}>
