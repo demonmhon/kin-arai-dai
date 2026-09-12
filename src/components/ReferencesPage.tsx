@@ -25,6 +25,7 @@ import {
   IconBook,
   IconSearch,
 } from '@tabler/icons-react';
+import { BookOpen } from 'lucide-react';
 
 interface ReferencesPageProps {
   onNavigateHome: () => void;
@@ -116,8 +117,14 @@ export const ReferencesPage: React.FC<ReferencesPageProps> = ({
 
           {/* Header Section */}
           <Box>
-            <Badge size="md" color="emerald" variant="light" mb="xs">
-              📚 แหล่งข้อมูลและที่มาทางการแพทย์
+            <Badge
+              size="md"
+              color="emerald"
+              variant="light"
+              mb="xs"
+              leftSection={<BookOpen size={13} />}
+            >
+              แหล่งข้อมูลและที่มาทางการแพทย์
             </Badge>
             <Title order={1} fz={{ base: 24, sm: 32 }} fw={800} c="slate.9" mb="xs">
               แหล่งข้อมูลอ้างอิง (Medical References & Sources)

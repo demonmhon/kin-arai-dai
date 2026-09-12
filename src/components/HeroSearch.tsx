@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Title, Text, TextInput, ActionIcon, Badge } from '@mantine/core';
-import { IconSearch, IconX } from '@tabler/icons-react';
+import { Search, X } from 'lucide-react';
 
 interface HeroSearchProps {
   searchTerm: string;
@@ -48,7 +48,7 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
         }}
       />
 
-      <Box style={{ position: 'relative', zIndex: 1, maxWidth: 680 }}>
+      <Box style={{ position: 'relative', zIndex: 1, maxWidth: 840 }}>
         <Badge
           variant="light"
           color="emerald"
@@ -101,7 +101,7 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
             onChange={(e) => onSearchChange(e.currentTarget.value)}
             size="md"
             radius="xl"
-            leftSection={<IconSearch size={20} color="#94a3b8" />}
+            leftSection={<Search size={20} color="#94a3b8" />}
             rightSection={
               searchTerm ? (
                 <ActionIcon
@@ -111,7 +111,7 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
                   onClick={() => onSearchChange('')}
                   title="ล้างค้นหา"
                 >
-                  <IconX size={16} />
+                  <X size={16} />
                 </ActionIcon>
               ) : null
             }

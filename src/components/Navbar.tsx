@@ -7,12 +7,13 @@ import {
   Box,
 } from '@mantine/core';
 import {
-  IconChevronDown,
-  IconInfoCircle,
-  IconStethoscope,
-  IconSearch,
-  IconHome,
-} from '@tabler/icons-react';
+  ChevronDown,
+  Info,
+  Stethoscope,
+  Search,
+  Home,
+  Target,
+} from 'lucide-react';
 import { Logo } from './Logo';
 
 interface NavbarProps {
@@ -46,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         borderBottom: '1px solid #e2e8f0',
       }}
     >
-      <Container size="lg" py={{ base: 'xs', sm: 'sm' }} px={{ base: 'sm', sm: 'md' }}>
+      <Container size={1600} py={{ base: 'xs', sm: 'sm' }} px={{ base: 'sm', sm: 'md' }}>
         <Group justify="space-between" wrap="nowrap" gap="xs">
           {/* Logo & Brand Name (Clickable to return to Home) */}
           <Group
@@ -107,7 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   size="sm"
                   radius="xl"
                   onClick={onOpenDiseaseModal}
-                  leftSection={<IconSearch size={15} />}
+                  leftSection={<Search size={15} />}
                   styles={{
                     root: {
                       fontWeight: 600,
@@ -129,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   size="sm"
                   radius="xl"
                   onClick={onOpenGuideModal}
-                  leftSection={<IconInfoCircle size={16} color="#059669" />}
+                  leftSection={<Info size={16} color="#059669" />}
                   styles={{
                     root: {
                       fontWeight: 500,
@@ -158,7 +159,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     radius="xl"
                     onClick={onGoHome}
                     visibleFrom="md"
-                    leftSection={<IconHome size={14} color="#64748b" />}
+                    leftSection={<Home size={14} color="#64748b" />}
                     title="ดูเจตนารมณ์ & แนะนำการใช้งาน"
                   >
                     หน้าแรก
@@ -172,8 +173,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   size="sm"
                   radius="xl"
                   onClick={onOpenDiseaseModal}
-                  leftSection={<IconStethoscope size={15} />}
-                  rightSection={<IconChevronDown size={13} />}
+                  leftSection={<Stethoscope size={15} />}
+                  rightSection={<ChevronDown size={13} />}
                   styles={{
                     root: {
                       fontWeight: 600,
@@ -222,9 +223,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                       },
                     }}
                   >
-                    <Text span fz="xs" fw={600}>
-                      🎯 {currentStageBadge}
-                    </Text>
+                    <Group gap={6} align="center" wrap="nowrap">
+                      <Target size={14} color="#059669" />
+                      <Text span fz="xs" fw={600}>
+                        {currentStageBadge}
+                      </Text>
+                    </Group>
                   </Button>
                 )}
 
@@ -234,7 +238,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   size="sm"
                   radius="xl"
                   onClick={onOpenGuideModal}
-                  leftSection={<IconInfoCircle size={16} color="#059669" />}
+                  leftSection={<Info size={16} color="#059669" />}
                   styles={{
                     root: {
                       fontWeight: 500,

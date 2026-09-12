@@ -55,3 +55,16 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Reference source card hover */
+.reference-source-card {
+  transition: all 0.2s ease;
+}
+
+.reference-source-card:hover {
+  background-color: #f0fdf4 !important;
+  border-color: #a7f3d0 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+

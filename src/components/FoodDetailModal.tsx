@@ -16,6 +16,14 @@ import {
   IconActivity,
   IconCheck,
 } from '@tabler/icons-react';
+import {
+  Hospital,
+  Stethoscope,
+  AlertTriangle,
+  Camera,
+  X,
+  UtensilsCrossed,
+} from 'lucide-react';
 import { FoodItem } from '../types/food';
 import { getStageMeta } from '../utils/diseaseHelper';
 import { getFoodAdvice } from '../utils/foodAdvice';
@@ -131,7 +139,7 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
                   userSelect: 'none',
                 }}
               >
-                {food.icon || '🍽️'}
+                {food.icon ? food.icon : <UtensilsCrossed size={32} color="#ffffff" />}
               </Box>
             )}
             <Box>
@@ -165,6 +173,7 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
             size="xs"
             radius="xl"
             onClick={onClose}
+            leftSection={<X size={14} />}
             styles={{
               root: {
                 backgroundColor: 'rgba(0, 0, 0, 0.2)',
@@ -176,7 +185,7 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
               },
             }}
           >
-            ✕ ปิด
+            ปิด
           </Button>
         </Group>
       </Box>
@@ -193,8 +202,8 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
               border: '1px solid #e0e7ff',
             }}
           >
-            <Group gap="xs" mb={4}>
-              <Text size="sm">🎯</Text>
+            <Group gap="xs" mb={4} align="center">
+              <Stethoscope size={16} color="#4338ca" />
               <Text size="xs" fw={700} c="#312e81">
                 คำแนะนำเฉพาะ:{' '}
                 <Text span style={{ textDecoration: 'underline' }}>
@@ -277,11 +286,11 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
           </Paper>
 
           {/* Credible Source Links */}
-          {adviceInfo.sources && adviceInfo.sources.length > 0 && (
-            <Box pt="xs" style={{ borderTop: '1px solid #f1f5f9' }}>
-              <Text size="xs" fw={600} c="dimmed" mb="xs">
-                แหล่งข้อมูลทางการแพทย์ที่นำมาใช้อ้างอิงประกอบ ({adviceInfo.sources.length} แหล่ง):
-              </Text>
+          <Box pt="xs" style={{ borderTop: '1px solid #f1f5f9' }}>
+            <Text size="xs" fw={600} c="dimmed" mb="xs">
+              แหล่งข้อมูลทางการแพทย์ที่นำมาใช้อ้างอิงประกอบ {adviceInfo.sources && adviceInfo.sources.length > 0 ? `(${adviceInfo.sources.length} แหล่ง):` : ':'}
+            </Text>
+            {adviceInfo.sources && adviceInfo.sources.length > 0 ? (
               <Stack gap="xs">
                 {adviceInfo.sources.map((src, idx) => (
                   <Anchor
@@ -295,15 +304,29 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
                       p="sm"
                       radius="md"
                       withBorder
+                      className="reference-source-card"
                       style={{
                         backgroundColor: '#f8fafc',
                         borderColor: '#e2e8f0',
-                        transition: 'all 0.15s ease',
+                        cursor: 'pointer',
                       }}
                     >
                       <Group justify="space-between">
                         <Group gap="sm">
-                          <Text size="xl">🏥</Text>
+                          <Box
+                            style={{
+                              width: 36,
+                              height: 36,
+                              borderRadius: 10,
+                              backgroundColor: '#ecfdf5',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              flexShrink: 0,
+                            }}
+                          >
+                            <Hospital size={20} color="#059669" />
+                          </Box>
                           <Box>
                             <Text size="xs" fw={700} c="slate.8">
                               {src.name}
@@ -319,14 +342,34 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
                   </Anchor>
                 ))}
               </Stack>
-            </Box>
-          )}
+            ) : (
+              <Paper
+                p="sm"
+                radius="md"
+                withBorder
+                style={{
+                  backgroundColor: '#f8fafc',
+                  borderColor: '#e2e8f0',
+                }}
+              >
+                <Group gap="xs" align="center">
+                  <AlertTriangle size={15} color="#d97706" />
+                  <Text size="xs" c="dimmed">
+                    ยังไม่มีลิงก์แหล่งข้อมูลจำเพาะที่ผ่านการตรวจสอบโดยตรงสำหรับรายการนี้
+                  </Text>
+                </Group>
+              </Paper>
+            )}
+          </Box>
 
           {/* Image CC license credit */}
           {food.imageCredit && (
-            <Text size="11px" c="dimmed">
-              📷 สิทธิ์การใช้งานภาพ: {food.imageCredit}
-            </Text>
+            <Group gap={6} align="center">
+              <Camera size={13} color="#64748b" />
+              <Text size="11px" c="dimmed">
+                สิทธิ์การใช้งานภาพ: {food.imageCredit}
+              </Text>
+            </Group>
           )}
 
           {/* Close button */}

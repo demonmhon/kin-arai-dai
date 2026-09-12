@@ -14,16 +14,23 @@ import {
   Paper,
 } from '@mantine/core';
 import {
-  IconBolt,
-  IconTrafficLights,
-  IconStethoscope,
-  IconShieldCheck,
-  IconArrowRight,
-  IconCheck,
-  IconAlertTriangle,
-} from '@tabler/icons-react';
+  Lightbulb,
+  CheckCircle2,
+  AlertCircle,
+  AlertTriangle,
+  Stethoscope,
+  ArrowRight,
+  Zap,
+  SlidersHorizontal,
+  ShieldCheck,
+  Check,
+  Egg,
+  Apple,
+  AlertOctagon,
+} from 'lucide-react';
 import { KidneyStageId } from '../types/food';
 import { diseases } from '../data/diseases';
+import { getDiseaseLucideIcon } from '../utils/diseaseIcons';
 
 interface LandingPageProps {
   onSelectCkdStage: (stage: KidneyStageId) => void;
@@ -93,8 +100,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     padding: '6px 14px',
                   },
                 }}
+                leftSection={<Lightbulb size={13} color="#6ee7b7" />}
               >
-                💡 เจตนารมณ์ของ "กินอะไรได้บ้าง"
+                เจตนารมณ์ของ "กินอะไรได้บ้าง"
               </Badge>
 
               <Title
@@ -117,10 +125,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 จนต้องเสียเวลา Fact-check ซ้ำๆ
                 <br /><br />
                 <Text span c="#6ee7b7" fw={600}>"กินอะไรได้บ้าง"</Text> ตั้งใจสร้างขึ้นมาเพื่อให้คุณเข้ามาเช็กได้ไวในไม่กี่วินาที
-                ประเมินง่ายๆด้วยเกณฑ์ไฟจราจร <Text span c="#34d399">🟢 เขียว</Text>{' '}
-                <Text span c="#fbbf24">🟡 เหลือง</Text>{' '}
-                <Text span c="#f87171">🔴 แดง</Text>{' '}
-                ที่แบ่งตรงตามระยะของโรคจริง พร้อมแหล่งอ้างอิงทางการแพทย์
+                ประเมินง่ายๆด้วยเกณฑ์ไฟจราจร{' '}
+                <Text span fw={600} c="#34d399" style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                  <CheckCircle2 size={13} /> เขียว (ปลอดภัย)
+                </Text>{' '}
+                •{' '}
+                <Text span fw={600} c="#fbbf24" style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                  <AlertCircle size={13} /> เหลือง (คุมปริมาณ)
+                </Text>{' '}
+                •{' '}
+                <Text span fw={600} c="#f87171" style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                  <AlertTriangle size={13} /> แดง (หลีกเลี่ยง)
+                </Text>{' '}
+                ที่แบ่งตรงตามระยะของโรคจริง พร้อมแหล่งอ้างอิง
               </Text>
 
               <Group gap="md" wrap="wrap">
@@ -128,7 +145,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   size="md"
                   color="emerald"
                   radius="xl"
-                  rightSection={<IconArrowRight size={18} />}
+                  rightSection={<ArrowRight size={18} />}
                   onClick={() => onOpenSelectionDialog()}
                   styles={{
                     root: {
@@ -174,7 +191,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }} spacing="md">
               <Card p="lg" radius="xl" withBorder style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}>
                 <ThemeIcon size={44} radius="lg" color="emerald" variant="light" mb="md">
-                  <IconBolt size={24} />
+                  <Zap size={24} />
                 </ThemeIcon>
                 <Text fw={700} size="sm" c="slate.9" mb={4}>
                   เช็กไวในไม่กี่วินาที
@@ -186,7 +203,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
               <Card p="lg" radius="xl" withBorder style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}>
                 <ThemeIcon size={44} radius="lg" color="teal" variant="light" mb="md">
-                  <IconTrafficLights size={24} />
+                  <SlidersHorizontal size={24} />
                 </ThemeIcon>
                 <Text fw={700} size="sm" c="slate.9" mb={4}>
                   เกณฑ์ไฟจราจร 3 สี
@@ -198,7 +215,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
               <Card p="lg" radius="xl" withBorder style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}>
                 <ThemeIcon size={44} radius="lg" color="blue" variant="light" mb="md">
-                  <IconStethoscope size={24} />
+                  <Stethoscope size={24} />
                 </ThemeIcon>
                 <Text fw={700} size="sm" c="slate.9" mb={4}>
                   แบ่งตามระยะของโรค
@@ -210,7 +227,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
               <Card p="lg" radius="xl" withBorder style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}>
                 <ThemeIcon size={44} radius="lg" color="indigo" variant="light" mb="md">
-                  <IconShieldCheck size={24} />
+                  <ShieldCheck size={24} />
                 </ThemeIcon>
                 <Text fw={700} size="sm" c="slate.9" mb={4}>
                   ข้อมูลการแพทย์ที่อ้างอิง
@@ -219,15 +236,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   ไม่เดาข้อมูล รายการอาหารมีคำอธิบายเหตุผลและลิงก์อ้างอิง
                 </Text>
                 {onNavigateReferences && (
-                  <Text
-                    size="11px"
-                    c="emerald.7"
-                    fw={600}
+                  <Group
+                    gap={4}
+                    align="center"
                     style={{ cursor: 'pointer' }}
                     onClick={onNavigateReferences}
                   >
-                    ดูแหล่งอ้างอิงทั้งหมด ➔
-                  </Text>
+                    <Text size="11px" c="emerald.7" fw={600}>
+                      ดูแหล่งอ้างอิงทั้งหมด
+                    </Text>
+                    <ArrowRight size={12} color="#059669" />
+                  </Group>
                 )}
               </Card>
             </SimpleGrid>
@@ -262,8 +281,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             >
               <Group justify="space-between" align="flex-start" mb="md" wrap="wrap" gap="xs">
                 <Group gap="sm">
-                  <ThemeIcon size={48} radius="xl" color="emerald" variant="light" style={{ fontSize: 24 }}>
-                    🩺
+                  <ThemeIcon size={48} radius="xl" color="emerald" variant="light">
+                    <Stethoscope size={24} color="#059669" />
                   </ThemeIcon>
                   <Box>
                     <Group gap="xs">
@@ -309,7 +328,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                           {stage.name}
                         </Text>
                         <ThemeIcon size={20} radius="xl" color="emerald" variant="light">
-                          <IconCheck size={12} />
+                          <Check size={12} />
                         </ThemeIcon>
                       </Group>
                       <Text size="11px" c="dimmed" lh={1.4}>
@@ -323,12 +342,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                       variant="light"
                       radius="md"
                       fullWidth
+                      rightSection={<ArrowRight size={12} />}
                       onClick={(e) => {
                         e.stopPropagation();
                         onSelectCkdStage(stage.id);
                       }}
                     >
-                      เลือก {stage.name} ➔
+                      เลือก {stage.name}
                     </Button>
                   </Card>
                 ))}
@@ -364,7 +384,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                       }}
                     >
                       <Group justify="space-between" mb="xs">
-                        <Text size="xl">{d.icon}</Text>
+                        <ThemeIcon
+                          size={38}
+                          radius="md"
+                          color={isActive ? 'emerald' : 'gray'}
+                          variant="light"
+                        >
+                          {getDiseaseLucideIcon(d.id, 20)}
+                        </ThemeIcon>
                         <Badge size="xs" color={isActive ? 'emerald' : 'gray'} variant={isActive ? 'filled' : 'light'}>
                           {d.badgeText}
                         </Badge>
@@ -383,8 +410,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                           radius="md"
                           fullWidth
                           mt="xs"
+                          rightSection={<ArrowRight size={12} />}
                         >
-                          เข้าดูเกณฑ์อาหาร ➔
+                          เข้าดูเกณฑ์อาหาร
                         </Button>
                       )}
                     </Card>
@@ -408,10 +436,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 variant="subtle"
                 color="emerald"
                 size="xs"
-                rightSection={<IconArrowRight size={14} />}
+                rightSection={<ArrowRight size={14} />}
                 onClick={() => onSelectCkdStage('stage4_5_pre')}
               >
-                ดูฐานข้อมูลอาหารทั้งหมด ➔
+                ดูฐานข้อมูลอาหารทั้งหมด
               </Button>
             </Group>
 
@@ -419,12 +447,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               {/* Example 1: Safe */}
               <Card p="md" radius="lg" withBorder style={{ backgroundColor: '#ecfdf5', borderColor: '#a7f3d0' }}>
                 <Group justify="space-between" mb="xs">
-                  <Badge size="sm" color="emerald" variant="filled">
-                    🟢 ปลอดภัย (Safe)
+                  <Badge size="sm" color="emerald" variant="filled" leftSection={<CheckCircle2 size={12} />}>
+                    ปลอดภัย (Safe)
                   </Badge>
-                  <Text size="xs" c="dimmed">
-                    ไข่ขาว
-                  </Text>
+                  <Group gap={4}>
+                    <Egg size={14} color="#059669" />
+                    <Text size="xs" c="dimmed">
+                      ไข่ขาว
+                    </Text>
+                  </Group>
                 </Group>
                 <Text fw={700} size="sm" c="slate.9" mb={4}>
                   ไข่ขาวต้ม / ไข่ขาวปรุงอาหาร
@@ -437,12 +468,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               {/* Example 2: Caution */}
               <Card p="md" radius="lg" withBorder style={{ backgroundColor: '#fffbeb', borderColor: '#fde68a' }}>
                 <Group justify="space-between" mb="xs">
-                  <Badge size="sm" color="amber" variant="filled">
-                    🟡 คุมปริมาณ (Caution)
+                  <Badge size="sm" color="amber" variant="filled" leftSection={<AlertCircle size={12} />}>
+                    คุมปริมาณ (Caution)
                   </Badge>
-                  <Text size="xs" c="dimmed">
-                    มะละกอสุก
-                  </Text>
+                  <Group gap={4}>
+                    <Apple size={14} color="#d97706" />
+                    <Text size="xs" c="dimmed">
+                      มะละกอสุก
+                    </Text>
+                  </Group>
                 </Group>
                 <Text fw={700} size="sm" c="slate.9" mb={4}>
                   มะละกอสุก (ทานครั้งละ 3-4 คำ)
@@ -455,12 +489,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               {/* Example 3: Danger */}
               <Card p="md" radius="lg" withBorder style={{ backgroundColor: '#fef2f2', borderColor: '#fecaca' }}>
                 <Group justify="space-between" mb="xs">
-                  <Badge size="sm" color="red" variant="filled" leftSection={<IconAlertTriangle size={12} />}>
-                    🔴 ห้ามเด็ดขาด (Danger)
+                  <Badge size="sm" color="red" variant="filled" leftSection={<AlertTriangle size={12} />}>
+                    ห้ามเด็ดขาด (Danger)
                   </Badge>
-                  <Text size="xs" c="dimmed">
-                    มะเฟือง
-                  </Text>
+                  <Group gap={4}>
+                    <AlertOctagon size={14} color="#dc2626" />
+                    <Text size="xs" c="dimmed">
+                      มะเฟือง
+                    </Text>
+                  </Group>
                 </Group>
                 <Text fw={700} size="sm" c="slate.9" mb={4}>
                   มะเฟือง / น้ำมะเฟือง

@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
         borderTop: '1px solid #e2e8f0',
       }}
     >
-      <Container size="lg">
+      <Container size={1600}>
         <Box style={{ textAlign: 'center' }}>
           <Group justify="center" gap="xs" mb={8} wrap="wrap">
             <Text size="xs" fw={700} c="slate.7">

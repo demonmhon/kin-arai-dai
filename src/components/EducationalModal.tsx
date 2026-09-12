@@ -10,6 +10,15 @@ import {
   Group,
   SimpleGrid,
 } from '@mantine/core';
+import {
+  Banana,
+  Egg,
+  Sparkles,
+  Activity,
+  AlertCircle,
+  AlertTriangle,
+  HeartPulse,
+} from 'lucide-react';
 
 interface EducationalModalProps {
   opened: boolean;
@@ -49,36 +58,48 @@ export const EducationalModal: React.FC<EducationalModalProps> = ({ opened, onCl
         {/* 4 Stages Brief */}
         <Stack gap="xs">
           <Paper p="sm" radius="md" style={{ backgroundColor: '#eff6ff', border: '1px solid #dbeafe' }}>
-            <Text size="xs" fw={700} c="#1e40af" mb={2}>
-              🔹 ระยะ 1-2 (eGFR ≥ 60): ชะลอความเสื่อม
-            </Text>
+            <Group gap={6} align="center" mb={2}>
+              <Activity size={15} color="#1e40af" />
+              <Text size="xs" fw={700} c="#1e40af">
+                ระยะ 1-2 (eGFR ≥ 60): ชะลอความเสื่อม
+              </Text>
+            </Group>
             <Text size="xs" c="#1e3a8a" lh={1.5}>
               ไตยังกรองของเสียได้ดี ยังไม่ต้องงดผักผลไม้หรือไข่แดงอย่างเข้มงวด แต่ให้เน้นลดเค็ม (โซเดียม &lt; 2,000 มก./วัน) และควบคุมโรคต้นเหตุ เช่น เบาหวานและความดันโลหิตสูง
             </Text>
           </Paper>
 
           <Paper p="sm" radius="md" style={{ backgroundColor: '#fffbeb', border: '1px solid #fef3c7' }}>
-            <Text size="xs" fw={700} c="#92400e" mb={2}>
-              🔸 ระยะ 3 (eGFR 30-59): เริ่มเฝ้าระวังแร่ธาตุ
-            </Text>
+            <Group gap={6} align="center" mb={2}>
+              <AlertCircle size={15} color="#92400e" />
+              <Text size="xs" fw={700} c="#92400e">
+                ระยะ 3 (eGFR 30-59): เริ่มเฝ้าระวังแร่ธาตุ
+              </Text>
+            </Group>
             <Text size="xs" c="#78350f" lh={1.5}>
               เริ่มจำกัดโปรตีนเหลือ 0.6 - 0.8 กรัม/กก./วัน ตรวจเลือดติดตามระดับโพแทสเซียมและฟอสฟอรัสสม่ำเสมอ เริ่มเลี่ยงเครื่องในสัตว์และเนื้อสัตว์แปรรูป
             </Text>
           </Paper>
 
           <Paper p="sm" radius="md" style={{ backgroundColor: '#fef2f2', border: '1px solid #fee2e2' }}>
-            <Text size="xs" fw={700} c="#991b1b" mb={2}>
-              🔻 ระยะ 4-5 ก่อนฟอก (eGFR &lt; 30): เข้มงวดสูงสุด
-            </Text>
+            <Group gap={6} align="center" mb={2}>
+              <AlertTriangle size={15} color="#991b1b" />
+              <Text size="xs" fw={700} c="#991b1b">
+                ระยะ 4-5 ก่อนฟอก (eGFR &lt; 30): เข้มงวดสูงสุด
+              </Text>
+            </Group>
             <Text size="xs" c="#7f1d1d" lh={1.5}>
               จำกัดโปรตีนต่ำ (Low-protein diet) เพื่อลดของเสียคั่ง หลีกเลี่ยงผักผลไม้โพแทสเซียมสูงเด็ดขาด เพราะเสี่ยงหัวใจเต้นผิดจังหวะหรือหยุดเต้น และระวังอาการบวมน้ำ
             </Text>
           </Paper>
 
           <Paper p="sm" radius="md" style={{ backgroundColor: '#faf5ff', border: '1px solid #f3e8ff' }}>
-            <Text size="xs" fw={700} c="#6b21a8" mb={2}>
-              🟣 ระยะฟอกไต / ล้างไต (Dialysis): ต้องเพิ่มโปรตีน!
-            </Text>
+            <Group gap={6} align="center" mb={2}>
+              <HeartPulse size={15} color="#6b21a8" />
+              <Text size="xs" fw={700} c="#6b21a8">
+                ระยะฟอกไต / ล้างไต (Dialysis): ต้องเพิ่มโปรตีน!
+              </Text>
+            </Group>
             <Text size="xs" c="#581c87" lh={1.5}>
               ขั้นตอนการฟอกเลือดหรือล้างไตจะสูญเสียโปรตีนไปกับกระบวนการ ผู้ป่วยจึงต้องทานโปรตีนคุณภาพสูง (ไข่ขาว, ปลา) เพิ่มขึ้นเป็น 1.2 - 1.4 กรัม/กก./วัน แต่ยังต้องคุมฟอสฟอรัสและน้ำอย่างเคร่งครัด
             </Text>
@@ -92,28 +113,37 @@ export const EducationalModal: React.FC<EducationalModalProps> = ({ opened, onCl
           </Text>
           <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="xs">
             <Paper p="xs" radius="md" withBorder style={{ backgroundColor: '#f8fafc' }}>
-              <Text size="xs" fw={700} c="slate.9">
-                🍌 โพแทสเซียม (K)
-              </Text>
-              <Text size="11px" c="dimmed" mt={2} lh={1.4}>
+              <Group gap={6} align="center">
+                <Banana size={16} color="#eab308" />
+                <Text size="xs" fw={700} c="slate.9">
+                  โพแทสเซียม (K)
+                </Text>
+              </Group>
+              <Text size="11px" c="dimmed" mt={4} lh={1.4}>
                 พบในผลไม้หวาน, ผักใบเขียวเข้ม หากสูงเกินไปจะทำให้กล้ามเนื้ออ่อนแรงและหัวใจเต้นผิดจังหวะเฉียบพลัน
               </Text>
             </Paper>
 
             <Paper p="xs" radius="md" withBorder style={{ backgroundColor: '#f8fafc' }}>
-              <Text size="xs" fw={700} c="slate.9">
-                🍳 ฟอสฟอรัส (P)
-              </Text>
-              <Text size="11px" c="dimmed" mt={2} lh={1.4}>
+              <Group gap={6} align="center">
+                <Egg size={16} color="#f97316" />
+                <Text size="xs" fw={700} c="slate.9">
+                  ฟอสฟอรัส (P)
+                </Text>
+              </Group>
+              <Text size="11px" c="dimmed" mt={4} lh={1.4}>
                 พบในไข่แดง นม ธัญพืช น้ำอัดลมสีดำ หากคั่งจะดึงแคลเซียมออกจากกระดูก ทำให้คันตามผิวหนังและหลอดเลือดแข็งตัว
               </Text>
             </Paper>
 
             <Paper p="xs" radius="md" withBorder style={{ backgroundColor: '#f8fafc' }}>
-              <Text size="xs" fw={700} c="slate.9">
-                🧂 โซเดียม (Na)
-              </Text>
-              <Text size="11px" c="dimmed" mt={2} lh={1.4}>
+              <Group gap={6} align="center">
+                <Sparkles size={16} color="#3b82f6" />
+                <Text size="xs" fw={700} c="slate.9">
+                  โซเดียม (Na)
+                </Text>
+              </Group>
+              <Text size="11px" c="dimmed" mt={4} lh={1.4}>
                 พบในเกลือ น้ำปลา อาหารแปรรูป หากเกินจะดึงน้ำไว้ในหลอดเลือด ทำให้ความดันพุ่ง บวมน้ำ และน้ำท่วมปอด
               </Text>
             </Paper>

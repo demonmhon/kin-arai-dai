@@ -38,7 +38,15 @@ export function getFoodAdvice(
     const level: StageLevel = stageAdvice?.level || 'caution';
     const advice: string = stageAdvice?.advice || 'ควรปรึกษาแพทย์หรือผู้เชี่ยวชาญก่อนรับประทาน';
     const reason: string = profile.reason || food.reason || '';
-    const sources: ReferenceSource[] = profile.sources || (food.source ? [food.source] : []);
+    let sources: ReferenceSource[] = [];
+    if (profile.sources && profile.sources.length > 0) {
+      sources = profile.sources;
+    } else if (food.sources && food.sources.length > 0) {
+      sources = food.sources;
+    } else if (food.source) {
+      sources = [food.source];
+    }
+
     const tags: string[] = profile.tags && profile.tags.length > 0 ? profile.tags : (food.tags || []);
 
     return {
@@ -56,21 +64,31 @@ export function getFoodAdvice(
       ? (food.stages as Record<string, { level: StageLevel; advice: string }>)[stageId]
       : Object.values(food.stages)[0];
 
+    const sources: ReferenceSource[] =
+      (food.sources && food.sources.length > 0)
+        ? food.sources
+        : (food.source ? [food.source] : []);
+
     return {
       level: legacyStageAdvice?.level || 'caution',
       advice: legacyStageAdvice?.advice || food.advice || 'คุมปริมาณและทานแต่พอดี',
       reason: food.reason || '',
-      sources: food.source ? [food.source] : [],
+      sources,
       tags: food.tags || [],
     };
   }
 
   // 3. Fallback when no information exists for the requested disease
+  const fallbackSources: ReferenceSource[] =
+    (food.sources && food.sources.length > 0)
+      ? food.sources
+      : (food.source ? [food.source] : []);
+
   return {
     level: 'caution',
     advice: 'ยังไม่มีข้อมูลจำเพาะสำหรับโรคนี้ ควรปรึกษาแพทย์ประจำตัว',
     reason: 'อยู่ระหว่างรวบรวมข้อมูลทางการแพทย์ที่ผ่านการรับรอง',
-    sources: [],
+    sources: fallbackSources,
     tags: food.tags || [],
   };
 }

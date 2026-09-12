@@ -10,7 +10,14 @@ import {
   Card,
   Group,
 } from '@mantine/core';
-import { IconCheck, IconDeviceFloppy, IconShieldLock } from '@tabler/icons-react';
+import {
+  Check,
+  Save,
+  ShieldCheck,
+  CheckCircle2,
+  AlertCircle,
+  AlertTriangle,
+} from 'lucide-react';
 import { KidneyStageId } from '../types/food';
 import { kidneyStages } from '../data/kidneyStages';
 import { Logo } from './Logo';
@@ -107,9 +114,21 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
           <Text fw={700} fz={{ base: 18, sm: 20 }} c="slate.9" mb={4}>
             คุณหรือผู้ป่วย อยู่ในระยะใดของโรคไต?
           </Text>
-          <Text size="xs" c="dimmed" style={{ maxWidth: 480, margin: '0 auto' }}>
+          <Text size="xs" c="dimmed" style={{ maxWidth: 520, margin: '0 auto', lineHeight: 1.6 }}>
             การทำงานของไตในแต่ละระยะมีความต้องการแร่ธาตุและโปรตีนต่างกัน
-            กรุณาเลือกระยะเพื่อแสดงเกณฑ์ไฟจราจร (🟢 เขียว 🟡 เหลือง 🔴 แดง) ที่ปลอดภัยสำหรับคุณ
+            กรุณาเลือกระยะเพื่อแสดงเกณฑ์ไฟจราจร{' '}
+            <Text span fw={600} c="#10b981" style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+              <CheckCircle2 size={13} /> เขียว
+            </Text>{' '}
+            •{' '}
+            <Text span fw={600} c="#f59e0b" style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+              <AlertCircle size={13} /> เหลือง
+            </Text>{' '}
+            •{' '}
+            <Text span fw={600} c="#ef4444" style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+              <AlertTriangle size={13} /> แดง
+            </Text>{' '}
+            ที่ปลอดภัยสำหรับคุณ
           </Text>
         </Box>
 
@@ -163,7 +182,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                       >
                         {item.badge}
                       </Badge>
-                      {isSelected && <IconCheck size={16} color={styling.dot} />}
+                      {isSelected && <Check size={16} color={styling.dot} />}
                     </Group>
                   </Group>
 
@@ -197,7 +216,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
             size="md"
             color="emerald"
             radius="xl"
-            leftSection={<IconDeviceFloppy size={18} />}
+            leftSection={<Save size={18} />}
             onClick={handleConfirm}
             styles={{
               root: {
@@ -219,7 +238,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
           </Button>
 
           <Group justify="center" gap={6} c="dimmed">
-            <IconShieldLock size={14} />
+            <ShieldCheck size={15} />
             <Text size="11px" c="dimmed">
               บันทึกข้อมูลเฉพาะในเบราว์เซอร์นี้ (คุณสามารถกดเปลี่ยนระยะได้ตลอดเวลาที่แถบด้านบน)
             </Text>

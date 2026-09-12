@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Group, Text, Badge, Box } from '@mantine/core';
-import { IconArrowRight } from '@tabler/icons-react';
+import { ArrowRight, UtensilsCrossed } from 'lucide-react';
 import { FoodItem } from '../types/food';
 import { getFoodAdvice } from '../utils/foodAdvice';
 
@@ -147,7 +147,7 @@ export const FoodCard: React.FC<FoodCardProps> = ({
                 userSelect: 'none',
               }}
             >
-              {food.icon || '🍽️'}
+              {food.icon ? food.icon : <UtensilsCrossed size={28} color="#94a3b8" />}
             </Box>
           )}
 
@@ -191,7 +191,7 @@ export const FoodCard: React.FC<FoodCardProps> = ({
             <Text size="xs" fw={600}>
               ดูเหตุผล & ที่มา
             </Text>
-            <IconArrowRight size={14} />
+            <ArrowRight size={14} />
           </Group>
         </Group>
       </Box>

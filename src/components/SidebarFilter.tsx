@@ -15,6 +15,17 @@ import {
   IconCheck,
   IconReload,
 } from '@tabler/icons-react';
+import {
+  Apple,
+  Broccoli,
+  Beef,
+  Wheat,
+  Sparkles,
+  Coffee,
+  Soup,
+  Utensils,
+  Settings,
+} from 'lucide-react';
 import { FoodCategory, StageLevel } from '../types/food';
 import { getStageMeta } from '../utils/diseaseHelper';
 
@@ -95,17 +106,17 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
   const categories: {
     id: FoodCategory;
     label: string;
-    icon?: string;
+    icon?: React.ReactNode;
     count: number;
   }[] = [
-    { id: 'all', label: 'ทุกหมวดหมู่อาหาร', count: categoryCounts.all },
-    { id: 'fruit', label: 'ผลไม้', icon: '🍎', count: categoryCounts.fruit },
-    { id: 'vegetable', label: 'ผัก', icon: '🥦', count: categoryCounts.vegetable },
-    { id: 'protein', label: 'เนื้อสัตว์/โปรตีน', icon: '🍗', count: categoryCounts.protein },
-    { id: 'carb', label: 'ข้าว-แป้ง', icon: '🍚', count: categoryCounts.carb },
-    { id: 'condiment', label: 'เครื่องปรุง', icon: '🧂', count: categoryCounts.condiment },
-    { id: 'drink', label: 'เครื่องดื่ม/ของหวาน', icon: '☕', count: categoryCounts.drink },
-    { id: 'dish', label: 'อาหารจานเดียว/ฟาสต์ฟู้ด', icon: '🍲', count: categoryCounts.dish },
+    { id: 'all', label: 'ทุกหมวดหมู่อาหาร', icon: <Utensils size={15} />, count: categoryCounts.all },
+    { id: 'fruit', label: 'ผลไม้', icon: <Apple size={15} />, count: categoryCounts.fruit },
+    { id: 'vegetable', label: 'ผัก', icon: <Broccoli size={15} />, count: categoryCounts.vegetable },
+    { id: 'protein', label: 'เนื้อสัตว์/โปรตีน', icon: <Beef size={15} />, count: categoryCounts.protein },
+    { id: 'carb', label: 'ข้าว-แป้ง', icon: <Wheat size={15} />, count: categoryCounts.carb },
+    { id: 'condiment', label: 'เครื่องปรุง', icon: <Sparkles size={15} />, count: categoryCounts.condiment },
+    { id: 'drink', label: 'เครื่องดื่ม/ของหวาน', icon: <Coffee size={15} />, count: categoryCounts.drink },
+    { id: 'dish', label: 'อาหารจานเดียว/ฟาสต์ฟู้ด', icon: <Soup size={15} />, count: categoryCounts.dish },
   ];
 
   return (
@@ -181,8 +192,9 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
                 fontSize: 11,
               },
             }}
+            rightSection={<Settings size={13} />}
           >
-            {isGout ? 'เปลี่ยนสภาวะโรคเกาต์ ⚙️' : 'เปลี่ยนระยะโรคไต ⚙️'}
+            {isGout ? 'เปลี่ยนสภาวะโรคเกาต์' : 'เปลี่ยนระยะโรคไต'}
           </Button>
         </Box>
 
@@ -290,7 +302,17 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
                 >
                   <Group justify="space-between" align="center" wrap="nowrap">
                     <Group gap="xs" wrap="nowrap">
-                      {cat.icon && <Text size="sm">{cat.icon}</Text>}
+                      {cat.icon && (
+                        <Box
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            color: isSelected ? '#059669' : '#64748b',
+                          }}
+                        >
+                          {cat.icon}
+                        </Box>
+                      )}
                       <Text
                         size="xs"
                         fw={isSelected ? 700 : 500}

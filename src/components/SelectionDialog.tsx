@@ -13,17 +13,18 @@ import {
   Alert,
 } from '@mantine/core';
 import {
-  IconCheck,
-  IconArrowLeft,
-  IconArrowRight,
-  IconInfoCircle,
-  IconAlertTriangle,
-  IconShieldCheck,
-} from '@tabler/icons-react';
+  Check,
+  ArrowLeft,
+  ArrowRight,
+  Info,
+  AlertTriangle,
+  ShieldCheck,
+} from 'lucide-react';
 import { diseases } from '../data/diseases';
 import { kidneyStages } from '../data/kidneyStages';
 import { goutStages } from '../data/goutStages';
 import { KidneyStageId, GoutStageId } from '../types/food';
+import { getDiseaseLucideIcon } from '../utils/diseaseIcons';
 
 type SelectionStep = 1 | 2;
 
@@ -180,9 +181,8 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
                       radius="md"
                       variant={isSelected ? 'filled' : 'light'}
                       color={isActive ? 'emerald' : 'gray'}
-                      style={{ fontSize: 20 }}
                     >
-                      {d.icon}
+                      {getDiseaseLucideIcon(d.id, 20)}
                     </ThemeIcon>
                     <Box>
                       <Group gap="xs">
@@ -204,7 +204,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
                     </Box>
                   </Group>
 
-                  {isSelected && <IconCheck size={18} color="#059669" />}
+                  {isSelected && <Check size={18} color="#059669" />}
                 </Group>
               </Card>
             );
@@ -216,7 +216,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
               color="emerald"
               size="sm"
               radius="xl"
-              rightSection={<IconArrowRight size={16} />}
+              rightSection={<ArrowRight size={16} />}
               onClick={() => setStep(2)}
               disabled={!canGoToStage}
             >
@@ -254,9 +254,9 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
                   <Group justify="space-between" align="flex-start" mb={4}>
                     <Group gap="xs">
                       {key === 'gout_flare' ? (
-                        <IconAlertTriangle size={20} color="#dc2626" />
+                        <AlertTriangle size={20} color="#dc2626" />
                       ) : (
-                        <IconShieldCheck size={20} color="#059669" />
+                        <ShieldCheck size={20} color="#059669" />
                       )}
                       <Text size="sm" fw={700} c="slate.9">
                         {GOUT_STAGE_LABEL[key]}
@@ -276,7 +276,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
                       >
                         {item.badge}
                       </Badge>
-                      {isSelected && <IconCheck size={16} color={styling.dot} />}
+                      {isSelected && <Check size={16} color={styling.dot} />}
                     </Group>
                   </Group>
 
@@ -296,7 +296,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
           </SimpleGrid>
 
           <Alert
-            icon={pendingStage === 'gout_flare' ? <IconAlertTriangle size={18} /> : <IconShieldCheck size={18} />}
+            icon={pendingStage === 'gout_flare' ? <AlertTriangle size={18} /> : <ShieldCheck size={18} />}
             color={pendingStage === 'gout_flare' ? 'red' : 'emerald'}
             variant="light"
             radius="md"
@@ -317,7 +317,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
           </Alert>
 
           <Group justify="space-between" mt="xs">
-            <Button variant="default" size="sm" radius="xl" leftSection={<IconArrowLeft size={16} />} onClick={() => setStep(1)}>
+            <Button variant="default" size="sm" radius="xl" leftSection={<ArrowLeft size={16} />} onClick={() => setStep(1)}>
               ย้อนกลับ: เลือกโรค
             </Button>
             <Button variant="filled" color="emerald" size="sm" radius="xl" onClick={handleConfirm}>
@@ -370,7 +370,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
                       >
                         {item.badge}
                       </Badge>
-                      {isSelected && <IconCheck size={16} color={styling.dot} />}
+                      {isSelected && <Check size={16} color={styling.dot} />}
                     </Group>
                   </Group>
 
@@ -390,7 +390,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
           </SimpleGrid>
 
           <Alert
-            icon={<IconInfoCircle size={18} />}
+            icon={<Info size={18} />}
             color="emerald"
             variant="light"
             radius="md"
@@ -409,7 +409,7 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
           </Alert>
 
           <Group justify="space-between" mt="xs">
-            <Button variant="default" size="sm" radius="xl" leftSection={<IconArrowLeft size={16} />} onClick={() => setStep(1)}>
+            <Button variant="default" size="sm" radius="xl" leftSection={<ArrowLeft size={16} />} onClick={() => setStep(1)}>
               ย้อนกลับ: เลือกโรค
             </Button>
             <Button variant="filled" color="emerald" size="sm" radius="xl" onClick={handleConfirm}>

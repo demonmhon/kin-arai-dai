@@ -324,6 +324,7 @@ function generateClientData(foods: FoodYaml[]) {
       imageCredit: f.imageCredit,
       tags: f.tags || [],
       keywords: f.keywords || [],
+      sources: sources,
       diseases: f.diseases,
       // Backward compatibility fields for any legacy component
       reason: ckdProfile?.reason || '',

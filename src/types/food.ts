@@ -44,6 +44,7 @@ export interface FoodItem {
   keywords: string[];
   imageUrl?: string;
   imageCredit?: string;
+  sources?: ReferenceSource[];
   diseases: {
     ckd?: DiseaseProfile;
     gout?: DiseaseProfile;

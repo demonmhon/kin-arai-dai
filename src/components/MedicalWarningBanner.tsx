@@ -1,6 +1,6 @@
 import React from 'react';
 import { Paper, Group, Text, Box, List } from '@mantine/core';
-import { IconAlertTriangle } from '@tabler/icons-react';
+import { AlertTriangle } from 'lucide-react';
 
 interface MedicalWarningBannerProps {
   diseaseId?: string;
@@ -21,7 +21,7 @@ export const MedicalWarningBanner: React.FC<MedicalWarningBannerProps> = ({ dise
       >
         <Group align="flex-start" gap="sm" wrap="nowrap">
           <Box style={{ color: '#e11d48', marginTop: 2 }}>
-            <IconAlertTriangle size={24} />
+            <AlertTriangle size={24} />
           </Box>
           <Box style={{ flex: 1 }}>
             <Text fw={700} size="xs" c="#881337" mb={4}>
@@ -70,7 +70,7 @@ export const MedicalWarningBanner: React.FC<MedicalWarningBannerProps> = ({ dise
     >
       <Group align="flex-start" gap="sm" wrap="nowrap">
         <Box style={{ color: '#e11d48', marginTop: 2 }}>
-          <IconAlertTriangle size={24} />
+          <AlertTriangle size={24} />
         </Box>
         <Box style={{ flex: 1 }}>
           <Text fw={700} size="xs" c="#881337" mb={4}>

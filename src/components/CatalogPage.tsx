@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import {
   Container,
   Stack,
@@ -12,6 +12,8 @@ import {
   Drawer,
   Badge,
   Tooltip,
+  Pagination,
+  Select,
 } from '@mantine/core';
 import {
   IconAdjustmentsHorizontal,
@@ -19,6 +21,7 @@ import {
   IconShare,
   IconCheck,
 } from '@tabler/icons-react';
+import { Search } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 
 import { HeroSearch } from './HeroSearch';
@@ -64,7 +67,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
 
-  // Read search & filters directly from URL query params
+  // Read search, filters & pagination directly from URL query params
   const searchTerm =
     searchParams.get('keywords') ||
     searchParams.get('keyword') ||
@@ -87,7 +90,14 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
     levelFilter = 'danger';
   }
 
-  // Filter setters updating URL query parameters
+  // Pagination parameters
+  const rawPage = parseInt(searchParams.get('page') || '1', 10);
+  const currentPage = isNaN(rawPage) || rawPage < 1 ? 1 : rawPage;
+
+  const rawPageSize = parseInt(searchParams.get('limit') || '24', 10);
+  const pageSize = [24, 48, 60].includes(rawPageSize) ? rawPageSize : 24;
+
+  // Filter setters updating URL query parameters (reset page to 1 on filter change)
   const setSearchTerm = (term: string) => {
     const next = new URLSearchParams(searchParams);
     if (term.trim()) {
@@ -98,6 +108,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
       next.delete('q');
       next.delete('search');
     }
+    next.delete('page');
     setSearchParams(next, { replace: true });
   };
 
@@ -109,6 +120,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
       next.delete('category');
       next.delete('cat');
     }
+    next.delete('page');
     setSearchParams(next, { replace: true });
   };
 
@@ -120,6 +132,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
       next.delete('level');
       next.delete('color');
     }
+    next.delete('page');
     setSearchParams(next, { replace: true });
   };
 
@@ -133,6 +146,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
     next.delete('cat');
     next.delete('level');
     next.delete('color');
+    next.delete('page');
     setSearchParams(next, { replace: true });
   };
 
@@ -216,8 +230,64 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
   const isFilterActive =
     searchTerm !== '' || categoryFilter !== 'all' || levelFilter !== 'all';
 
+  // Pagination calculation
+  const resultsTopRef = useRef<HTMLDivElement>(null);
+  const totalPages = Math.max(1, Math.ceil(filteredFoods.length / pageSize));
+  const safeCurrentPage = Math.min(Math.max(1, currentPage), totalPages);
+
+  const startIndex = (safeCurrentPage - 1) * pageSize;
+  const endIndex = Math.min(startIndex + pageSize, filteredFoods.length);
+
+  const paginatedFoods = useMemo(() => {
+    return filteredFoods.slice(startIndex, endIndex);
+  }, [filteredFoods, startIndex, endIndex]);
+
+  // Adjust URL page if safeCurrentPage is different due to filter changes
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      const next = new URLSearchParams(searchParams);
+      if (totalPages > 1) {
+        next.set('page', totalPages.toString());
+      } else {
+        next.delete('page');
+      }
+      setSearchParams(next, { replace: true });
+    }
+  }, [currentPage, totalPages, searchParams, setSearchParams]);
+
+  const handlePageChange = (newPage: number) => {
+    const next = new URLSearchParams(searchParams);
+    if (newPage > 1) {
+      next.set('page', newPage.toString());
+    } else {
+      next.delete('page');
+    }
+    setSearchParams(next);
+
+    // Smooth scroll back to top of food list
+    if (resultsTopRef.current) {
+      resultsTopRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handlePageSizeChange = (val: string | null) => {
+    if (!val) return;
+    const next = new URLSearchParams(searchParams);
+    if (val !== '24') {
+      next.set('limit', val);
+    } else {
+      next.delete('limit');
+    }
+    next.delete('page');
+    setSearchParams(next);
+
+    if (resultsTopRef.current) {
+      resultsTopRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
-    <Container size="lg" py="lg" style={{ flex: 1 }}>
+    <Container size={1600} py="lg" style={{ flex: 1 }}>
       <Stack gap="lg">
         {/* Hero Search Box */}
         <HeroSearch
@@ -230,7 +300,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
         {/* 2-Column Responsive Layout */}
         <Grid gutter="md" align="flex-start">
           {/* Left: Desktop Sticky Sidebar Filters */}
-          <Grid.Col span={{ base: 12, md: 4, lg: 3.5 }} visibleFrom="md">
+          <Grid.Col span={{ base: 12, md: 4, lg: 3.5, xl: 2.8 }} visibleFrom="md">
             <Box style={{ position: 'sticky', top: 76 }}>
               <SidebarFilter
                 selectedStage={selectedStage}
@@ -249,7 +319,9 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
           </Grid.Col>
 
           {/* Right: Food Cards & Status Bar */}
-          <Grid.Col span={{ base: 12, md: 8, lg: 8.5 }}>
+          <Grid.Col span={{ base: 12, md: 8, lg: 8.5, xl: 9.2 }}>
+            {/* Scroll anchor with offset margin for sticky navbar */}
+            <div ref={resultsTopRef} style={{ scrollMarginTop: 84 }} />
             <Stack gap="md">
               {/* Status Bar */}
               <Paper
@@ -276,9 +348,19 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
                   </Button>
 
                   <Text size="xs" fw={600} c="slate.7">
-                    {isFilterActive
-                      ? `พบ ${filteredFoods.length} รายการ (ในเกณฑ์ของ: ${stageMeta.name.split(' ')[0]} ${stageMeta.name.split(' ')[1] || ''})`
-                      : `แสดงทั้งหมด ${filteredFoods.length} รายการ (ตามเกณฑ์ของ: ${stageMeta.name})`}
+                    {filteredFoods.length > 0 ? (
+                      isFilterActive ? (
+                        <>
+                          พบ {filteredFoods.length} รายการ (แสดง {startIndex + 1} - {endIndex}) • หน้า {safeCurrentPage}/{totalPages}
+                        </>
+                      ) : (
+                        <>
+                          แสดง {startIndex + 1} - {endIndex} จาก {filteredFoods.length} รายการ (เกณฑ์: {stageMeta.name}) • หน้า {safeCurrentPage}/{totalPages}
+                        </>
+                      )
+                    ) : (
+                      'ไม่พบรายการอาหาร'
+                    )}
                   </Text>
 
                   <Group gap="xs" align="center">
@@ -399,17 +481,88 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
 
               {/* Food Grid */}
               {filteredFoods.length > 0 ? (
-                <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="sm">
-                  {filteredFoods.map((food) => (
-                    <FoodCard
-                      key={food.id}
-                      food={food}
-                      currentStage={selectedStage}
-                      currentDiseaseId={selectedDiseaseId}
-                      onOpenDetail={onOpenDetail}
-                    />
-                  ))}
-                </SimpleGrid>
+                <>
+                  <SimpleGrid cols={{ base: 1, sm: 2, md: 2, lg: 3, xl: 4 }} spacing="sm">
+                    {paginatedFoods.map((food) => (
+                      <FoodCard
+                        key={food.id}
+                        food={food}
+                        currentStage={selectedStage}
+                        currentDiseaseId={selectedDiseaseId}
+                        onOpenDetail={onOpenDetail}
+                      />
+                    ))}
+                  </SimpleGrid>
+
+                  {/* Pagination Controls */}
+                  <Paper
+                    p="sm"
+                    radius="lg"
+                    withBorder
+                    style={{
+                      backgroundColor: '#ffffff',
+                      borderColor: '#e2e8f0',
+                    }}
+                  >
+                    <Stack gap="xs">
+                      <Group justify="space-between" align="center" wrap="wrap" gap="xs">
+                        <Text size="xs" c="dimmed" fw={500}>
+                          แสดงรายการที่{' '}
+                          <Text span fw={700} c="slate.8">
+                            {startIndex + 1} - {endIndex}
+                          </Text>{' '}
+                          จากทั้งหมด{' '}
+                          <Text span fw={700} c="slate.8">
+                            {filteredFoods.length}
+                          </Text>{' '}
+                          รายการ
+                        </Text>
+
+                        <Group gap={6} align="center">
+                          <Text size="xs" c="dimmed" fw={500}>
+                            แสดงต่อหน้า:
+                          </Text>
+                          <Select
+                            size="xs"
+                            radius="md"
+                            w={76}
+                            value={pageSize.toString()}
+                            onChange={handlePageSizeChange}
+                            data={[
+                              { value: '24', label: '24' },
+                              { value: '48', label: '48' },
+                              { value: '60', label: '60' },
+                            ]}
+                            allowDeselect={false}
+                            styles={{
+                              input: {
+                                fontWeight: 600,
+                                fontSize: 12,
+                                textAlign: 'center',
+                              },
+                            }}
+                          />
+                        </Group>
+                      </Group>
+
+                      {totalPages > 1 && (
+                        <Group justify="center" pt="xs" style={{ borderTop: '1px solid #f1f5f9' }}>
+                          <Pagination
+                            total={totalPages}
+                            value={safeCurrentPage}
+                            onChange={handlePageChange}
+                            color="emerald"
+                            radius="md"
+                            size="sm"
+                            withEdges
+                            siblings={1}
+                            boundaries={1}
+                          />
+                        </Group>
+                      )}
+                    </Stack>
+                  </Paper>
+                </>
               ) : (
                 /* Empty Search State */
                 <Paper
@@ -422,9 +575,9 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
                     borderColor: '#e2e8f0',
                   }}
                 >
-                  <Text size="40px" mb="xs">
-                    🔍
-                  </Text>
+                  <Box mb="xs" style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Search size={40} color="#94a3b8" />
+                  </Box>
                   <Text fw={700} size="md" c="slate.8" mb={4}>
                     ไม่พบรายการอาหารที่ตรงกับคำค้นหา
                   </Text>
