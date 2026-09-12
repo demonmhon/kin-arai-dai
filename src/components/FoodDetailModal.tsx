@@ -82,19 +82,34 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
       radius="xl"
       withCloseButton={false}
       padding={0}
+      yOffset="4vh"
       styles={{
         content: {
+          maxHeight: 'calc(92vh)',
+          display: 'flex',
+          flexDirection: 'column',
           overflow: 'hidden',
+        },
+        body: {
+          padding: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          flex: 1,
+          overflow: 'hidden',
+          minHeight: 0,
         },
       }}
     >
-      {/* Modal Gradient Header */}
+      {/* Modal Gradient Header (Sticky at top) */}
       <Box
         p="lg"
         style={{
           background: getHeaderGradient(adviceInfo.level),
           color: '#ffffff',
           position: 'relative',
+          flexShrink: 0,
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+          zIndex: 10,
         }}
       >
         <Group justify="space-between" align="flex-start">
@@ -190,8 +205,15 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
         </Group>
       </Box>
 
-      {/* Modal Body */}
-      <Box p="lg">
+      {/* Modal Scrollable Body */}
+      <Box
+        p="lg"
+        style={{
+          overflowY: 'auto',
+          flex: 1,
+          WebkitOverflowScrolling: 'touch',
+        }}
+      >
         <Stack gap="md">
           {/* Specific Stage / Condition Advice */}
           <Paper
