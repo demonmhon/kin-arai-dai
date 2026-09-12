@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>กินอะไรได้บ้าง - โภชนาการตามอาการป่วย & โรคไต</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Prompt -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Prompt', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Prompt', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .transition-stage {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-emerald-100 selection:text-emerald-900">
+
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200/80 shadow-xs">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      
+      <!-- Brand Logo & App Name -->
+      <div class="flex items-center gap-2.5">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-md shadow-emerald-600/20 text-lg">
+          🥗
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight text-slate-900 leading-tight">
+            กินอะไรได้บ้าง?
+          </h1>
+          <p class="text-[11px] text-slate-500 font-light">คู่มือโภชนาการเฉพาะบุคคลตามโรค</p>
+        </div>
+      </div>
+
+      <!-- Current Disease Switcher Button & Education Guide -->
+      <div class="flex items-center gap-2">
+        <!-- Disease Selector Pill -->
+        <button 
+          onclick="openDiseaseModal()" 
+          class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-emerald-300 bg-emerald-50 hover:bg-emerald-100/80 text-emerald-800 transition duration-150 text-xs sm:text-sm font-medium shadow-xs"
+          title="เปลี่ยนโรคหรืออาการเจ็บป่วย"
+        >
+          <span class="text-sm">🩺</span>
+          <span id="currentDiseaseLabel" class="font-semibold">โรคไต (CKD)</span>
+          <svg class="w-3.5 h-3.5 text-emerald-600 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <!-- Quick Knowledge Guide Button -->
+        <button 
+          onclick="openGuideModal()" 
+          class="p-2 sm:px-3 sm:py-1.5 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 text-xs sm:text-sm font-medium transition flex items-center gap-1.5 border border-slate-200"
+          title="หลักการเลือกอาหารและแร่ธาตุ"
+        >
+          <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="hidden sm:inline">เกณฑ์โภชนาการ</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-5 space-y-5">
+    
+    <!-- Hero Banner with Search Input -->
+    <div class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-950 text-white rounded-3xl p-5 sm:p-7 shadow-xl overflow-hidden">
+      <div class="absolute -right-10 -bottom-10 w-56 h-56 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs mb-2.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          เช็กความปลอดภัยแบบเฉพาะเจาะจงระยะของโรค
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white mb-1.5">
+          สงสัยอาหารชนิดไหน? พิมพ์เช็กได้ทันที
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 mb-5 font-light leading-relaxed">
+          พิมพ์ชื่ออาหาร, วัตถุดิบ, หรือค้นหาตามหมวด เช่น 
+          <span class="underline decoration-emerald-400 font-normal cursor-pointer" onclick="setSearch('ผลไม้')">"ผลไม้"</span>, 
+          <span class="underline decoration-emerald-400 font-normal cursor-pointer" onclick="setSearch('ผัก')">"ผัก"</span>, 
+          <span class="underline decoration-emerald-400 font-normal cursor-pointer" onclick="setSearch('ไข่ขาว')">"ไข่ขาว"</span>, 
+          <span class="underline decoration-emerald-400 font-normal cursor-pointer" onclick="setSearch('เครื่องปรุง')">"เครื่องปรุง"</span>
+        </p>
+
+        <div class="relative flex items-center">
+          <div class="absolute left-3.5 text-slate-400 pointer-events-none">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="ค้นหาชื่ออาหาร เช่น ส้มโอ, กะหล่ำ, วุ้นเส้น, ชาเขียว..."
+            class="w-full pl-11 pr-24 py-3 sm:py-3.5 rounded-2xl bg-white/10 backdrop-blur-md text-white placeholder-slate-400 border border-white/20 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:bg-white/20 transition duration-150 text-sm shadow-inner"
+            oninput="handleSearch()"
+          />
+          <button
+            id="clearBtn"
+            onclick="clearSearch()"
+            class="hidden absolute right-2.5 px-3 py-1.5 text-xs text-slate-300 hover:text-white bg-white/10 hover:bg-white/20 rounded-xl transition"
+          >
+            ล้างค้นหา
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kidney Stage Selection Card -->
+    <section class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-2.5 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <span class="text-xs sm:text-sm font-bold text-slate-900">เลือกระยะของโรคไต (CKD Stage):</span>
+          <span class="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md">มีผลต่อคำแนะนำสี</span>
+        </div>
+        <p class="text-[11px] text-slate-400">คลิกเลือกระยะเพื่อดูผลลัพธ์ที่ตรงกับอาการของคุณ</p>
+      </div>
+
+      <!-- Stage Buttons Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+        <!-- Stage 1-2 -->
+        <button 
+          onclick="selectKidneyStage('stage1_2')" 
+          id="tab-stage1_2"
+          class="stage-tab-btn text-left p-3 rounded-xl border transition-stage flex flex-col justify-between"
+        >
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-slate-800">ระยะที่ 1 - 2</span>
+              <span class="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">eGFR ≥ 60</span>
+            </div>
+            <p class="text-[11px] text-slate-500 line-clamp-2 leading-tight">ไตเริ่มเสื่อมเล็กน้อย ยังไม่ต้องคุมโพแทสเซียมเคร่งครัด</p>
+          </div>
+          <span class="text-[10px] text-emerald-700 font-medium mt-2 flex items-center gap-1">
+            <span class="stage-dot w-1.5 h-1.5 rounded-full bg-slate-300"></span> เน้นคุมเค็ม & ความดัน
+          </span>
+        </button>
+
+        <!-- Stage 3 -->
+        <button 
+          onclick="selectKidneyStage('stage3')" 
+          id="tab-stage3"
+          class="stage-tab-btn text-left p-3 rounded-xl border transition-stage flex flex-col justify-between"
+        >
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-slate-800">ระยะที่ 3 (3a - 3b)</span>
+              <span class="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">eGFR 30-59</span>
+            </div>
+            <p class="text-[11px] text-slate-500 line-clamp-2 leading-tight">ไตเสื่อมปานกลาง เริ่มจำกัดโปรตีนและเฝ้าระวังแร่ธาตุ</p>
+          </div>
+          <span class="text-[10px] text-amber-700 font-medium mt-2 flex items-center gap-1">
+            <span class="stage-dot w-1.5 h-1.5 rounded-full bg-slate-300"></span> เริ่มคุมโปรตีน & ฟอสเฟต
+          </span>
+        </button>
+
+        <!-- Stage 4-5 Pre-dialysis -->
+        <button 
+          onclick="selectKidneyStage('stage4_5_pre')" 
+          id="tab-stage4_5_pre"
+          class="stage-tab-btn text-left p-3 rounded-xl border transition-stage flex flex-col justify-between"
+        >
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-slate-800">ระยะ 4 - 5 (ก่อนฟอก)</span>
+              <span class="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-rose-100 text-rose-800">eGFR < 30</span>
+            </div>
+            <p class="text-[11px] text-slate-500 line-clamp-2 leading-tight">ไตเสื่อมมาก เข้มงวดสูงสุดเรื่องโพแทสเซียม/ฟอสฟอรัส</p>
+          </div>
+          <span class="text-[10px] text-rose-700 font-medium mt-2 flex items-center gap-1">
+            <span class="stage-dot w-1.5 h-1.5 rounded-full bg-slate-300"></span> คุมเข้มงวดสูงสุด
+          </span>
+        </button>
+
+        <!-- Stage Dialysis -->
+        <button 
+          onclick="selectKidneyStage('dialysis')" 
+          id="tab-dialysis"
+          class="stage-tab-btn text-left p-3 rounded-xl border transition-stage flex flex-col justify-between"
+        >
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-slate-800">ฟอกเลือด / ล้างไต</span>
+              <span class="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-purple-100 text-purple-800">Dialysis</span>
+            </div>
+            <p class="text-[11px] text-slate-500 line-clamp-2 leading-tight">สูญเสียโปรตีนจากการล้างไต ต้องทานไข่ขาว/ปลาเพิ่ม</p>
+          </div>
+          <span class="text-[10px] text-purple-700 font-medium mt-2 flex items-center gap-1">
+            <span class="stage-dot w-1.5 h-1.5 rounded-full bg-slate-300"></span> เพิ่มโปรตีน คุมน้ำเข้ม
+          </span>
+        </button>
+      </div>
+
+      <!-- Stage Context Description Bar -->
+      <div id="stageDescriptionAlert" class="mt-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 flex items-start gap-2">
+        <span id="stageInfoIcon" class="text-base">💡</span>
+        <div id="stageInfoText" class="leading-relaxed">
+          <!-- Text dynamically injected -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Traffic Light Status Filter Cards -->
+    <div class="grid grid-cols-3 gap-2 sm:gap-4">
+      <button onclick="filterByLevel('safe')" id="btn-safe" class="filter-level-btn text-left p-3 rounded-2xl border transition-all duration-150 bg-white border-slate-200 hover:border-emerald-400">
+        <div class="flex items-center gap-2 mb-0.5">
+          <span class="w-3.5 h-3.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50"></span>
+          <span class="text-xs sm:text-sm font-bold text-slate-800">เขียว: ทานได้</span>
+        </div>
+        <p class="text-[11px] text-slate-500 line-clamp-2">ปลอดภัยในระยะนี้ (ย้ำทานแต่พอดี)</p>
+      </button>
+
+      <button onclick="filterByLevel('caution')" id="btn-caution" class="filter-level-btn text-left p-3 rounded-2xl border transition-all duration-150 bg-white border-slate-200 hover:border-amber-400">
+        <div class="flex items-center gap-2 mb-0.5">
+          <span class="w-3.5 h-3.5 rounded-full bg-amber-500 shadow-sm shadow-amber-500/50"></span>
+          <span class="text-xs sm:text-sm font-bold text-slate-800">เหลือง: คุมปริมาณ</span>
+        </div>
+        <p class="text-[11px] text-slate-500 line-clamp-2">ทานแต่น้อย จำกัดปริมาณ ไม่ต้องอด</p>
+      </button>
+
+      <button onclick="filterByLevel('danger')" id="btn-danger" class="filter-level-btn text-left p-3 rounded-2xl border transition-all duration-150 bg-white border-slate-200 hover:border-rose-400">
+        <div class="flex items-center gap-2 mb-0.5">
+          <span class="w-3.5 h-3.5 rounded-full bg-rose-500 shadow-sm shadow-rose-500/50"></span>
+          <span class="text-xs sm:text-sm font-bold text-slate-800">แดง: หลีกเลี่ยง</span>
+        </div>
+        <p class="text-[11px] text-slate-500 line-clamp-2">แร่ธาตุสูงหรือสารพิษเสี่ยงต่อไต</p>
+      </button>
+    </div>
+
+    <!-- Category Filter Chips -->
+    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 pt-0.5">
+      <span class="text-xs text-slate-400 font-medium whitespace-nowrap pl-1">หมวดหมู่:</span>
+      <button onclick="filterCategory('all')" class="category-chip px-3.5 py-1.5 rounded-full text-xs font-medium transition bg-slate-900 text-white whitespace-nowrap" data-cat="all">ทั้งหมด</button>
+      <button onclick="filterCategory('fruit')" class="category-chip px-3.5 py-1.5 rounded-full text-xs font-medium transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 whitespace-nowrap" data-cat="fruit">🍎 ผลไม้</button>
+      <button onclick="filterCategory('vegetable')" class="category-chip px-3.5 py-1.5 rounded-full text-xs font-medium transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 whitespace-nowrap" data-cat="vegetable">🥦 ผัก</button>
+      <button onclick="filterCategory('protein')" class="category-chip px-3.5 py-1.5 rounded-full text-xs font-medium transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 whitespace-nowrap" data-cat="protein">🍗 เนื้อสัตว์/โปรตีน</button>
+      <button onclick="filterCategory('carb')" class="category-chip px-3.5 py-1.5 rounded-full text-xs font-medium transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 whitespace-nowrap" data-cat="carb">🍚 ข้าว-แป้ง</button>
+      <button onclick="filterCategory('condiment')" class="category-chip px-3.5 py-1.5 rounded-full text-xs font-medium transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 whitespace-nowrap" data-cat="condiment">🧂 เครื่องปรุง</button>
+      <button onclick="filterCategory('drink')" class="category-chip px-3.5 py-1.5 rounded-full text-xs font-medium transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 whitespace-nowrap" data-cat="drink">☕ เครื่องดื่ม/ของหวาน</button>
+    </div>
+
+    <!-- Active Indicator & Count -->
+    <div class="flex items-center justify-between text-xs text-slate-500 pt-0.5">
+      <div id="resultsCount" class="font-medium text-slate-700">กำลังประมวลผล...</div>
+      <button onclick="resetAllFilters()" id="resetFilterBtn" class="hidden text-emerald-600 hover:text-emerald-800 font-medium">ล้างตัวกรองทั้งหมด</button>
+    </div>
+
+    <!-- Food Items Grid -->
+    <div id="foodGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="hidden text-center py-12 px-4 bg-white rounded-3xl border border-slate-200">
+      <div class="text-4xl mb-2.5">🔍</div>
+      <h3 class="text-base font-semibold text-slate-800 mb-1">ไม่พบข้อมูลอาหารที่คุณค้นหา</h3>
+      <p class="text-xs text-slate-500 max-w-sm mx-auto mb-4">ลองพิมพ์ด้วยคำกว้างๆ เช่น "ผลไม้", "ไข่", "ผัก", "เครื่องปรุง" หรือตรวจสอบตัวสะกด</p>
+      <button onclick="resetAllFilters()" class="px-4 py-2 bg-emerald-600 text-white text-xs font-medium rounded-xl hover:bg-emerald-700 transition">ดูอาหารทั้งหมด</button>
+    </div>
+
+    <!-- Important Kidney Watchout Box -->
+    <div class="bg-rose-50/80 border border-rose-200 rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 text-xs sm:text-sm text-rose-950">
+      <div class="text-2xl flex-shrink-0">⚠️</div>
+      <div class="space-y-1">
+        <span class="font-bold text-rose-950">คำเตือนทางการแพทย์สำคัญพิเศษสำหรับผู้ป่วยโรคไตทุกระยะ:</span>
+        <ul class="list-disc pl-4 space-y-1 text-rose-900 font-light text-xs">
+          <li><strong>ห้ามรับประทานมะเฟืองเด็ดขาด:</strong> มีสารพิษ Caramboxin และออกซาเลตสูงมาก ไตเสื่อมไม่สามารถขับได้ อาจชัก โคม่า หรือเป็นอันตรายถึงชีวิต</li>
+          <li><strong>ระวังเกลือ/ซีอิ๊ว "ลดโซเดียม":</strong> มักทดแทนด้วย "โพแทสเซียมคลอไรด์" ซึ่งทำให้โพแทสเซียมในเลือดสูงวิกฤต หัวใจหยุดเต้นเฉียบพลันได้ ให้ใช้ซีอิ๊วขาวธรรมดาแต่ตวงช้อนชาแทน</li>
+          <li><strong>คำว่า "ทานได้ (สีเขียว)" :</strong> หมายถึงปลอดภัยจากแร่ธาตุส่วนเกิน แต่ต้องรับประทานในปริมาณที่พอดีตามพลังงานที่ร่างกายต้องการ ไม่ควรทานอย่างใดอย่างหนึ่งมากเกินไป</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- Disease Selection Modal (Multi-disease architecture ready) -->
+  <div id="diseaseModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden border border-slate-100 animate-in fade-in zoom-in-95 duration-150 flex flex-col">
+      <div class="p-5 bg-gradient-to-r from-slate-900 to-emerald-950 text-white flex items-center justify-between">
+        <div>
+          <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Health Profile</span>
+          <h3 class="text-lg font-bold">เลือกอาการป่วยหรือโรคประจำตัว</h3>
+        </div>
+        <button onclick="closeDiseaseModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+          ✕
+        </button>
+      </div>
+
+      <div class="p-5 space-y-2.5 max-h-[70vh] overflow-y-auto">
+        <p class="text-xs text-slate-500 mb-2">เลือกโรคเพื่อปรับเกณฑ์การวิเคราะห์โภชนาการและความปลอดภัยของอาหาร:</p>
+
+        <!-- Kidney Disease (Active) -->
+        <button 
+          onclick="selectDisease('ckd')" 
+          class="w-full text-left p-3.5 rounded-2xl border-2 border-emerald-500 bg-emerald-50/60 flex items-center justify-between group transition"
+        >
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl shadow-xs">
+              🩺
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-bold text-slate-900">โรคไตเรื้อรัง (CKD)</span>
+                <span class="text-[10px] bg-emerald-600 text-white font-semibold px-2 py-0.5 rounded-full">เปิดใช้งานอยู่</span>
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">แบ่งตามระยะ 1-5 และระยะฟอกไต คุมโพแทสเซียม ฟอสฟอรัส โซเดียม</p>
+            </div>
+          </div>
+          <span class="text-emerald-700 text-lg">✓</span>
+        </button>
+
+        <!-- Diabetes (Upcoming) -->
+        <div class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50/70 flex items-center justify-between opacity-75">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-slate-200 text-slate-600 flex items-center justify-center text-xl">
+              🩸
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-semibold text-slate-800">โรคเบาหวาน (Diabetes)</span>
+                <span class="text-[10px] bg-slate-200 text-slate-600 font-medium px-2 py-0.5 rounded-full">เร็วๆ นี้</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">เน้นดัชนีน้ำตาล (Glycemic Index) คาร์โบไฮเดรต และน้ำตาลแฝง</p>
+            </div>
+          </div>
+          <span class="text-xs text-slate-400 font-medium">Coming Soon</span>
+        </div>
+
+        <!-- Gout (Upcoming) -->
+        <div class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50/70 flex items-center justify-between opacity-75">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-slate-200 text-slate-600 flex items-center justify-center text-xl">
+              🦶
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-semibold text-slate-800">โรคเกาต์ (Gout / กรดยูริกสูง)</span>
+                <span class="text-[10px] bg-slate-200 text-slate-600 font-medium px-2 py-0.5 rounded-full">เร็วๆ นี้</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">เน้นปริมาณสารพิวรีน ยอดผัก สัตว์ปีก แอลกอฮอล์ และน้ำตาลฟรุกโตส</p>
+            </div>
+          </div>
+          <span class="text-xs text-slate-400 font-medium">Coming Soon</span>
+        </div>
+
+        <!-- Hypertension / Heart (Upcoming) -->
+        <div class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50/70 flex items-center justify-between opacity-75">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-slate-200 text-slate-600 flex items-center justify-center text-xl">
+              ❤️
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-semibold text-slate-800">โรคความดันโลหิตสูง & โรคหัวใจ</span>
+                <span class="text-[10px] bg-slate-200 text-slate-600 font-medium px-2 py-0.5 rounded-full">เร็วๆ นี้</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">เน้นรูปแบบอาหาร DASH Diet คุมเค็ม โซเดียม และไขมันอิ่มตัว</p>
+            </div>
+          </div>
+          <span class="text-xs text-slate-400 font-medium">Coming Soon</span>
+        </div>
+
+        <!-- GERD (Upcoming) -->
+        <div class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50/70 flex items-center justify-between opacity-75">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-slate-200 text-slate-600 flex items-center justify-center text-xl">
+              🔥
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-semibold text-slate-800">กรดไหลย้อน & แผลในกระเพาะ</span>
+                <span class="text-[10px] bg-slate-200 text-slate-600 font-medium px-2 py-0.5 rounded-full">เร็วๆ นี้</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">เน้นหลีกเลี่ยงอาหารรสจัด ของทอด ช็อกโกแลต คาเฟอีน และผลไม้รสเปรี้ยว</p>
+            </div>
+          </div>
+          <span class="text-xs text-slate-400 font-medium">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
+        <button onclick="closeDiseaseModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white font-medium rounded-xl text-xs transition">
+          ตกลง
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Food Item Detail Modal -->
+  <div id="detailModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden border border-slate-100 animate-in fade-in zoom-in-95 duration-150 max-h-[90vh] flex flex-col">
+      <!-- Modal Header with status color -->
+      <div id="modalHeader" class="p-5 text-white flex items-start justify-between relative">
+        <div class="flex items-center gap-3">
+          <div id="modalIcon" class="text-3xl bg-white/20 w-12 h-12 rounded-2xl flex items-center justify-center backdrop-blur-sm"></div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="modalLevelBadge" class="text-[11px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"></span>
+              <span id="modalCategory" class="text-xs opacity-90"></span>
+            </div>
+            <h3 id="modalTitle" class="text-lg sm:text-xl font-bold mt-0.5"></h3>
+          </div>
+        </div>
+        <button onclick="closeDetailModal()" class="w-8 h-8 rounded-full bg-black/20 hover:bg-black/30 flex items-center justify-center text-white transition">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-5 overflow-y-auto space-y-4 text-xs sm:text-sm text-slate-600 flex-1">
+        
+        <!-- Current Stage Guidance Box -->
+        <div class="bg-indigo-50/70 p-3.5 rounded-2xl border border-indigo-100 text-indigo-950">
+          <div class="font-bold text-xs mb-1 flex items-center gap-1.5 text-indigo-900">
+            <span>🎯</span> คำแนะนำสำหรับ: <span id="modalCurrentStageName" class="underline underline-offset-2"></span>
+          </div>
+          <p id="modalStageSpecificAdvice" class="text-indigo-900 leading-relaxed text-xs"></p>
+        </div>
+
+        <!-- General Reason Section -->
+        <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/70">
+          <div class="font-semibold text-slate-800 text-xs mb-1 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+            ทำไมถึงอยู่ในเกณฑ์นี้? (กลไก & ผลกระทบต่อร่างกาย)
+          </div>
+          <p id="modalReason" class="text-slate-700 leading-relaxed text-xs"></p>
+        </div>
+
+        <!-- Nutrition Tags -->
+        <div>
+          <div class="text-[11px] font-medium text-slate-400 uppercase tracking-wider mb-2">สารอาหารสำคัญที่เกี่ยวข้อง:</div>
+          <div id="modalTags" class="flex flex-wrap gap-1.5"></div>
+        </div>
+
+        <!-- Serving Advice -->
+        <div class="bg-emerald-50/60 p-3.5 rounded-2xl border border-emerald-100">
+          <div class="font-semibold text-emerald-900 text-xs mb-1 flex items-center gap-1.5">
+            <span>💡</span> วิธีรับประทานและการปรุงอย่างปลอดภัย
+          </div>
+          <p id="modalAdvice" class="text-emerald-800 leading-relaxed text-xs"></p>
+        </div>
+
+        <!-- Reference Source Link -->
+        <div class="border-t border-slate-100 pt-3">
+          <div class="text-[11px] font-medium text-slate-400 mb-1.5">แหล่งข้อมูลและแนวทางเวชปฏิบัติอ้างอิง:</div>
+          <div id="modalSourceLink" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl p-3 transition">
+            <!-- Link injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
+        <button onclick="closeDetailModal()" class="px-5 py-2 bg-slate-800 hover:bg-slate-900 text-white font-medium rounded-xl text-xs sm:text-sm transition">
+          ปิดหน้าต่าง
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Educational Guide Modal (หลักเกณฑ์โภชนาการโรคไต) -->
+  <div id="guideModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden border border-slate-100 max-h-[90vh] flex flex-col">
+      <div class="p-5 bg-gradient-to-r from-emerald-700 to-teal-800 text-white flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-bold">เกณฑ์โภชนาการสำหรับโรคไตแต่ละระยะ</h3>
+          <p class="text-xs text-emerald-200">กฎ 3 แร่ธาตุ และความต่างของระยะโรค</p>
+        </div>
+        <button onclick="closeGuideModal()" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition">
+          ✕
+        </button>
+      </div>
+
+      <div class="p-5 overflow-y-auto space-y-3.5 text-xs text-slate-700">
+        <div class="p-3 bg-blue-50/80 rounded-2xl border border-blue-100">
+          <h4 class="font-bold text-blue-900 mb-1">ระยะ 1-2 (eGFR ≥ 60): ชะลอความเสื่อม</h4>
+          <p class="text-blue-800">ไตยังกรองของเสียได้ดี ยังไม่ต้องงดผักผลไม้หรือไข่แดงอย่างเข้มงวด แต่ให้เน้นลดเค็ม (โซเดียม < 2,000 มก./วัน) และควบคุมโรคต้นเหตุ เช่น เบาหวานและความดันโลหิต</p>
+        </div>
+
+        <div class="p-3 bg-amber-50/80 rounded-2xl border border-amber-100">
+          <h4 class="font-bold text-amber-900 mb-1">ระยะ 3 (eGFR 30-59): เริ่มเฝ้าระวังแร่ธาตุ</h4>
+          <p class="text-amber-800">เริ่มจำกัดโปรตีนเหลือ 0.6 - 0.8 กรัม/กก./วัน ตรวจเลือดติดตามระดับโพแทสเซียมและฟอสฟอรัสสม่ำเสมอ เริ่มเลี่ยงเครื่องในและเนื้อแปรรูป</p>
+        </div>
+
+        <div class="p-3 bg-rose-50/80 rounded-2xl border border-rose-100">
+          <h4 class="font-bold text-rose-900 mb-1">ระยะ 4-5 ก่อนฟอก (eGFR < 30): เข้มงวดสูงสุด</h4>
+          <p class="text-rose-800">จำกัดโปรตีนต่ำ (Low-protein diet) เพื่อลดของเสียคั่ง หลีกเลี่ยงผักผลไม้โพแทสเซียมสูงเด็ดขาด เพราะเสี่ยงหัวใจเต้นผิดจังหวะ และระวังอาการบวมน้ำ</p>
+        </div>
+
+        <div class="p-3 bg-purple-50/80 rounded-2xl border border-purple-100">
+          <h4 class="font-bold text-purple-900 mb-1">ระยะฟอกไต / ล้างไต (Dialysis): ต้องเพิ่มโปรตีน!</h4>
+          <p class="text-purple-800">ขั้นตอนการฟอกเลือดหรือล้างไตจะสูญเสียโปรตีนไปกับกระบวนการ ผู้ป่วยจึงต้องทานโปรตีนคุณภาพสูง (ไข่ขาว, ปลา) เพิ่มขึ้นเป็น 1.2 - 1.4 กรัม/กก./วัน แต่ยังต้องคุมฟอสฟอรัสและน้ำอย่างเคร่งครัด</p>
+        </div>
+      </div>
+
+      <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
+        <button onclick="closeGuideModal()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-xl text-xs transition">
+          เข้าใจแล้ว / ปิด
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Disclaimer -->
+  <footer class="bg-white border-t border-slate-200/80 py-5 px-4 mt-8">
+    <div class="max-w-5xl mx-auto text-center space-y-1.5">
+      <div class="flex items-center justify-center gap-2 text-xs font-semibold text-slate-600">
+        <span>กินอะไรได้บ้าง (Food Safety Checker)</span>
+        <span>•</span>
+        <a href="https://www.nephrothai.org/" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:underline">สมาคมโรคไตแห่งประเทศไทย</a>
+      </div>
+      <p class="text-[11px] text-slate-400 max-w-2xl mx-auto font-light">
+        ข้อจำกัดความรับผิดชอบ: ข้อมูลจัดทำขึ้นเพื่อการศึกษาโภชนาการเบื้องต้น ไม่สามารถทดแทนการวินิจฉัย การสั่งจ่ายยา หรือคำแนะนำเฉพาะบุคคลจากแพทย์ผู้เชี่ยวชาญหรือนักกำหนดอาหารวิชาชีพได้
+      </p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC & COMPREHENSIVE DATABASE -->
+  <script>
+    // Current Active Disease & Kidney Stage
+    let currentDisease = 'ckd'; // Currently focused on Chronic Kidney Disease
+    let currentKidneyStage = 'stage4_5_pre'; // Default to stage 4-5 pre-dialysis (most crucial), or user can switch
+    let currentSearchTerm = '';
+    let currentCategory = 'all';
+    let currentLevelFilter = 'all'; // 'all', 'safe', 'caution', 'danger'
+
+    // Kidney Stages Metadata
+    const kidneyStageDetails = {
+      stage1_2: {
+        id: 'stage1_2',
+        name: 'ระยะ 1 - 2 (ไตเริ่มเสื่อม eGFR ≥ 60)',
+        badge: 'eGFR ≥ 60',
+        colorClass: 'border-blue-500 bg-blue-50/40 text-blue-900',
+        ringClass: 'ring-2 ring-blue-500',
+        summary: 'ไตทำงานได้มากกว่า 60% เน้นการชะลอความเสื่อมด้วยการลดเค็ม (โซเดียม < 2,000 มก.) ควบคุมความดันโลหิตและน้ำตาล ยังไม่ต้องงดผักผลไม้หรือไข่แดงอย่างเข้มงวด ดื่มน้ำได้ตามปกติ'
+      },
+      stage3: {
+        id: 'stage3',
+        name: 'ระยะ 3a - 3b (ไตเสื่อมปานกลาง eGFR 30-59)',
+        badge: 'eGFR 30-59',
+        colorClass: 'border-amber-500 bg-amber-50/40 text-amber-900',
+        ringClass: 'ring-2 ring-amber-500',
+        summary: 'ไตขับของเสียได้ลดลง เริ่มจำกัดโปรตีนให้อยู่ในเกณฑ์พอเหมาะ (0.6 - 0.8 กรัม/กก./วัน) ลดอาหารรสเค็ม และเริ่มเฝ้าระวังอาหารที่มีโพแทสเซียมและฟอสฟอรัสสูงตามผลตรวจเลือด'
+      },
+      stage4_5_pre: {
+        id: 'stage4_5_pre',
+        name: 'ระยะ 4 - 5 ก่อนฟอกไต (ไตเสื่อมรุนแรง eGFR < 30)',
+        badge: 'eGFR < 30',
+        colorClass: 'border-rose-500 bg-rose-50/40 text-rose-900',
+        ringClass: 'ring-2 ring-rose-500',
+        summary: 'ไตทำงานได้น้อยมาก (< 30%) ต้องจำกัดโปรตีนต่ำมากอย่างเคร่งครัด เข้มงวดสูงสุดเรื่องผักผลไม้โพแทสเซียมสูง อาหารฟอสฟอรัสสูง และระวังปริมาณน้ำดื่มหากเริ่มมีอาการบวม'
+      },
+      dialysis: {
+        id: 'dialysis',
+        name: 'ระยะฟอกเลือด / ล้างไต (Dialysis)',
+        badge: 'Dialysis',
+        colorClass: 'border-purple-500 bg-purple-50/40 text-purple-900',
+        ringClass: 'ring-2 ring-purple-500',
+        summary: 'ขั้นตอนการฟอกไตจะดึงโปรตีนออกจากร่างกาย จึงต้อง "เพิ่มโปรตีนคุณภาพสูง" (ไข่ขาว, ปลา) เป็น 1.2 - 1.4 กรัม/กก./วัน เพื่อป้องกันภาวะทุพโภชนาการ แต่ยังต้องคุมฟอสฟอรัสและจำกัดน้ำดื่มเข้มงวด'
+      }
+    };
+
+    // Comprehensive Stage-Aware Food Database for Kidney Disease
+    const foodDatabase = [
+      // 🟢 FRUITS
+      {
+        id: 'apple',
+        name: 'แอปเปิ้ล (เขียว/แดง)',
+        category: 'fruit',
+        categoryName: 'ผลไม้',
+        icon: '🍎',
+        tags: ['โพแทสเซียมต่ำ', 'กากใยสูง', 'มีเพคติน'],
+        reason: 'โพแทสเซียมต่ำมาก (ประมาณ 100-120 มก./ผล) มีสารเพคตินช่วยลดระดับคอเลสเตอรอลในเลือด ปลอดภัยต่อไตทุกระยะ',
+        advice: 'รับประทานวันละ 1/2 ถึง 1 ผล ปอกเปลือกออกจะช่วยลดโพแทสเซียมลงได้อีกขั้น',
+        keywords: ['แอปเปิ้ล', 'apple', 'ผลไม้', 'ผลไม้โพแทสเซียมต่ำ', 'ของว่าง', 'ของหวาน'],
+        source: {
+          name: 'สมาคมโรคไตแห่งประเทศไทย',
+          url: 'https://www.nephrothai.org/'
+        },
+        // Stage-specific evaluation
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ตามปกติ 1-2 ผล/วัน' },
+          stage3: { level: 'safe', advice: 'ทานได้วันละ 1 ผลขนาดกลาง' },
+          stage4_5_pre: { level: 'safe', advice: 'ทานได้วันละ 1/2 - 1 ผล ควรปอกเปลือก' },
+          dialysis: { level: 'safe', advice: 'ทานได้วันละ 1/2 - 1 ผล ระวังเรื่องน้ำในผลไม้' }
+        }
+      },
+      {
+        id: 'rose-apple',
+        name: 'ชมพู่',
+        category: 'fruit',
+        categoryName: 'ผลไม้',
+        icon: '🍐',
+        tags: ['โพแทสเซียมต่ำ', 'น้ำตาลน้อย', 'สดชื่น'],
+        reason: 'ผลไม้โพแทสเซียมต่ำมาก เนื้อกรอบฉ่ำน้ำ ไม่เพิ่มภาระขับโพแทสเซียมให้ไต',
+        advice: 'ทานครั้งละ 2-3 ผล (หากบวมน้ำหรือฟอกไตให้ระวังปริมาณน้ำในเนื้อชมพู่)',
+        keywords: ['ชมพู่', 'ผลไม้', 'ผลไม้ไทย', 'ผลไม้โพแทสเซียมต่ำ'],
+        source: {
+          name: 'ฝ่ายโภชนาการ โรงพยาบาลรามาธิบดี',
+          url: 'https://www.rama.mahidol.ac.th/ramachannel/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ตามชอบ 3-4 ผล' },
+          stage3: { level: 'safe', advice: 'ทานได้มื้อละ 2-3 ผล' },
+          stage4_5_pre: { level: 'safe', advice: 'ทานได้ครั้งละ 1-2 ผล' },
+          dialysis: { level: 'safe', advice: 'ทานได้ 1-2 ผล (นับรวมในโควตาน้ำดื่มประจำวัน)' }
+        }
+      },
+      {
+        id: 'pineapple',
+        name: 'สับปะรด',
+        category: 'fruit',
+        categoryName: 'ผลไม้',
+        icon: '🍍',
+        tags: ['โพแทสเซียมต่ำ', 'เอนไซม์ย่อยโปรตีน'],
+        reason: 'มีโพแทสเซียมต่ำเมื่อเทียบกับผลไม้รสหวานอื่น และมีเอนไซม์โบรมีเลนช่วยย่อยอาหาร',
+        advice: 'ทานครั้งละ 4-6 ชิ้นพอดีคำ เลี่ยงสับปะรดกระป๋องในน้ำเชื่อม',
+        keywords: ['สับปะรด', 'ผลไม้', 'ผลไม้เปรี้ยว', 'ของหวาน'],
+        source: {
+          name: 'National Kidney Foundation (NKF)',
+          url: 'https://www.kidney.org/atoz/content/kidney-friendly-fruits'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ 6-8 ชิ้นคำ' },
+          stage3: { level: 'safe', advice: 'ทานได้ 4-6 ชิ้นคำ' },
+          stage4_5_pre: { level: 'safe', advice: 'ทานได้ 3-4 ชิ้นคำพอดี' },
+          dialysis: { level: 'safe', advice: 'ทานได้ 4 ชิ้นคำ' }
+        }
+      },
+      {
+        id: 'guava',
+        name: 'ฝรั่ง',
+        category: 'fruit',
+        categoryName: 'ผลไม้',
+        icon: '🍈',
+        tags: ['โพแทสเซียมปานกลาง', 'วิตามินซีสูง'],
+        reason: 'มีวิตามินซีสูงมาก แต่มีโพแทสเซียมในระดับปานกลางค่อนข้างสูง (ประมาณ 180-250 มก./100 กรัม)',
+        advice: 'ทานครั้งละ 1/4 - 1/2 ลูก ไม่จิ้มพริกเกลือ',
+        keywords: ['ฝรั่ง', 'ผลไม้', 'วิตามินซี', 'ของว่าง'],
+        source: {
+          name: 'คณะแพทยศาสตร์ศิริราชพยาบาล',
+          url: 'https://www.si.mahidol.ac.th/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ 1/2 ถึง 1 ผล' },
+          stage3: { level: 'caution', advice: 'คุมปริมาณครั้งละ 1/3 - 1/2 ผล สัปดาห์ละ 2-3 ครั้ง' },
+          stage4_5_pre: { level: 'danger', advice: 'ควรหลีกเลี่ยง เพราะโพแทสเซียมสะสมไวมากในระยะนี้' },
+          dialysis: { level: 'caution', advice: 'ทานได้นานๆ ครั้ง ครั้งละ 2-3 ชิ้นคำ' }
+        }
+      },
+      {
+        id: 'papaya',
+        name: 'มะละกอสุก',
+        category: 'fruit',
+        categoryName: 'ผลไม้',
+        icon: '🥭',
+        tags: ['โพแทสเซียมปานกลาง', 'ช่วยระบาย'],
+        reason: 'ช่วยการขับถ่าย แต่มีโพแทสเซียมปานกลาง หากทานมากระดับโพแทสเซียมในเลือดจะสูงขึ้น',
+        advice: 'ทานครั้งละไม่เกิน 4-5 ชิ้นคำพอดี',
+        keywords: ['มะละกอ', 'มะละกอสุก', 'ผลไม้'],
+        source: {
+          name: 'โรงพยาบาลรามาธิบดี',
+          url: 'https://www.rama.mahidol.ac.th/ramachannel/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ 6-8 ชิ้นคำ' },
+          stage3: { level: 'caution', advice: 'จำกัด 4-5 ชิ้นคำ' },
+          stage4_5_pre: { level: 'caution', advice: 'จำกัด 3-4 ชิ้นคำ หรือเลี่ยงหากโพแทสเซียมในเลือดเกิน 5.0' },
+          dialysis: { level: 'caution', advice: 'จำกัด 3-4 ชิ้นคำ' }
+        }
+      },
+      {
+        id: 'starfruit',
+        name: 'มะเฟือง (อันตรายถึงชีวิต!)',
+        category: 'fruit',
+        categoryName: 'ผลไม้',
+        icon: '⭐',
+        tags: ['สารพิษ Caramboxin', 'ออกซาเลตสูงจัด', 'ห้ามเด็ดขาดทุกระยะ'],
+        reason: 'มีสารพิษต่อระบบประสาทชื่อ Caramboxin ไตที่เสื่อมจะไม่สามารถขับออกได้ ทำให้สะอึกรุนแรง ชัก โคม่า ไตวายเฉียบพลัน และเสียชีวิตได้',
+        advice: '❌ ห้ามรับประทานเด็ดขาดทุกระยะ ไม่ว่าจะสด คั้นน้ำ หรือแปรรูป',
+        keywords: ['มะเฟือง', 'น้ำมะเฟือง', 'ผลไม้', 'สารพิษ', 'ห้ามกิน'],
+        source: {
+          name: 'สมาคมโรคไตแห่งประเทศไทย (ประกาศเตือนภัยมะเฟือง)',
+          url: 'https://www.nephrothai.org/'
+        },
+        stages: {
+          stage1_2: { level: 'danger', advice: 'ห้ามรับประทานเด็ดขาด' },
+          stage3: { level: 'danger', advice: 'ห้ามรับประทานเด็ดขาด' },
+          stage4_5_pre: { level: 'danger', advice: 'อันตรายถึงชีวิต! ห้ามรับประทานเด็ดขาด' },
+          dialysis: { level: 'danger', advice: 'อันตรายถึงชีวิต! ห้ามรับประทานเด็ดขาด' }
+        }
+      },
+      {
+        id: 'banana',
+        name: 'กล้วยทุกชนิด (กล้วยหอม, น้ำว้า, ไข่)',
+        category: 'fruit',
+        categoryName: 'ผลไม้',
+        icon: '🍌',
+        tags: ['โพแทสเซียมสูงมาก', 'เสี่ยงหัวใจเต้นผิดจังหวะ'],
+        reason: 'กล้วยมีโพแทสเซียมสูงมาก (350-450 มก./100g) ทำให้โพแทสเซียมในเลือดพุ่งสูง เสี่ยงต่อภาวะหัวใจเต้นผิดจังหวะหรือหัวใจวาย',
+        advice: 'ควรหลีกเลี่ยงในระยะไตเสื่อมปานกลางถึงรุนแรง',
+        keywords: ['กล้วย', 'กล้วยหอม', 'กล้วยน้ำว้า', 'กล้วยไข่', 'ผลไม้'],
+        source: {
+          name: 'สมาคมโรคไตแห่งประเทศไทย',
+          url: 'https://www.nephrothai.org/'
+        },
+        stages: {
+          stage1_2: { level: 'caution', advice: 'ทานได้วันละ 1 ลูก (หากผลเลือดปกติ)' },
+          stage3: { level: 'danger', advice: 'ควรหลีกเลี่ยง หรือทานไม่เกิน 1/2 ลูกนานๆ ครั้ง' },
+          stage4_5_pre: { level: 'danger', advice: 'งดเด็ดขาด โพแทสเซียมสูงจัด เสี่ยงหัวใจวาย' },
+          dialysis: { level: 'danger', advice: 'งดเด็ดขาด โพแทสเซียมสะสมไวมากระหว่างรอบฟอก' }
+        }
+      },
+      {
+        id: 'durian',
+        name: 'ทุเรียน',
+        category: 'fruit',
+        categoryName: 'ผลไม้',
+        icon: '🍈',
+        tags: ['โพแทสเซียมสูงลิ่ว', 'ฟอสฟอรัสสูง', 'น้ำตาลสูง'],
+        reason: 'อุดมด้วยโพแทสเซียม ฟอสฟอรัส และพลังงานเข้มข้น ไตขับไม่ทันอย่างแน่นอน',
+        advice: 'งดรับประทานเด็ดขาดสำหรับผู้ป่วยโรคไต',
+        keywords: ['ทุเรียน', 'ผลไม้', 'ทุเรียนกวน'],
+        source: {
+          name: 'กรมอนามัย กระทรวงสาธารณสุข',
+          url: 'https://multimedia.anamai.moph.go.th/'
+        },
+        stages: {
+          stage1_2: { level: 'caution', advice: 'ทานได้ไม่เกิน 1 เม็ดเล็กนานๆ ครั้ง' },
+          stage3: { level: 'danger', advice: 'ควรหลีกเลี่ยงเด็ดขาด' },
+          stage4_5_pre: { level: 'danger', advice: 'ห้ามรับประทานเด็ดขาด' },
+          dialysis: { level: 'danger', advice: 'ห้ามรับประทานเด็ดขาด' }
+        }
+      },
+
+      // 🥦 VEGETABLES
+      {
+        id: 'cabbage',
+        name: 'กะหล่ำปลี',
+        category: 'vegetable',
+        categoryName: 'ผัก',
+        icon: '🥬',
+        tags: ['โพแทสเซียมต่ำมาก', 'ไฟเบอร์สูง', 'ปลอดภัยสูงสุด'],
+        reason: 'เป็นผักสีขาว/อ่อนที่มีโพแทสเซียมต่ำมาก โซเดียมต่ำ และมีวิตามิน C, K เหมาะกับโรคไตทุกระยะ',
+        advice: 'ทานได้ทั้งผัด ต้ม หรือลวก การนำไปลวกน้ำเดือดแล้วเทน้ำทิ้งจะลดโพแทสเซียมลงได้อีก',
+        keywords: ['กะหล่ำปลี', 'ผัก', 'ผักกะหล่ำ', 'ผักใบขาว', 'โพแทสเซียมต่ำ'],
+        source: {
+          name: 'American Kidney Fund',
+          url: 'https://www.kidneyfund.org/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ตามสบาย' },
+          stage3: { level: 'safe', advice: 'ทานได้ดี เหมาะเป็นผักประจำวัน' },
+          stage4_5_pre: { level: 'safe', advice: 'ปลอดภัย แนะนำลวกน้ำทิ้งก่อนปรุง' },
+          dialysis: { level: 'safe', advice: 'ปลอดภัย แนะนำลวกน้ำทิ้งก่อน' }
+        }
+      },
+      {
+        id: 'chinese-cabbage',
+        name: 'ผักกาดขาว',
+        category: 'vegetable',
+        categoryName: 'ผัก',
+        icon: '🥬',
+        tags: ['โพแทสเซียมต่ำ', 'ย่อยง่าย', 'น้ำเยอะ'],
+        reason: 'ผักสีซีดโพแทสเซียมต่ำ ย่อยง่าย อ่อนโยนต่อทางเดินอาหารและไต',
+        advice: 'เหมาะสำหรับทำแกงจืด ต้มจืด หรือผัดผักน้ำมันน้อย',
+        keywords: ['ผักกาดขาว', 'ผัก', 'ต้มจืด', 'โพแทสเซียมต่ำ'],
+        source: {
+          name: 'สมาคมโรคไตแห่งประเทศไทย',
+          url: 'https://www.nephrothai.org/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ตามปกติ' },
+          stage3: { level: 'safe', advice: 'ทานได้ดีทุกวัน' },
+          stage4_5_pre: { level: 'safe', advice: 'ทานได้ ปรุงสุกน้ำใส' },
+          dialysis: { level: 'safe', advice: 'ทานได้ดี' }
+        }
+      },
+      {
+        id: 'cucumber',
+        name: 'แตงกวา / แตงร้าน',
+        category: 'vegetable',
+        categoryName: 'ผัก',
+        icon: '🥒',
+        tags: ['โพแทสเซียมต่ำ', 'สดชื่น'],
+        reason: 'โพแทสเซียมและฟอสฟอรัสต่ำมาก ปลอดภัยสูง',
+        advice: 'ปอกเปลือกก่อนรับประทานเพื่อลดโพแทสเซียมที่ผิวเปลือก',
+        keywords: ['แตงกวา', 'แตงร้าน', 'ผัก', 'ผักสลัด'],
+        source: {
+          name: 'กรมอนามัย กระทรวงสาธารณสุข',
+          url: 'https://multimedia.anamai.moph.go.th/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานสดหรือผัดได้ตามชอบ' },
+          stage3: { level: 'safe', advice: 'ปอกเปลือกแล้วทานได้' },
+          stage4_5_pre: { level: 'safe', advice: 'ปอกเปลือกและทานแต่พอเหมาะ' },
+          dialysis: { level: 'safe', advice: 'ปอกเปลือก (ระวังเรื่องน้ำถ้ามีอาการบวม)' }
+        }
+      },
+      {
+        id: 'carrot',
+        name: 'แครอท',
+        category: 'vegetable',
+        categoryName: 'ผัก',
+        icon: '🥕',
+        tags: ['โพแทสเซียมปานกลาง', 'เบต้าแคโรทีน'],
+        reason: 'แครอทดิบมีโพแทสเซียมระดับปานกลางค่อนข้างสูง แต่สามารถลดลงได้ด้วยการหั่นต้มน้ำทิ้ง',
+        advice: 'หั่นเป็นลูกเต๋า ต้มในน้ำเดือด 10 นาทีแล้วเทน้ำทิ้งก่อนนำไปปรุงอาหาร',
+        keywords: ['แครอท', 'ผัก', 'ผักสีส้ม'],
+        source: {
+          name: 'National Kidney Foundation',
+          url: 'https://www.kidney.org/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ตามปกติ' },
+          stage3: { level: 'caution', advice: 'ต้มลวกน้ำทิ้งก่อนรับประทาน' },
+          stage4_5_pre: { level: 'caution', advice: 'จำกัดปริมาณ ต้องต้มน้ำทิ้งเท่านั้น' },
+          dialysis: { level: 'caution', advice: 'จำกัดปริมาณ ต้มน้ำทิ้ง' }
+        }
+      },
+      {
+        id: 'spinach-tamlueng',
+        name: 'ผักโขม / ตำลึง / ผักคะน้า / บรอกโคลี',
+        category: 'vegetable',
+        categoryName: 'ผัก',
+        icon: '🌿',
+        tags: ['โพแทสเซียมสูงมาก', 'ออกซาเลตสูง'],
+        reason: 'ผักใบเขียวเข้มมีโพแทสเซียมสูงมาก เมื่อทำให้สุกและยุบตัวจะได้รับโพแทสเซียมปริมาณมหาศาล',
+        advice: 'เปลี่ยนมาใช้ผักกาดขาวหรือกะหล่ำปลีแทน',
+        keywords: ['ตำลึง', 'ผักโขม', 'คะน้า', 'บรอกโคลี', 'ผักใบเขียวเข้ม'],
+        source: {
+          name: 'สมาคมโรคไตแห่งประเทศไทย',
+          url: 'https://www.nephrothai.org/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ปกติ แต่ต้มลวกดีกว่าทานสด' },
+          stage3: { level: 'caution', advice: 'เลี่ยงทานบ่อย หรือต้องต้มน้ำทิ้งอย่างน้อย 2 ครั้ง' },
+          stage4_5_pre: { level: 'danger', advice: 'หลีกเลี่ยงเด็ดขาด เสี่ยงหัวใจเต้นผิดจังหวะ' },
+          dialysis: { level: 'danger', advice: 'หลีกเลี่ยงเด็ดขาด' }
+        }
+      },
+      {
+        id: 'pumpkin',
+        name: 'ฟักทอง',
+        category: 'vegetable',
+        categoryName: 'ผัก',
+        icon: '🎃',
+        tags: ['โพแทสเซียมสูงมาก', 'คาร์โบไฮเดรต'],
+        reason: 'มีโพแทสเซียมสูงมาก แม้จะต้มแล้วก็ยังมีความเข้มข้นสูงในเนื้อ',
+        advice: 'ควรหลีกเลี่ยงทั้งในอาหารคาวและของหวานไทย (แกงบวด, สังขยา)',
+        keywords: ['ฟักทอง', 'ผัก', 'ขนมไทย'],
+        source: {
+          name: 'โรงพยาบาลรามาธิบดี',
+          url: 'https://www.rama.mahidol.ac.th/ramachannel/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้พอเหมาะ' },
+          stage3: { level: 'caution', advice: 'ทานได้แต่น้อย ครั้งละ 1-2 ชิ้นเล็ก' },
+          stage4_5_pre: { level: 'danger', advice: 'หลีกเลี่ยงเด็ดขาด' },
+          dialysis: { level: 'danger', advice: 'หลีกเลี่ยงเด็ดขาด' }
+        }
+      },
+
+      // 🍗 PROTEIN
+      {
+        id: 'egg-white',
+        name: 'ไข่ขาว (สุก)',
+        category: 'protein',
+        categoryName: 'เนื้อสัตว์/โปรตีน',
+        icon: '🥚',
+        tags: ['โปรตีนบริสุทธิ์', 'ฟอสฟอรัสต่ำมาก', 'ของเสียยูเรียต่ำ'],
+        reason: 'ไข่ขาวคือโปรตีนคุณภาพสูงสุด (High Biological Value) มีฟอสฟอรัสต่ำมาก ร่างกายดูดซึมซ่อมแซมได้หมด สร้างของเสียน้อยที่สุด',
+        advice: 'ไข่ต้ม ไข่ตุ๋นน้ำ หรือไข่ดาวน้ำ (ไม่ทอดน้ำมันท่วม)',
+        keywords: ['ไข่ขาว', 'ไข่', 'โปรตีน', 'กล้ามเนื้อ'],
+        source: {
+          name: 'สมาคมโรคไตแห่งประเทศไทย',
+          url: 'https://www.nephrothai.org/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ปกติ 2-3 ฟอง/วัน' },
+          stage3: { level: 'safe', advice: 'ทานวันละ 2-3 ฟอง ทดแทนเนื้อสัตว์ติดมัน' },
+          stage4_5_pre: { level: 'safe', advice: 'ดีที่สุด! ทานวันละ 2-3 ฟอง (คำนวณตามน้ำหนักตัวเพื่อไม่ให้โปรตีนรวมเกินเกณฑ์)' },
+          dialysis: { level: 'safe', advice: '🌟 จำเป็นมาก! แนะนำทานวันละ 4-6 ฟอง เพื่อชดเชยโปรตีนที่สูญเสียจากการฟอกไต' }
+        }
+      },
+      {
+        id: 'white-fish',
+        name: 'ปลาน้ำจืดเนื้อขาว (ปลากะพง, ปลานิล, ปลาช่อน)',
+        category: 'protein',
+        categoryName: 'เนื้อสัตว์/โปรตีน',
+        icon: '🐟',
+        tags: ['โปรตีนย่อยง่าย', 'ฟอสฟอรัสน้อยกว่าเนื้อแดง', 'ไขมันต่ำ'],
+        reason: 'ย่อยง่าย มีพิวรีนและฟอสฟอรัสน้อยกว่าเนื้อหมูหรือเนื้อวัวติดมัน',
+        advice: 'นึ่ง ต้ม ลวก หลีกเลี่ยงปลาเค็มหรือปลาแดดเดียวหมักเกลือ',
+        keywords: ['ปลา', 'ปลาน้ำจืด', 'ปลานิล', 'ปลากะพง', 'เนื้อปลา'],
+        source: {
+          name: 'โรงพยาบาลศิริราช',
+          url: 'https://www.si.mahidol.ac.th/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ตามชอบ' },
+          stage3: { level: 'safe', advice: 'ทานมื้อละ 2-3 ช้อนโต๊ะ' },
+          stage4_5_pre: { level: 'safe', advice: 'ทานมื้อละ 2-3 ช้อนโต๊ะ (ควบคุมน้ำหนักชิ้นเนื้อตามเกณฑ์แพทย์)' },
+          dialysis: { level: 'safe', advice: 'ทานได้เต็มที่ มื้อละ 3-4 ช้อนโต๊ะ เพื่อฟื้นฟูกล้ามเนื้อ' }
+        }
+      },
+      {
+        id: 'egg-yolk',
+        name: 'ไข่แดง',
+        category: 'protein',
+        categoryName: 'เนื้อสัตว์/โปรตีน',
+        icon: '🍳',
+        tags: ['ฟอสฟอรัสสูงมาก', 'คอเลสเตอรอล'],
+        reason: 'ไข่แดง 1 ฟองมีฟอสฟอรัสสูง หากไตขับไม่ออก จะสะสมจนดึงแคลเซียมออกจากกระดูก ทำให้คันตามผิวและกระดูกเปราะหักง่าย',
+        advice: 'ระยะท้ายควรเน้นทานไข่ขาว และจำกัดหรือเลี่ยงไข่แดง',
+        keywords: ['ไข่แดง', 'ไข่', 'ฟอสฟอรัส'],
+        source: {
+          name: 'สมาคมโรคไตแห่งประเทศไทย',
+          url: 'https://www.nephrothai.org/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้วันละ 1 ฟอง' },
+          stage3: { level: 'caution', advice: 'จำกัดสัปดาห์ละ 2-3 ฟอง' },
+          stage4_5_pre: { level: 'danger', advice: 'หลีกเลี่ยงเด็ดขาด หรือไม่เกินสัปดาห์ละ 1 ฟอง' },
+          dialysis: { level: 'danger', advice: 'หลีกเลี่ยงเด็ดขาด ฟอสฟอรัสในไข่แดงฟอกออกยากมาก' }
+        }
+      },
+      {
+        id: 'processed-meat',
+        name: 'เนื้อสัตว์แปรรูป (ไส้กรอก, เบคอน, กุนเชียง, หมูยอ, ลูกชิ้น)',
+        category: 'protein',
+        categoryName: 'เนื้อสัตว์/โปรตีน',
+        icon: '🥓',
+        tags: ['ฟอสเฟตสังเคราะห์ (ดูดซึม 100%)', 'โซเดียมสูงจัด', 'อันตราย'],
+        reason: 'ผสมสารฟอสเฟตสังเคราะห์ ร่างกายดูดซึมเข้ากระแสเลือดเกือบ 100% ทำให้ฟอสฟอรัสพุ่งสูงทันที และมีโซเดียมมหาศาลเร่งไตวาย',
+        advice: '❌ ควรหลีกเลี่ยงทุกระยะโรค ใช้เนื้อปลาหรือไข่ขาวสดแทน',
+        keywords: ['ไส้กรอก', 'เบคอน', 'กุนเชียง', 'หมูยอ', 'ลูกชิ้น', 'เนื้อแปรรูป'],
+        source: {
+          name: 'สมาคมโรคไตแห่งประเทศไทย',
+          url: 'https://www.nephrothai.org/'
+        },
+        stages: {
+          stage1_2: { level: 'caution', advice: 'ควรลดให้น้อยที่สุด มีโซเดียมและฟอสเฟตสูง' },
+          stage3: { level: 'danger', advice: 'หลีกเลี่ยงเด็ดขาด' },
+          stage4_5_pre: { level: 'danger', advice: 'ห้ามรับประทานเด็ดขาด' },
+          dialysis: { level: 'danger', advice: 'ห้ามรับประทานเด็ดขาด' }
+        }
+      },
+      {
+        id: 'organ-meat',
+        name: 'เครื่องในสัตว์ (ตับ, ไต, ไส้, ปอด)',
+        category: 'protein',
+        categoryName: 'เนื้อสัตว์/โปรตีน',
+        icon: '🫀',
+        tags: ['ฟอสฟอรัสเข้มข้นสูงสุด', 'กรดยูริกสูงจัด'],
+        reason: 'เป็นแหล่งสะสมฟอสฟอรัสและพิวรีนเข้มข้นที่สุด ทำให้ระดับฟอสเฟตในเลือดสูงวิกฤต',
+        advice: 'งดเว้นเด็ดขาดสำหรับโรคไตทุกระยะ',
+        keywords: ['ตับ', 'เครื่องใน', 'เครื่องในสัตว์', 'ไตไก่', 'หัวใจ'],
+        source: {
+          name: 'โรงพยาบาลรามาธิบดี',
+          url: 'https://www.rama.mahidol.ac.th/ramachannel/'
+        },
+        stages: {
+          stage1_2: { level: 'caution', advice: 'ไม่แนะนำ ทานได้ไม่เกินเดือนละครั้ง' },
+          stage3: { level: 'danger', advice: 'งดเด็ดขาด' },
+          stage4_5_pre: { level: 'danger', advice: 'งดเด็ดขาด' },
+          dialysis: { level: 'danger', advice: 'งดเด็ดขาด' }
+        }
+      },
+
+      // 🍚 CARBS
+      {
+        id: 'glass-noodle',
+        name: 'วุ้นเส้น / ก๋วยเตี๋ยวเซี่ยงไฮ้',
+        category: 'carb',
+        categoryName: 'ข้าว-แป้ง',
+        icon: '🍜',
+        tags: ['แป้งปลอดโปรตีน (Protein-Free)', 'ฟอสฟอรัสต่ำมาก', 'ให้พลังงานสะอาด'],
+        reason: 'เป็นแป้งปลอดโปรตีน ให้พลังงานแก่ร่างกายโดยไม่สร้างของเสียยูเรีย เหมาะที่สุดสำหรับผู้ป่วยไตที่ต้องจำกัดโปรตีนแต่ต้องการพลังงานไม่ให้น้ำหนักลด',
+        advice: 'ใช้ทำต้มจืดวุ้นเส้น ยำรสอ่อน หรือผัดวุ้นเส้นใส่ไข่ขาว',
+        keywords: ['วุ้นเส้น', 'เส้นเซี่ยงไฮ้', 'แป้งปลอดโปรตีน', 'ก๋วยเตี๋ยว'],
+        source: {
+          name: 'สมาคมโรคไตแห่งประเทศไทย',
+          url: 'https://www.nephrothai.org/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ดี' },
+          stage3: { level: 'safe', advice: 'แนะนำสลับกับข้าวสวย' },
+          stage4_5_pre: { level: 'safe', advice: '🌟 ดีเยี่ยม! ทานเป็นพลังงานหลักเพื่อไม่ให้น้ำหนักลดลง' },
+          dialysis: { level: 'safe', advice: 'ทานได้ดีร่วมกับไข่ขาว' }
+        }
+      },
+      {
+        id: 'white-rice',
+        name: 'ข้าวสวยขัดขาว / เส้นเล็ก / เส้นใหญ่',
+        category: 'carb',
+        categoryName: 'ข้าว-แป้ง',
+        icon: '🍚',
+        tags: ['ฟอสฟอรัสต่ำกว่าข้าวกล้อง', 'ย่อยง่าย'],
+        reason: 'การขัดสีเอาเปลือกออกทำให้ฟอสฟอรัสและโพแทสเซียมลดลงมาก ปลอดภัยต่อไตมากกว่าข้าวกล้อง',
+        advice: 'ทานมื้อละ 1-2 ทัพพี ตามคำแนะนำปริมาณคาร์โบไฮเดรต',
+        keywords: ['ข้าวขาว', 'ข้าวสวย', 'เส้นเล็ก', 'เส้นใหญ่', 'ก๋วยเตี๋ยว'],
+        source: {
+          name: 'ฝ่ายโภชนาการ ศิริราชพยาบาล',
+          url: 'https://www.si.mahidol.ac.th/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ตามปกติ' },
+          stage3: { level: 'safe', advice: 'ทานได้มื้อละ 1-2 ทัพพี' },
+          stage4_5_pre: { level: 'safe', advice: 'ทานได้มื้อละ 1-2 ทัพพี (ดีกว่าข้าวกล้อง)' },
+          dialysis: { level: 'safe', advice: 'ทานได้ตามความต้องการพลังงาน' }
+        }
+      },
+      {
+        id: 'brown-rice',
+        name: 'ข้าวกล้อง / ขนมปังโฮลวีต / ข้าวไรซ์เบอร์รี่',
+        category: 'carb',
+        categoryName: 'ข้าว-แป้ง',
+        icon: '🍞',
+        tags: ['ฟอสฟอรัสสูงมาก', 'โพแทสเซียมสูง', 'เยื่อหุ้มเมล็ด'],
+        reason: 'ตรงข้ามกับคนปกติ! เยื่อหุ้มเมล็ดและรำข้าวมีฟอสฟอรัสและโพแทสเซียมสูงมาก ไตเสื่อมขับไม่ได้ จะสะสมจนกระดูกบางและหลอดเลือดตีบ',
+        advice: 'เปลี่ยนมาทานข้าวขาว ขนมปังขาว หรือวุ้นเส้นแทน',
+        keywords: ['ข้าวกล้อง', 'โฮลวีต', 'ข้าวไรซ์เบอร์รี่', 'ธัญพืช', 'ข้าวโอ๊ต'],
+        source: {
+          name: 'โรงพยาบาลรามาธิบดี',
+          url: 'https://www.rama.mahidol.ac.th/ramachannel/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ทานได้ ช่วยคุมเบาหวาน (แต่ควรตรวจเลือดดูฟอสฟอรัสประจำ)' },
+          stage3: { level: 'caution', advice: 'เริ่มลดปริมาณ และสลับเป็นข้าวขาว' },
+          stage4_5_pre: { level: 'danger', advice: 'หลีกเลี่ยงเด็ดขาด ฟอสฟอรัสสะสมทำลายหลอดเลือด' },
+          dialysis: { level: 'danger', advice: 'หลีกเลี่ยงเด็ดขาด' }
+        }
+      },
+
+      // 🧂 CONDIMENTS
+      {
+        id: 'herbs',
+        name: 'สมุนไพรสด (ข่า ตะไคร้ ใบมะกรูด กระเทียม พริก)',
+        category: 'condiment',
+        categoryName: 'เครื่องปรุง',
+        icon: '🌿',
+        tags: ['โซเดียม 0%', 'กลิ่นหอมธรรมชาติ'],
+        reason: 'สมุนไพรสดไม่มีเกลือโซเดียม ช่วยเพิ่มกลิ่นและรสชาติให้อาหารกลมกล่อม เจริญอาหารโดยไม่ต้องพึ่งน้ำปลา',
+        advice: 'ใช้ต้มยำน้ำใส พริกสดบีบมะนาว กระเทียมสด เพื่อชูรสแทนผงชูรสหรือซุปก้อน',
+        keywords: ['สมุนไพร', 'พริก', 'กระเทียม', 'ข่า', 'ตะไคร้', 'ใบมะกรูด'],
+        source: {
+          name: 'กรมอนามัย กระทรวงสาธารณสุข',
+          url: 'https://multimedia.anamai.moph.go.th/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ใช้ปรุงแต่งได้เต็มที่' },
+          stage3: { level: 'safe', advice: 'ใช้ช่วยชูรสเพื่อลดการใส่เกลือ' },
+          stage4_5_pre: { level: 'safe', advice: 'ปลอดภัยมาก ช่วยให้ทานอาหารรสจืดได้อร่อย' },
+          dialysis: { level: 'safe', advice: 'ปลอดภัยมาก' }
+        }
+      },
+      {
+        id: 'soysauce-measured',
+        name: 'ซีอิ๊วขาวธรรมดา / น้ำปลาแท้ (แบบตวงช้อน)',
+        category: 'condiment',
+        categoryName: 'เครื่องปรุง',
+        icon: '🥢',
+        tags: ['โซเดียมมาตรฐาน', 'ต้องตวงช้อนเท่านั้น'],
+        reason: 'แม้มีโซเดียม แต่สามารถคำนวณและควบคุมปริมาณได้ชัดเจน ปลอดภัยกว่าเกลือลดโซเดียมที่แอบเติมโพแทสเซียม',
+        advice: 'ใช้ไม่เกิน 2-3 ช้อนชาต่อวันสำหรับทั้งวัน โดยต้องใช้ช้อนชาตวง ห้ามเหยาะจากขวดโดยตรง',
+        keywords: ['ซีอิ๊ว', 'น้ำปลา', 'เกลือ', 'เครื่องปรุง'],
+        source: {
+          name: 'สมาคมโรคไตแห่งประเทศไทย',
+          url: 'https://www.nephrothai.org/'
+        },
+        stages: {
+          stage1_2: { level: 'caution', advice: 'คุมไม่เกิน 3 ช้อนชา/วัน' },
+          stage3: { level: 'caution', advice: 'คุมไม่เกิน 2-3 ช้อนชา/วัน' },
+          stage4_5_pre: { level: 'caution', advice: 'คุมไม่เกิน 1-2 ช้อนชา/วัน ตวงช้อนเท่านั้น' },
+          dialysis: { level: 'caution', advice: 'คุมไม่เกิน 1-2 ช้อนชา/วัน ป้องกันน้ำท่วมปอด' }
+        }
+      },
+      {
+        id: 'low-sodium-salt',
+        name: 'เกลือลดโซเดียม / ซอสโลว์โซเดียม (อันตรายถึงชีวิต!)',
+        category: 'condiment',
+        categoryName: 'เครื่องปรุง',
+        icon: '🧂',
+        tags: ['ใส่โพแทสเซียมคลอไรด์แทนเกลือ', 'เสี่ยงหัวใจหยุดเต้น', 'กับดักอันตราย'],
+        reason: 'ผู้ผลิตใส่สาร "โพแทสเซียมคลอไรด์" แทนโซเดียมเพื่อให้มีความเค็ม ในผู้ป่วยไตที่ขับโพแทสเซียมไม่ได้ จะทำให้หัวใจเต้นผิดจังหวะและหยุดเต้นเฉียบพลัน',
+        advice: '❌ ห้ามใช้เด็ดขาดทุกระยะ ให้ใช้ซีอิ๊วขาวธรรมดาตวงปริมาณน้อยๆ แทน',
+        keywords: ['เกลือลดโซเดียม', 'ซีอิ๊วลดโซเดียม', 'ซอสโลว์โซเดียม', 'เครื่องปรุง'],
+        source: {
+          name: 'สมาคมโรคไตแห่งประเทศไทย (เตือนภัยเกลือลดโซเดียม)',
+          url: 'https://www.nephrothai.org/'
+        },
+        stages: {
+          stage1_2: { level: 'danger', advice: 'ห้ามใช้เด็ดขาด' },
+          stage3: { level: 'danger', advice: 'ห้ามใช้เด็ดขาด' },
+          stage4_5_pre: { level: 'danger', advice: 'อันตรายถึงชีวิต! ห้ามใช้เด็ดขาด' },
+          dialysis: { level: 'danger', advice: 'อันตรายถึงชีวิต! ห้ามใช้เด็ดขาด' }
+        }
+      },
+
+      // ☕ DRINKS
+      {
+        id: 'water',
+        name: 'น้ำเปล่าสะอาด',
+        category: 'drink',
+        categoryName: 'เครื่องดื่ม/ของหวาน',
+        icon: '💧',
+        tags: ['ไม่มีสารตกค้าง', 'แร่ธาตุ 0%'],
+        reason: 'น้ำเปล่าสะอาดเป็นของเหลวที่ดีที่สุด ช่วยขับสารพิษโดยไม่เพิ่มภาระแร่ธาตุใดๆ ให้ไต',
+        advice: 'ดื่มตามเกณฑ์ของแต่ละระยะ: ระยะแรกดื่มได้ 1.5-2 ลิตร แต่หากระยะฟอกไตหรือมีอาการบวม ต้องจำกัดตามปริมาณปัสสาวะ',
+        keywords: ['น้ำเปล่า', 'น้ำดื่ม', 'น้ำ', 'เครื่องดื่ม'],
+        source: {
+          name: 'สมาคมโรคไตแห่งประเทศไทย',
+          url: 'https://www.nephrothai.org/'
+        },
+        stages: {
+          stage1_2: { level: 'safe', advice: 'ดื่มได้ปกติ 1.5 - 2 ลิตร/วัน' },
+          stage3: { level: 'safe', advice: 'ดื่มได้ 1.5 - 2 ลิตร (หากไม่มีอาการบวม)' },
+          stage4_5_pre: { level: 'caution', advice: 'ดื่มได้ตามปริมาณปัสสาวะ + 500 มล. ระวังอาการบวมน้ำและน้ำท่วมปอด' },
+          dialysis: { level: 'caution', advice: 'ต้องจำกัดน้ำเข้มงวด ชั่งน้ำหนักทุกวันเพื่อไม่ให้น้ำหนักเกิน 1-1.5 กก. ระหว่างรอบฟอก' }
+        }
+      },
+      {
+        id: 'coconut-water',
+        name: 'น้ำมะพร้าวสด',
+        category: 'drink',
+        categoryName: 'เครื่องดื่ม/ของหวาน',
+        icon: '🥥',
+        tags: ['โพแทสเซียมสูงจัด', 'เสี่ยงหัวใจหยุดเต้น'],
+        reason: 'เป็นน้ำเกลือแร่ธรรมชาติที่มีโพแทสเซียมเข้มข้นที่สุด เพียงแก้วเดียวทำให้โพแทสเซียมในเลือดทะลุเกณฑ์วิกฤต',
+        advice: 'หลีกเลี่ยงเด็ดขาดสำหรับผู้ป่วยโรคไตระยะกลางถึงระยะท้าย',
+        keywords: ['น้ำมะพร้าว', 'มะพร้าว', 'เครื่องดื่ม', 'ผลไม้'],
+        source: {
+          name: 'โรงพยาบาลรามาธิบดี',
+          url: 'https://www.rama.mahidol.ac.th/ramachannel/'
+        },
+        stages: {
+          stage1_2: { level: 'caution', advice: 'ดื่มได้ครั้งคราว แก้วเล็ก' },
+          stage3: { level: 'danger', advice: 'หลีกเลี่ยงเด็ดขาด' },
+          stage4_5_pre: { level: 'danger', advice: 'ห้ามดื่มเด็ดขาด เสี่ยงหัวใจวาย' },
+          dialysis: { level: 'danger', advice: 'ห้ามดื่มเด็ดขาด' }
+        }
+      },
+      {
+        id: 'dark-cola',
+        name: 'น้ำอัดลมสีดำ (โคล่า) / โกโก้ / ช็อกโกแลต',
+        category: 'drink',
+        categoryName: 'เครื่องดื่ม/ของหวาน',
+        icon: '🥤',
+        tags: ['กรดฟอสฟอริกสังเคราะห์', 'ฟอสฟอรัสสูงจัด'],
+        reason: 'น้ำอัดลมสีเข้มใส่กรดฟอสฟอริกสังเคราะห์ ร่างกายดูดซึมได้ 100% เร่งให้กระดูกพรุนและหลอดเลือดแข็งตัวอย่างรวดเร็ว ส่วนโกโก้มีฟอสฟอรัสธรรมชาติสูงมาก',
+        advice: 'หลีกเลี่ยงเด็ดขาด ดื่มน้ำเปล่าหรือน้ำสมุนไพรอ่อนๆ ไม่หวานแทน',
+        keywords: ['โคล่า', 'เป๊ปซี่', 'โค้ก', 'น้ำอัดลม', 'ช็อกโกแลต', 'โกโก้'],
+        source: {
+          name: 'American Kidney Fund',
+          url: 'https://www.kidneyfund.org/'
+        },
+        stages: {
+          stage1_2: { level: 'caution', advice: 'ลดให้น้อยลง มีน้ำตาลและฟอสเฟตสูง' },
+          stage3: { level: 'danger', advice: 'หลีกเลี่ยงเด็ดขาด' },
+          stage4_5_pre: { level: 'danger', advice: 'ห้ามดื่มเด็ดขาด' },
+          dialysis: { level: 'danger', advice: 'ห้ามดื่มเด็ดขาด ฟอสเฟตดูดซึมทันทีและฟอกออกยาก' }
+        }
+      }
+    ];
+
+    // Traffic light badge & card styling definitions
+    const levelConfig = {
+      safe: {
+        label: 'ทานได้ (ปลอดภัย)',
+        badgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-200',
+        dotColor: 'bg-emerald-500',
+        modalBg: 'bg-gradient-to-r from-emerald-600 to-teal-600',
+        borderClass: 'hover:border-emerald-400',
+        cardBg: 'bg-white'
+      },
+      caution: {
+        label: 'ระวัง (คุมปริมาณ)',
+        badgeClass: 'bg-amber-100 text-amber-800 border-amber-200',
+        dotColor: 'bg-amber-500',
+        modalBg: 'bg-gradient-to-r from-amber-500 to-amber-600',
+        borderClass: 'hover:border-amber-400',
+        cardBg: 'bg-white'
+      },
+      danger: {
+        label: 'ควรหลีกเลี่ยง',
+        badgeClass: 'bg-rose-100 text-rose-800 border-rose-200',
+        dotColor: 'bg-rose-500',
+        modalBg: 'bg-gradient-to-r from-rose-600 to-red-600',
+        borderClass: 'hover:border-rose-400',
+        cardBg: 'bg-white'
+      }
+    };
+
+    // Helper: Retrieve food evaluation for currently active stage
+    function getFoodStageInfo(food) {
+      if (food.stages && food.stages[currentKidneyStage]) {
+        return food.stages[currentKidneyStage];
+      }
+      return { level: 'caution', advice: food.advice };
+    }
+
+    function getFilteredFoods() {
+      const term = currentSearchTerm.trim().toLowerCase();
+
+      return foodDatabase.filter(item => {
+        const stageInfo = getFoodStageInfo(item);
+        const currentLevel = stageInfo.level;
+
+        // 1. Level Filter
+        if (currentLevelFilter !== 'all' && currentLevel !== currentLevelFilter) {
+          return false;
+        }
+
+        // 2. Category Filter
+        if (currentCategory !== 'all' && item.category !== currentCategory) {
+          return false;
+        }
+
+        // 3. Search Term Matching
+        if (term) {
+          const matchName = item.name.toLowerCase().includes(term);
+          const matchCat = item.categoryName.toLowerCase().includes(term);
+          const matchKeywords = item.keywords.some(k => k.toLowerCase().includes(term));
+          const matchTags = item.tags.some(t => t.toLowerCase().includes(term));
+          
+          let matchLevelWord = false;
+          if (term.includes('เขียว') || term.includes('ปลอดภัย') || term.includes('กินได้') || term.includes('ทานได้')) {
+            matchLevelWord = currentLevel === 'safe';
+          } else if (term.includes('เหลือง') || term.includes('ระวัง') || term.includes('คุม')) {
+            matchLevelWord = currentLevel === 'caution';
+          } else if (term.includes('แดง') || term.includes('ห้าม') || term.includes('เลี่ยง') || term.includes('อันตราย')) {
+            matchLevelWord = currentLevel === 'danger';
+          }
+
+          return matchName || matchCat || matchKeywords || matchTags || matchLevelWord;
+        }
+
+        return true;
+      });
+    }
+
+    function renderFoods() {
+      const items = getFilteredFoods();
+      const foodGrid = document.getElementById('foodGrid');
+      const emptyState = document.getElementById('emptyState');
+      const resultsCount = document.getElementById('resultsCount');
+      const resetFilterBtn = document.getElementById('resetFilterBtn');
+
+      // Update Result Count text
+      const currentStageName = kidneyStageDetails[currentKidneyStage].name;
+      if (currentSearchTerm || currentCategory !== 'all' || currentLevelFilter !== 'all') {
+        resultsCount.textContent = `พบ ${items.length} รายการ (ในระยะ: ${currentStageName.split(' ')[0]} ${currentStageName.split(' ')[1] || ''})`;
+        resetFilterBtn.classList.remove('hidden');
+      } else {
+        resultsCount.textContent = `แสดงทั้งหมด ${items.length} รายการ (ตามเกณฑ์ของ: ${currentStageName})`;
+        resetFilterBtn.classList.add('hidden');
+      }
+
+      if (items.length === 0) {
+        foodGrid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      foodGrid.innerHTML = items.map(food => {
+        const stageInfo = getFoodStageInfo(food);
+        const conf = levelConfig[stageInfo.level];
+
+        return `
+          <div 
+            onclick="openDetailModal('${food.id}')"
+            class="group bg-white rounded-2xl p-4 border border-slate-200 shadow-xs hover:shadow-md transition-all duration-150 cursor-pointer flex flex-col justify-between ${conf.borderClass} relative"
+          >
+            <div>
+              <!-- Badge Header -->
+              <div class="flex items-center justify-between gap-2 mb-2.5">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold border ${conf.badgeClass}">
+                  <span class="w-2 h-2 rounded-full ${conf.dotColor}"></span>
+                  ${conf.label}
+                </span>
+                <span class="text-[11px] text-slate-400 bg-slate-100 px-2 py-0.5 rounded font-medium">
+                  ${food.categoryName}
+                </span>
+              </div>
+
+              <!-- Icon & Name -->
+              <div class="flex items-start gap-3 mb-2">
+                <span class="text-3xl p-1 bg-slate-50 rounded-xl group-hover:scale-105 transition duration-150">${food.icon}</span>
+                <div class="flex-1">
+                  <h3 class="font-bold text-slate-900 text-sm sm:text-base group-hover:text-emerald-700 transition leading-snug">
+                    ${food.name}
+                  </h3>
+                  <!-- Stage specific quick advice -->
+                  <p class="text-[11px] text-slate-600 mt-1 font-normal line-clamp-2 bg-slate-50 p-1.5 rounded-lg border border-slate-100">
+                    <span class="font-semibold text-slate-700">คำแนะนำ:</span> ${stageInfo.advice}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Footer -->
+            <div class="pt-2.5 mt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
+              <div class="flex flex-wrap gap-1">
+                ${food.tags.slice(0, 1).map(tag => `
+                  <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded">#${tag}</span>
+                `).join('')}
+              </div>
+              <span class="text-emerald-600 font-semibold group-hover:translate-x-0.5 transition flex items-center gap-0.5">
+                ดูเหตุผล & ที่มา →
+              </span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function selectKidneyStage(stageKey) {
+      if (!kidneyStageDetails[stageKey]) return;
+      currentKidneyStage = stageKey;
+      updateStageUI();
+      renderFoods();
+    }
+
+    function updateStageUI() {
+      // Update Tab Styles
+      document.querySelectorAll('.stage-tab-btn').forEach(btn => {
+        btn.classList.remove(
+          'ring-2', 'ring-emerald-500', 'ring-blue-500', 'ring-amber-500', 'ring-rose-500', 'ring-purple-500',
+          'bg-blue-50/50', 'bg-amber-50/50', 'bg-rose-50/50', 'bg-purple-50/50', 'border-transparent'
+        );
+        btn.classList.add('border-slate-200', 'bg-white');
+        const dot = btn.querySelector('.stage-dot');
+        if (dot) {
+          dot.className = 'stage-dot w-1.5 h-1.5 rounded-full bg-slate-300';
+        }
+      });
+
+      const activeBtn = document.getElementById(`tab-${currentKidneyStage}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('border-slate-200', 'bg-white');
+        const details = kidneyStageDetails[currentKidneyStage];
+        if (currentKidneyStage === 'stage1_2') {
+          activeBtn.classList.add('ring-2', 'ring-blue-500', 'bg-blue-50/50', 'border-blue-300');
+          activeBtn.querySelector('.stage-dot').className = 'stage-dot w-1.5 h-1.5 rounded-full bg-blue-500';
+        } else if (currentKidneyStage === 'stage3') {
+          activeBtn.classList.add('ring-2', 'ring-amber-500', 'bg-amber-50/50', 'border-amber-300');
+          activeBtn.querySelector('.stage-dot').className = 'stage-dot w-1.5 h-1.5 rounded-full bg-amber-500';
+        } else if (currentKidneyStage === 'stage4_5_pre') {
+          activeBtn.classList.add('ring-2', 'ring-rose-500', 'bg-rose-50/50', 'border-rose-300');
+          activeBtn.querySelector('.stage-dot').className = 'stage-dot w-1.5 h-1.5 rounded-full bg-rose-500';
+        } else if (currentKidneyStage === 'dialysis') {
+          activeBtn.classList.add('ring-2', 'ring-purple-500', 'bg-purple-50/50', 'border-purple-300');
+          activeBtn.querySelector('.stage-dot').className = 'stage-dot w-1.5 h-1.5 rounded-full bg-purple-500';
+        }
+      }
+
+      // Update Stage Description Alert Banner
+      const details = kidneyStageDetails[currentKidneyStage];
+      const stageText = document.getElementById('stageInfoText');
+      stageText.innerHTML = `
+        <span class="font-bold text-slate-900">${details.name}:</span>
+        <span class="text-slate-600 ml-1">${details.summary}</span>
+      `;
+    }
+
+    function handleSearch() {
+      const searchInput = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('clearBtn');
+      currentSearchTerm = searchInput.value;
+      if (currentSearchTerm.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+      renderFoods();
+    }
+
+    function setSearch(text) {
+      const searchInput = document.getElementById('searchInput');
+      searchInput.value = text;
+      handleSearch();
+      window.scrollTo({ top: 280, behavior: 'smooth' });
+    }
+
+    function clearSearch() {
+      const searchInput = document.getElementById('searchInput');
+      searchInput.value = '';
+      handleSearch();
+      searchInput.focus();
+    }
+
+    function filterByLevel(level) {
+      if (currentLevelFilter === level) {
+        currentLevelFilter = 'all';
+      } else {
+        currentLevelFilter = level;
+      }
+      updateLevelButtonStyles();
+      renderFoods();
+    }
+
+    function updateLevelButtonStyles() {
+      document.querySelectorAll('.filter-level-btn').forEach(btn => {
+        btn.classList.remove('ring-2', 'ring-emerald-500', 'ring-amber-500', 'ring-rose-500', 'bg-emerald-50/50', 'bg-amber-50/50', 'bg-rose-50/50');
+      });
+
+      if (currentLevelFilter === 'safe') {
+        const btn = document.getElementById('btn-safe');
+        btn.classList.add('ring-2', 'ring-emerald-500', 'bg-emerald-50/50');
+      } else if (currentLevelFilter === 'caution') {
+        const btn = document.getElementById('btn-caution');
+        btn.classList.add('ring-2', 'ring-amber-500', 'bg-amber-50/50');
+      } else if (currentLevelFilter === 'danger') {
+        const btn = document.getElementById('btn-danger');
+        btn.classList.add('ring-2', 'ring-rose-500', 'bg-rose-50/50');
+      }
+    }
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.category-chip').forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+          btn.classList.add('bg-slate-900', 'text-white');
+        } else {
+          btn.classList.remove('bg-slate-900', 'text-white');
+          btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+        }
+      });
+      renderFoods();
+    }
+
+    function resetAllFilters() {
+      currentSearchTerm = '';
+      document.getElementById('searchInput').value = '';
+      document.getElementById('clearBtn').classList.add('hidden');
+      currentLevelFilter = 'all';
+      currentCategory = 'all';
+      updateLevelButtonStyles();
+      filterCategory('all');
+      renderFoods();
+    }
+
+    function openDetailModal(foodId) {
+      const food = foodDatabase.find(f => f.id === foodId);
+      if (!food) return;
+
+      const stageInfo = getFoodStageInfo(food);
+      const conf = levelConfig[stageInfo.level];
+      const stageMeta = kidneyStageDetails[currentKidneyStage];
+
+      document.getElementById('modalHeader').className = `p-5 text-white flex items-start justify-between relative ${conf.modalBg}`;
+      document.getElementById('modalIcon').textContent = food.icon;
+      document.getElementById('modalLevelBadge').textContent = conf.label;
+      document.getElementById('modalLevelBadge').className = `text-[11px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider bg-white/20 backdrop-blur-md`;
+      document.getElementById('modalCategory').textContent = `หมวด: ${food.categoryName}`;
+      document.getElementById('modalTitle').textContent = food.name;
+      
+      // Stage context in modal
+      document.getElementById('modalCurrentStageName').textContent = stageMeta.name;
+      document.getElementById('modalStageSpecificAdvice').textContent = stageInfo.advice;
+
+      document.getElementById('modalReason').textContent = food.reason;
+      document.getElementById('modalAdvice').textContent = food.advice;
+
+      // Tags
+      document.getElementById('modalTags').innerHTML = food.tags.map(t => `
+        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium border border-slate-200/60">
+          ✓ ${t}
+        </span>
+      `).join('');
+
+      // Reference source link
+      document.getElementById('modalSourceLink').innerHTML = `
+        <a href="${food.source.url}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between group">
+          <div class="flex items-center gap-2.5">
+            <span class="text-xl">🏥</span>
+            <div>
+              <div class="font-semibold text-slate-800 text-xs group-hover:text-emerald-700 transition">${food.source.name}</div>
+              <div class="text-[10px] text-slate-400">คลิกเพื่อเปิดแนวทางเวชปฏิบัติ & เอกสารวิชาการ</div>
+            </div>
+          </div>
+          <svg class="w-4 h-4 text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+      `;
+
+      document.getElementById('detailModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDetailModal() {
+      document.getElementById('detailModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    function openDiseaseModal() {
+      document.getElementById('diseaseModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDiseaseModal() {
+      document.getElementById('diseaseModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    function selectDisease(code) {
+      if (code === 'ckd') {
+        currentDisease = 'ckd';
+        document.getElementById('currentDiseaseLabel').textContent = 'โรคไต (CKD)';
+        closeDiseaseModal();
+      }
+    }
+
+    function openGuideModal() {
+      document.getElementById('guideModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGuideModal() {
+      document.getElementById('guideModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close on background click
+    window.addEventListener('click', (e) => {
+      const detailModal = document.getElementById('detailModal');
+      const diseaseModal = document.getElementById('diseaseModal');
+      const guideModal = document.getElementById('guideModal');
+      if (e.target === detailModal) closeDetailModal();
+      if (e.target === diseaseModal) closeDiseaseModal();
+      if (e.target === guideModal) closeGuideModal();
+    });
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeDetailModal();
+        closeDiseaseModal();
+        closeGuideModal();
+      }
+    });
+
+    window.onload = function() {
+      updateStageUI();
+      renderFoods();
+    };
+  </script>
+</body>
+</html>

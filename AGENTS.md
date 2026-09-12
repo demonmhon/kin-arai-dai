@@ -1,6 +1,6 @@
 # Instruction for Agents
 
-React.js web application. Buit the UI witn
+React.js web application. Buit the UI witn [Mantine UI](https://mantine.dev/)
 
 ## What's this project about 
 
@@ -20,3 +20,7 @@ React.js web application. Buit the UI witn
 ## Deploy
 
 - To Vercel
+
+## Rules
+
+- Don't do git commit, push. Make anychanges and wait for reviewing
