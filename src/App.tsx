@@ -31,14 +31,15 @@ const STORAGE_KEYS = {
   HAS_INITIALIZED: 'kin_has_profile',
 };
 
-// Route wrapper for /:stageSlug
 interface StageCatalogRouteProps {
+  selectedDiseaseId: string;
   onOpenStageModal: () => void;
   onOpenDetail: (food: FoodItem) => void;
   onStageActive: (stage: KidneyStageId) => void;
 }
 
 const StageCatalogRoute: React.FC<StageCatalogRouteProps> = ({
+  selectedDiseaseId,
   onOpenStageModal,
   onOpenDetail,
   onStageActive,
@@ -59,6 +60,7 @@ const StageCatalogRoute: React.FC<StageCatalogRouteProps> = ({
   return (
     <CatalogPage
       selectedStage={matchedStage}
+      selectedDiseaseId={selectedDiseaseId}
       onOpenStageModal={onOpenStageModal}
       onOpenDetail={onOpenDetail}
     />
@@ -172,6 +174,7 @@ export const App: React.FC = () => {
             path="/:stageSlug"
             element={
               <StageCatalogRoute
+                selectedDiseaseId={selectedDiseaseId}
                 onOpenStageModal={() => setStageModalOpen(true)}
                 onOpenDetail={(food) => setDetailFood(food)}
                 onStageActive={handleStageActive}
@@ -191,6 +194,7 @@ export const App: React.FC = () => {
       <FoodDetailModal
         food={detailFood}
         currentStage={selectedStage}
+        currentDiseaseId={selectedDiseaseId}
         opened={!!detailFood}
         onClose={() => setDetailFood(null)}
       />

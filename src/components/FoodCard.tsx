@@ -2,18 +2,22 @@ import React from 'react';
 import { Card, Group, Text, Badge, Box } from '@mantine/core';
 import { IconArrowRight } from '@tabler/icons-react';
 import { FoodItem, KidneyStageId } from '../types/food';
+import { getFoodAdvice } from '../utils/foodAdvice';
 
 interface FoodCardProps {
   food: FoodItem;
   currentStage: KidneyStageId;
+  currentDiseaseId?: string;
   onOpenDetail: (food: FoodItem) => void;
 }
 
-export const FoodCard: React.FC<FoodCardProps> = ({ food, currentStage, onOpenDetail }) => {
-  const stageInfo = food.stages[currentStage] || {
-    level: 'caution',
-    advice: food.advice,
-  };
+export const FoodCard: React.FC<FoodCardProps> = ({
+  food,
+  currentStage,
+  currentDiseaseId = 'ckd',
+  onOpenDetail,
+}) => {
+  const stageInfo = getFoodAdvice(food, currentDiseaseId, currentStage);
 
   const getLevelConfig = (lvl: string) => {
     switch (lvl) {
@@ -133,17 +137,17 @@ export const FoodCard: React.FC<FoodCardProps> = ({ food, currentStage, onOpenDe
                 width: 68,
                 height: 68,
                 borderRadius: 12,
-                backgroundColor: '#e2e8f0',
-                border: '1px dashed #cbd5e1',
+                backgroundColor: '#f8fafc',
+                border: '1px solid #e2e8f0',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexShrink: 0,
+                fontSize: '32px',
+                userSelect: 'none',
               }}
             >
-              <Text size="10px" c="slate.5" fw={500}>
-                ไม่มีรูป
-              </Text>
+              {food.icon || '🍽️'}
             </Box>
           )}
 
@@ -176,7 +180,7 @@ export const FoodCard: React.FC<FoodCardProps> = ({ food, currentStage, onOpenDe
       <Box pt="xs" mt="xs" style={{ borderTop: '1px solid #f1f5f9' }}>
         <Group justify="space-between">
           <Group gap={4}>
-            {food.tags.slice(0, 1).map((tag) => (
+            {stageInfo.tags.slice(0, 1).map((tag) => (
               <Badge key={tag} size="xs" variant="outline" color="gray" radius="sm">
                 #{tag}
               </Badge>

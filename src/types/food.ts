@@ -21,6 +21,18 @@ export interface StageAdvice {
   advice: string;
 }
 
+export type DiseaseStageAdvice = StageAdvice;
+
+export interface DiseaseProfile {
+  reason: string;
+  tags?: string[];
+  sources: ReferenceSource[];
+  stages: {
+    default?: DiseaseStageAdvice;
+    [stageId: string]: DiseaseStageAdvice | undefined;
+  };
+}
+
 export interface FoodItem {
   id: string;
   name: string;
@@ -28,13 +40,20 @@ export interface FoodItem {
   categoryName: string;
   icon: string;
   tags: string[];
-  reason: string;
-  advice: string;
   keywords: string[];
-  source: ReferenceSource;
-  stages: Record<KidneyStageId, StageAdvice>;
   imageUrl?: string;
   imageCredit?: string;
+  diseases: {
+    ckd?: DiseaseProfile;
+    gout?: DiseaseProfile;
+    diabetes?: DiseaseProfile;
+    [diseaseId: string]: DiseaseProfile | undefined;
+  };
+  // Optional legacy fields for backward compatibility during migration
+  reason?: string;
+  advice?: string;
+  source?: ReferenceSource;
+  stages?: Record<KidneyStageId, StageAdvice>;
 }
 
 export interface KidneyStage {

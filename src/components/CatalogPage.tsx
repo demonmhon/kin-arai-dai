@@ -34,9 +34,11 @@ import {
 } from '../types/food';
 import { foods } from '../data/foods';
 import { kidneyStages } from '../data/kidneyStages';
+import { getFoodAdvice } from '../utils/foodAdvice';
 
 interface CatalogPageProps {
   selectedStage: KidneyStageId;
+  selectedDiseaseId?: string;
   onOpenStageModal: () => void;
   onOpenDetail: (food: FoodItem) => void;
 }
@@ -53,6 +55,7 @@ const VALID_CATEGORIES: FoodCategory[] = [
 
 export const CatalogPage: React.FC<CatalogPageProps> = ({
   selectedStage,
+  selectedDiseaseId = 'ckd',
   onOpenStageModal,
   onOpenDetail,
 }) => {
@@ -164,25 +167,22 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
     let danger = 0;
 
     foods.forEach((item) => {
-      const stageAdvice = item.stages[selectedStage] || { level: 'caution' };
-      if (stageAdvice.level === 'safe') safe++;
-      else if (stageAdvice.level === 'caution') caution++;
-      else if (stageAdvice.level === 'danger') danger++;
+      const advice = getFoodAdvice(item, selectedDiseaseId, selectedStage);
+      if (advice.level === 'safe') safe++;
+      else if (advice.level === 'caution') caution++;
+      else if (advice.level === 'danger') danger++;
     });
 
     return { safe, caution, danger, total: foods.length };
-  }, [selectedStage]);
+  }, [selectedStage, selectedDiseaseId]);
 
   // Filtered foods
   const filteredFoods = useMemo(() => {
     const term = searchTerm.trim().toLowerCase();
 
     return foods.filter((item) => {
-      const stageAdvice = item.stages[selectedStage] || {
-        level: 'caution',
-        advice: item.advice,
-      };
-      const currentLevel = stageAdvice.level;
+      const advice = getFoodAdvice(item, selectedDiseaseId, selectedStage);
+      const currentLevel = advice.level;
 
       // 1. Level filter
       if (levelFilter !== 'all' && currentLevel !== levelFilter) {
@@ -198,16 +198,18 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
       if (term) {
         const matchesName = item.name.toLowerCase().includes(term);
         const matchesCategory = item.categoryName.toLowerCase().includes(term);
-        const matchesTags = item.tags.some((tag) => tag.toLowerCase().includes(term));
+        const matchesTags = (advice.tags || item.tags || []).some((tag) =>
+          tag.toLowerCase().includes(term)
+        );
         const matchesKeywords = item.keywords.some((kw) => kw.toLowerCase().includes(term));
-        const matchesReason = item.reason.toLowerCase().includes(term);
+        const matchesReason = (advice.reason || item.reason || '').toLowerCase().includes(term);
 
         return matchesName || matchesCategory || matchesTags || matchesKeywords || matchesReason;
       }
 
       return true;
     });
-  }, [searchTerm, selectedStage, categoryFilter, levelFilter]);
+  }, [searchTerm, selectedStage, categoryFilter, levelFilter, selectedDiseaseId]);
 
   const isFilterActive =
     searchTerm !== '' || categoryFilter !== 'all' || levelFilter !== 'all';
@@ -399,6 +401,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
                       key={food.id}
                       food={food}
                       currentStage={selectedStage}
+                      currentDiseaseId={selectedDiseaseId}
                       onOpenDetail={onOpenDetail}
                     />
                   ))}

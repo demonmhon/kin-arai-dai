@@ -18,10 +18,13 @@ import {
 } from '@tabler/icons-react';
 import { FoodItem, KidneyStageId } from '../types/food';
 import { kidneyStages } from '../data/kidneyStages';
+import { getFoodAdvice } from '../utils/foodAdvice';
+import { diseases } from '../data/diseases';
 
 interface FoodDetailModalProps {
   food: FoodItem | null;
   currentStage: KidneyStageId;
+  currentDiseaseId?: string;
   opened: boolean;
   onClose: () => void;
 }
@@ -29,16 +32,15 @@ interface FoodDetailModalProps {
 export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
   food,
   currentStage,
+  currentDiseaseId = 'ckd',
   opened,
   onClose,
 }) => {
   if (!food) return null;
 
-  const stageInfo = food.stages[currentStage] || {
-    level: 'caution',
-    advice: food.advice,
-  };
+  const adviceInfo = getFoodAdvice(food, currentDiseaseId, currentStage);
   const stageMeta = kidneyStages[currentStage];
+  const diseaseMeta = diseases.find((d) => d.id === currentDiseaseId) || diseases[0];
 
   const getHeaderGradient = (lvl: string) => {
     switch (lvl) {
@@ -82,7 +84,7 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
       <Box
         p="lg"
         style={{
-          background: getHeaderGradient(stageInfo.level),
+          background: getHeaderGradient(adviceInfo.level),
           color: '#ffffff',
           position: 'relative',
         }}
@@ -118,18 +120,18 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
                   width: 64,
                   height: 64,
                   borderRadius: 16,
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                  border: '1px dashed rgba(255, 255, 255, 0.5)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                  border: '1px solid rgba(255, 255, 255, 0.4)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   flexShrink: 0,
                   backdropFilter: 'blur(8px)',
+                  fontSize: '34px',
+                  userSelect: 'none',
                 }}
               >
-                <Text size="xs" c="white" fw={500}>
-                  ไม่มีรูป
-                </Text>
+                {food.icon || '🍽️'}
               </Box>
             )}
             <Box>
@@ -145,7 +147,7 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
                     },
                   }}
                 >
-                  {getLevelLabel(stageInfo.level)}
+                  {getLevelLabel(adviceInfo.level)}
                 </Badge>
                 <Text size="xs" c="rgba(255, 255, 255, 0.85)">
                   หมวด: {food.categoryName}
@@ -182,7 +184,7 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
       {/* Modal Body */}
       <Box p="lg">
         <Stack gap="md">
-          {/* Specific Stage Advice */}
+          {/* Specific Stage / Condition Advice */}
           <Paper
             p="md"
             radius="lg"
@@ -196,12 +198,12 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
               <Text size="xs" fw={700} c="#312e81">
                 คำแนะนำเฉพาะ:{' '}
                 <Text span style={{ textDecoration: 'underline' }}>
-                  {stageMeta.name}
+                  {currentDiseaseId === 'ckd' ? stageMeta.name : diseaseMeta.name}
                 </Text>
               </Text>
             </Group>
             <Text size="xs" c="#1e1b4b" lh={1.6}>
-              {stageInfo.advice}
+              {adviceInfo.advice}
             </Text>
           </Paper>
 
@@ -217,40 +219,42 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
             <Group gap="xs" mb={6}>
               <IconActivity size={16} color="#475569" />
               <Text size="xs" fw={700} c="slate.8">
-                ทำไมถึงอยู่ในเกณฑ์นี้? (กลไก & ผลกระทบต่อไต)
+                ทำไมถึงอยู่ในเกณฑ์นี้? (กลไก & เหตุผลทางการแพทย์)
               </Text>
             </Group>
             <Text size="xs" c="slate.7" lh={1.6}>
-              {food.reason}
+              {adviceInfo.reason}
             </Text>
           </Paper>
 
           {/* Nutrition Tags */}
-          <Box>
-            <Text size="xs" fw={600} c="dimmed" mb={6}>
-              สารอาหารสำคัญที่เกี่ยวข้อง:
-            </Text>
-            <Group gap="xs">
-              {food.tags.map((tag) => (
-                <Badge
-                  key={tag}
-                  size="sm"
-                  variant="light"
-                  color="gray"
-                  radius="md"
-                  leftSection={<IconCheck size={12} />}
-                  styles={{
-                    root: {
-                      textTransform: 'none',
-                      fontWeight: 500,
-                    },
-                  }}
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </Group>
-          </Box>
+          {adviceInfo.tags && adviceInfo.tags.length > 0 && (
+            <Box>
+              <Text size="xs" fw={600} c="dimmed" mb={6}>
+                สารอาหารสำคัญที่เกี่ยวข้อง:
+              </Text>
+              <Group gap="xs">
+                {adviceInfo.tags.map((tag) => (
+                  <Badge
+                    key={tag}
+                    size="sm"
+                    variant="light"
+                    color="gray"
+                    radius="md"
+                    leftSection={<IconCheck size={12} />}
+                    styles={{
+                      root: {
+                        textTransform: 'none',
+                        fontWeight: 500,
+                      },
+                    }}
+                  >
+                    {tag}
+                  </Badge>
+                ))}
+              </Group>
+            </Box>
+          )}
 
           {/* Serving / Cooking Advice */}
           <Paper
@@ -268,48 +272,55 @@ export const FoodDetailModal: React.FC<FoodDetailModalProps> = ({
               </Text>
             </Group>
             <Text size="xs" c="#047857" lh={1.6}>
-              {food.advice}
+              {adviceInfo.advice}
             </Text>
           </Paper>
 
-          {/* Credible Source Link */}
-          <Box pt="xs" style={{ borderTop: '1px solid #f1f5f9' }}>
-            <Text size="xs" fw={600} c="dimmed" mb="xs">
-              แหล่งข้อมูลที่นำมาใช้อ้างอิงประกอบ:
-            </Text>
-            <Anchor
-              href={food.source.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              underline="never"
-            >
-              <Paper
-                p="sm"
-                radius="md"
-                withBorder
-                style={{
-                  backgroundColor: '#f8fafc',
-                  borderColor: '#e2e8f0',
-                  transition: 'all 0.15s ease',
-                }}
-              >
-                <Group justify="space-between">
-                  <Group gap="sm">
-                    <Text size="xl">🏥</Text>
-                    <Box>
-                      <Text size="xs" fw={700} c="slate.8">
-                        {food.source.name}
-                      </Text>
-                      <Text size="10px" c="dimmed">
-                        คลิกเพื่อเปิดดูข้อมูลเพิ่มเติมจากแหล่งที่มา
-                      </Text>
-                    </Box>
-                  </Group>
-                  <IconExternalLink size={16} color="#059669" />
-                </Group>
-              </Paper>
-            </Anchor>
-          </Box>
+          {/* Credible Source Links */}
+          {adviceInfo.sources && adviceInfo.sources.length > 0 && (
+            <Box pt="xs" style={{ borderTop: '1px solid #f1f5f9' }}>
+              <Text size="xs" fw={600} c="dimmed" mb="xs">
+                แหล่งข้อมูลทางการแพทย์ที่นำมาใช้อ้างอิงประกอบ ({adviceInfo.sources.length} แหล่ง):
+              </Text>
+              <Stack gap="xs">
+                {adviceInfo.sources.map((src, idx) => (
+                  <Anchor
+                    key={idx}
+                    href={src.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    underline="never"
+                  >
+                    <Paper
+                      p="sm"
+                      radius="md"
+                      withBorder
+                      style={{
+                        backgroundColor: '#f8fafc',
+                        borderColor: '#e2e8f0',
+                        transition: 'all 0.15s ease',
+                      }}
+                    >
+                      <Group justify="space-between">
+                        <Group gap="sm">
+                          <Text size="xl">🏥</Text>
+                          <Box>
+                            <Text size="xs" fw={700} c="slate.8">
+                              {src.name}
+                            </Text>
+                            <Text size="10px" c="dimmed">
+                              คลิกเพื่อเปิดดูข้อมูลและงานวิจัยเพิ่มเติมจากแหล่งที่มา
+                            </Text>
+                          </Box>
+                        </Group>
+                        <IconExternalLink size={16} color="#059669" />
+                      </Group>
+                    </Paper>
+                  </Anchor>
+                ))}
+              </Stack>
+            </Box>
+          )}
 
           {/* Image CC license credit */}
           {food.imageCredit && (
