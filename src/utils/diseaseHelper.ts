@@ -1,6 +1,7 @@
-import { KidneyStageId, GoutStageId } from '../types/food';
+import { KidneyStageId, GoutStageId, CholecystectomyStageId } from '../types/food';
 import { kidneyStages } from '../data/kidneyStages';
 import { goutStages } from '../data/goutStages';
+import { cholecystectomyStages } from '../data/cholecystectomyStages';
 
 export interface GenericStageMeta {
   id: string;
@@ -13,13 +14,28 @@ export interface GenericStageMeta {
 }
 
 /**
- * Returns unified stage metadata for either CKD or Gout (or future diseases)
+ * Returns unified stage metadata for either CKD, Gout, or Cholecystectomy (or future conditions)
  */
 export function getStageMeta(diseaseId: string = 'ckd', stageId?: string): GenericStageMeta {
   if (diseaseId === 'gout') {
     const validStage = (stageId && goutStages[stageId as GoutStageId])
       ? goutStages[stageId as GoutStageId]
       : goutStages.gout_remission;
+
+    return {
+      id: validStage.id,
+      name: validStage.name,
+      badge: validStage.badge,
+      color: validStage.color,
+      summary: validStage.summary,
+      focus: validStage.focus,
+    };
+  }
+
+  if (diseaseId === 'cholecystectomy') {
+    const validStage = (stageId && cholecystectomyStages[stageId as CholecystectomyStageId])
+      ? cholecystectomyStages[stageId as CholecystectomyStageId]
+      : cholecystectomyStages.chole_maintenance;
 
     return {
       id: validStage.id,
@@ -53,6 +69,9 @@ export function getStageMeta(diseaseId: string = 'ckd', stageId?: string): Gener
 export function getDefaultStageForDisease(diseaseId: string): string {
   if (diseaseId === 'gout') {
     return 'gout_remission';
+  }
+  if (diseaseId === 'cholecystectomy') {
+    return 'chole_maintenance';
   }
   return 'stage4_5_pre';
 }

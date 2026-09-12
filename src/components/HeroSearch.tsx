@@ -26,7 +26,7 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
       p={{ base: 'md', sm: 'xl' }}
       style={{
         background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #064e3b 100%)',
-        borderRadius: 24,
+        borderRadius: 20,
         color: '#ffffff',
         position: 'relative',
         overflow: 'hidden',

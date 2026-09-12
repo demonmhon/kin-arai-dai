@@ -26,6 +26,14 @@ export const diseases: Disease[] = [
     badgeText: 'เปิดใช้งานอยู่',
   },
   {
+    id: 'cholecystectomy',
+    name: 'ผู้ที่ตัดถุงน้ำดี (Post-Cholecystectomy)',
+    icon: '🥗',
+    status: 'active',
+    summary: 'เน้นกระจายไขมันเป็นมื้อเล็กๆ ป้องกันอาการแน่นท้อง ท้องเสียเรื้อรังจากกรดน้ำดี (Bile acid diarrhea)',
+    badgeText: 'เปิดใช้งานอยู่',
+  },
+  {
     id: 'hypertension',
     name: 'โรคความดันโลหิตสูง & โรคหัวใจ',
     icon: '❤️',

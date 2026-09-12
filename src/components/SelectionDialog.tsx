@@ -23,7 +23,8 @@ import {
 import { diseases } from '../data/diseases';
 import { kidneyStages } from '../data/kidneyStages';
 import { goutStages } from '../data/goutStages';
-import { KidneyStageId, GoutStageId } from '../types/food';
+import { cholecystectomyStages } from '../data/cholecystectomyStages';
+import { KidneyStageId, GoutStageId, CholecystectomyStageId } from '../types/food';
 import { getDiseaseLucideIcon } from '../utils/diseaseIcons';
 
 type SelectionStep = 1 | 2;
@@ -67,10 +68,25 @@ const GOUT_THEME: Record<GoutStageId, { border: string; bg: string; badgeBg: str
   gout_flare: { border: '#ef4444', bg: '#fef2f2', badgeBg: '#fee2e2', badgeColor: '#991b1b', dot: '#ef4444' },
 };
 
+const CHOLE_STAGE_KEYS: CholecystectomyStageId[] = ['chole_maintenance', 'chole_recovery'];
+
+const CHOLE_STAGE_LABEL: Record<CholecystectomyStageId, string> = {
+  chole_maintenance: 'ระยะทั่วไป / ปรับตัวแล้ว',
+  chole_recovery: 'ระยะพักฟื้นแรกเริ่ม / ท้องเสียง่าย',
+};
+
+const CHOLE_THEME: Record<CholecystectomyStageId, { border: string; bg: string; badgeBg: string; badgeColor: string; dot: string }> = {
+  chole_maintenance: { border: '#10b981', bg: '#ecfdf5', badgeBg: '#d1fae5', badgeColor: '#065f46', dot: '#10b981' },
+  chole_recovery: { border: '#f59e0b', bg: '#fffbeb', badgeBg: '#fef3c7', badgeColor: '#92400e', dot: '#f59e0b' },
+};
+
 /** Keeps the current stage if it's still valid for the newly picked disease, otherwise falls back to a sane default. */
 function resolveStageForDisease(diseaseId: string, currentStage: string): string {
   if (diseaseId === 'gout') {
     return currentStage.startsWith('gout') ? currentStage : 'gout_remission';
+  }
+  if (diseaseId === 'cholecystectomy') {
+    return currentStage.startsWith('chole') ? currentStage : 'chole_maintenance';
   }
   if (diseaseId === 'ckd') {
     return currentStage.startsWith('stage') || currentStage === 'dialysis' ? currentStage : 'stage4_5_pre';
@@ -103,7 +119,8 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
   }, [opened, initialStep, initialDiseaseId, selectedDiseaseId, selectedStage]);
 
   const isGout = pendingDiseaseId === 'gout';
-  const canGoToStage = pendingDiseaseId === 'ckd' || isGout;
+  const isChole = pendingDiseaseId === 'cholecystectomy';
+  const canGoToStage = pendingDiseaseId === 'ckd' || isGout || isChole;
 
   const handleSelectDisease = (id: string) => {
     setPendingDiseaseId(id);
@@ -221,6 +238,104 @@ export const SelectionDialog: React.FC<SelectionDialogProps> = ({
               disabled={!canGoToStage}
             >
               ถัดไป: เลือกระยะ
+            </Button>
+          </Group>
+        </Stack>
+      ) : isChole ? (
+        <Stack gap="md" mt="xs">
+          <Text size="xs" c="dimmed">
+            ผู้ตัดถุงน้ำดีส่วนใหญ่กลับไปทานอาหารได้ปกติ เป็นเรื่องความทนทานเฉพาะบุคคล (Individual tolerance) แนะนำให้กระจายการทานไขมันเป็นมื้อเล็กๆ หลายมื้อ แทนการกินไขมันก้อนใหญ่ทีเดียว:
+          </Text>
+
+          <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="sm">
+            {CHOLE_STAGE_KEYS.map((key) => {
+              const item = cholecystectomyStages[key];
+              const isSelected = pendingStage === key;
+              const styling = CHOLE_THEME[key];
+
+              return (
+                <Card
+                  key={key}
+                  p="md"
+                  radius="lg"
+                  withBorder
+                  onClick={() => setPendingStage(key)}
+                  style={{
+                    cursor: 'pointer',
+                    borderColor: isSelected ? styling.border : '#e2e8f0',
+                    borderWidth: isSelected ? 2 : 1,
+                    backgroundColor: isSelected ? styling.bg : '#ffffff',
+                    transition: 'all 0.15s ease',
+                  }}
+                >
+                  <Group justify="space-between" align="flex-start" mb={4}>
+                    <Group gap="xs">
+                      {key === 'chole_recovery' ? (
+                        <AlertTriangle size={20} color="#d97706" />
+                      ) : (
+                        <ShieldCheck size={20} color="#059669" />
+                      )}
+                      <Text size="sm" fw={700} c="slate.9">
+                        {CHOLE_STAGE_LABEL[key]}
+                      </Text>
+                    </Group>
+                    <Group gap={6}>
+                      <Badge
+                        size="xs"
+                        styles={{
+                          root: {
+                            backgroundColor: styling.badgeBg,
+                            color: styling.badgeColor,
+                            fontWeight: 600,
+                            textTransform: 'none',
+                          },
+                        }}
+                      >
+                        {item.badge}
+                      </Badge>
+                      {isSelected && <Check size={16} color={styling.dot} />}
+                    </Group>
+                  </Group>
+
+                  <Text size="xs" c="dimmed" mb="sm" lh={1.4}>
+                    {item.summary.slice(0, 85)}...
+                  </Text>
+
+                  <Group gap={6} mt="auto">
+                    <Box style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: styling.dot }} />
+                    <Text size="xs" fw={600} c="slate.8">
+                      {item.focus}
+                    </Text>
+                  </Group>
+                </Card>
+              );
+            })}
+          </SimpleGrid>
+
+          <Alert
+            icon={<Info size={18} />}
+            color="emerald"
+            variant="light"
+            radius="md"
+            styles={{
+              root: { backgroundColor: '#f8fafc', borderColor: '#e2e8f0' },
+              message: { fontSize: 12, color: '#334155', lineHeight: 1.6 },
+            }}
+          >
+            <Text span fw={700} c="slate.9">
+              {(cholecystectomyStages[pendingStage as CholecystectomyStageId] || cholecystectomyStages.chole_maintenance).name}:{' '}
+            </Text>
+            <Text span c="slate.7">
+              {(cholecystectomyStages[pendingStage as CholecystectomyStageId] || cholecystectomyStages.chole_maintenance).summary}
+            </Text>
+          </Alert>
+
+          <Group justify="space-between" mt="xs">
+            <Button variant="default" size="sm" radius="xl" leftSection={<ArrowLeft size={16} />} onClick={() => setStep(1)}>
+              ย้อนกลับ: เลือกภาวะสุขภาพ
+            </Button>
+            <Button variant="filled" color="emerald" size="sm" radius="xl" onClick={handleConfirm}>
+              ตกลง / นำเกณฑ์นี้ไปใช้
             </Button>
           </Group>
         </Stack>

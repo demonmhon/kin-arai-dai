@@ -1,5 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Box } from '@mantine/core';
+import {
+  Box,
+  Container,
+  Card,
+  Badge,
+  Title,
+  Text,
+  ThemeIcon,
+  Button,
+  Group,
+} from '@mantine/core';
 import {
   Routes,
   Route,
@@ -21,8 +31,14 @@ import { OnboardingModal } from './components/OnboardingModal';
 
 import { FoodItem, KidneyStageId } from './types/food';
 import { diseases } from './data/diseases';
-import { slugToDiseaseAndStage, STAGE_TO_SLUG } from './utils/url';
+import {
+  slugToDiseaseAndStage,
+  STAGE_TO_SLUG,
+  slugToConditionId,
+  resolveConditionStage,
+} from './utils/url';
 import { getStageMeta } from './utils/diseaseHelper';
+import { getDiseaseLucideIcon } from './utils/diseaseIcons';
 
 const STORAGE_KEYS = {
   DISEASE: 'kin_selected_disease',
@@ -60,6 +76,74 @@ const StageCatalogRoute: React.FC<StageCatalogRouteProps> = ({
     <CatalogPage
       selectedStage={matchedRoute.stageId}
       selectedDiseaseId={matchedRoute.diseaseId}
+      onOpenStageModal={onOpenStageModal}
+      onOpenDetail={onOpenDetail}
+    />
+  );
+};
+
+interface ConditionCatalogRouteProps {
+  onOpenStageModal: () => void;
+  onOpenDetail: (food: FoodItem) => void;
+  onRouteActive: (diseaseId: string, stageId: string) => void;
+  onOpenSelectionDialog: (diseaseId?: string) => void;
+}
+
+const ConditionCatalogRoute: React.FC<ConditionCatalogRouteProps> = ({
+  onOpenStageModal,
+  onOpenDetail,
+  onRouteActive,
+  onOpenSelectionDialog,
+}) => {
+  const { conditionSlug, stageSlug } = useParams<{ conditionSlug: string; stageSlug?: string }>();
+  const conditionId = conditionSlug ? slugToConditionId(conditionSlug) : null;
+  const stageId = conditionId ? resolveConditionStage(conditionId, stageSlug) : null;
+
+  const matchedDisease = conditionId ? diseases.find((d) => d.id === conditionId) : null;
+
+  useEffect(() => {
+    if (conditionId && stageId && matchedDisease?.status === 'active') {
+      onRouteActive(conditionId, stageId);
+    }
+  }, [conditionId, stageId, matchedDisease?.status, onRouteActive]);
+
+  if (!conditionId || !matchedDisease) {
+    return <Navigate to="/" replace />;
+  }
+
+  // If condition is upcoming (e.g. diabetes, hypertension, gerd)
+  if (matchedDisease.status !== 'active') {
+    return (
+      <Container size="md" py="xl" my="xl">
+        <Card p="xl" radius="xl" withBorder style={{ backgroundColor: '#ffffff', textAlign: 'center' }}>
+          <ThemeIcon size={64} radius="xl" color="gray" variant="light" mx="auto" mb="md">
+            {getDiseaseLucideIcon(conditionId, 32)}
+          </ThemeIcon>
+          <Badge size="md" color="gray" variant="light" mb="xs">
+            {matchedDisease.badgeText}
+          </Badge>
+          <Title order={2} fz={{ base: 22, sm: 26 }} fw={700} c="slate.9" mb="xs">
+            {matchedDisease.name}
+          </Title>
+          <Text size="sm" c="dimmed" style={{ maxWidth: 520, margin: '0 auto' }} mb="lg" lh={1.6}>
+            {matchedDisease.summary}
+            <br />
+            ทีมงานและนักกำหนดอาหารกำลังจัดทำและตรวจสอบความถูกต้องของข้อมูลอ้างอิงทางการแพทย์ เพื่อเปิดให้บริการในเร็วๆ นี้
+          </Text>
+          <Group justify="center" gap="sm">
+            <Button variant="default" radius="xl" onClick={() => onOpenSelectionDialog()}>
+              ดูภาวะสุขภาพที่เปิดให้บริการแล้ว
+            </Button>
+          </Group>
+        </Card>
+      </Container>
+    );
+  }
+
+  return (
+    <CatalogPage
+      selectedStage={stageId || 'stage4_5_pre'}
+      selectedDiseaseId={conditionId}
       onOpenStageModal={onOpenStageModal}
       onOpenDetail={onOpenDetail}
     />
@@ -182,6 +266,30 @@ export const App: React.FC = () => {
               <ReferencesPage
                 onNavigateHome={() => navigate('/')}
                 onNavigateCatalog={() => handleSelectStage(selectedDiseaseId, selectedStage)}
+              />
+            }
+          />
+
+          {/* Canonical Condition Routes e.g. /conditions/cholecystectomy, /conditions/gout, /conditions/ckd */}
+          <Route
+            path="/conditions/:conditionSlug"
+            element={
+              <ConditionCatalogRoute
+                onOpenStageModal={openStageSelection}
+                onOpenDetail={(food) => setDetailFood(food)}
+                onRouteActive={handleRouteActive}
+                onOpenSelectionDialog={openDiseaseSelection}
+              />
+            }
+          />
+          <Route
+            path="/conditions/:conditionSlug/:stageSlug"
+            element={
+              <ConditionCatalogRoute
+                onOpenStageModal={openStageSelection}
+                onOpenDetail={(food) => setDetailFood(food)}
+                onRouteActive={handleRouteActive}
+                onOpenSelectionDialog={openDiseaseSelection}
               />
             }
           />

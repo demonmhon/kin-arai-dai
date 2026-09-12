@@ -12,7 +12,76 @@ export const STAGE_TO_SLUG: Record<string, string> = {
   // Gout
   gout_remission: 'gout-remission',
   gout_flare: 'gout-flare',
+  // Cholecystectomy
+  chole_maintenance: 'cholecystectomy-maintenance',
+  chole_recovery: 'cholecystectomy-recovery',
 };
+
+/**
+ * Maps condition ID to standard /conditions/{slug} path
+ */
+export const CONDITION_TO_SLUG: Record<string, string> = {
+  ckd: 'ckd',
+  gout: 'gout',
+  cholecystectomy: 'cholecystectomy',
+  diabetes: 'diabetes',
+  hypertension: 'hypertension',
+  gerd: 'gerd',
+};
+
+/**
+ * Resolves condition slug to condition ID
+ */
+export function slugToConditionId(slug: string): string | null {
+  const clean = slug.toLowerCase().trim().replace(/^\/+|\/+$/g, '');
+  if (clean === 'ckd' || clean === 'kidney' || clean === 'chronic-kidney-disease') return 'ckd';
+  if (clean === 'gout') return 'gout';
+  if (
+    clean === 'cholecystectomy' ||
+    clean === 'post-cholecystectomy' ||
+    clean === 'gallbladder' ||
+    clean === 'chole'
+  ) {
+    return 'cholecystectomy';
+  }
+  if (clean === 'diabetes' || clean === 'dm') return 'diabetes';
+  if (clean === 'hypertension' || clean === 'ht' || clean === 'heart') return 'hypertension';
+  if (clean === 'gerd' || clean === 'acid-reflux') return 'gerd';
+  return null;
+}
+
+/**
+ * Resolves optional stage sub-slug under a specific condition
+ */
+export function resolveConditionStage(conditionId: string, stageSlug?: string): string {
+  if (!stageSlug) {
+    if (conditionId === 'gout') return 'gout_remission';
+    if (conditionId === 'cholecystectomy') return 'chole_maintenance';
+    return 'stage4_5_pre';
+  }
+
+  const clean = stageSlug.toLowerCase().trim();
+
+  if (conditionId === 'ckd') {
+    if (clean === 'stage-1' || clean === 'stage-2' || clean === 'stage1_2' || clean === 'stage-1-2') return 'stage1_2';
+    if (clean === 'stage-3' || clean === 'stage3' || clean === 'stage-3a' || clean === 'stage-3b') return 'stage3';
+    if (clean === 'stage-4' || clean === 'stage-5' || clean === 'stage-4-5' || clean === 'stage4_5_pre') return 'stage4_5_pre';
+    if (clean === 'dialysis') return 'dialysis';
+    return 'stage4_5_pre';
+  }
+
+  if (conditionId === 'gout') {
+    if (clean === 'flare' || clean === 'gout-flare' || clean === 'acute') return 'gout_flare';
+    return 'gout_remission';
+  }
+
+  if (conditionId === 'cholecystectomy') {
+    if (clean === 'recovery' || clean === 'early' || clean === 'chole-recovery' || clean === 'post-op') return 'chole_recovery';
+    return 'chole_maintenance';
+  }
+
+  return 'stage4_5_pre';
+}
 
 /**
  * Valid food categories
@@ -80,6 +149,23 @@ export function slugToDiseaseAndStage(pathSegment: string): ResolvedRoute | null
   }
   if (clean === 'gout-flare' || clean === 'gout-acute' || clean === 'gout-pain') {
     return { diseaseId: 'gout', stageId: 'gout_flare' };
+  }
+
+  // 3. Cholecystectomy stages
+  if (
+    clean === 'cholecystectomy' ||
+    clean === 'cholecystectomy-maintenance' ||
+    clean === 'chole-maintenance' ||
+    clean === 'gallbladder' ||
+    clean === 'chole'
+  ) {
+    return { diseaseId: 'cholecystectomy', stageId: 'chole_maintenance' };
+  }
+  if (
+    clean === 'cholecystectomy-recovery' ||
+    clean === 'chole-recovery'
+  ) {
+    return { diseaseId: 'cholecystectomy', stageId: 'chole_recovery' };
   }
 
   return null;

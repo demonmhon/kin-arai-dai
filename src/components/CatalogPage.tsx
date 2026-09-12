@@ -28,6 +28,8 @@ import { HeroSearch } from './HeroSearch';
 import { SidebarFilter } from './SidebarFilter';
 import { FoodCard } from './FoodCard';
 import { MedicalWarningBanner } from './MedicalWarningBanner';
+import { ConditionHubHeader } from './ConditionHubHeader';
+import { diseases } from '../data/diseases';
 
 import {
   FoodItem,
@@ -63,6 +65,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
   onOpenDetail,
 }) => {
   const stageMeta = getStageMeta(selectedDiseaseId, selectedStage);
+  const diseaseMeta = diseases.find((d) => d.id === selectedDiseaseId) || diseases[0];
   const [searchParams, setSearchParams] = useSearchParams();
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -323,10 +326,19 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
             {/* Scroll anchor with offset margin for sticky navbar */}
             <div ref={resultsTopRef} style={{ scrollMarginTop: 84 }} />
             <Stack gap="md">
+              {/* Condition Hub Header with Eating & Menu Guides */}
+              <ConditionHubHeader
+                conditionId={selectedDiseaseId}
+                conditionName={diseaseMeta.name}
+                stageName={stageMeta.name}
+                stageBadge={stageMeta.badge}
+                onOpenStageModal={onOpenStageModal}
+              />
+
               {/* Status Bar */}
               <Paper
                 p="xs"
-                radius="md"
+                radius="lg"
                 withBorder
                 style={{
                   backgroundColor: '#ffffff',
@@ -567,7 +579,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
                 /* Empty Search State */
                 <Paper
                   p="xl"
-                  radius="xl"
+                  radius="lg"
                   withBorder
                   style={{
                     textAlign: 'center',

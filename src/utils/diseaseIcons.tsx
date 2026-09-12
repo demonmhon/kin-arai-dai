@@ -6,6 +6,7 @@ import {
   HeartPulse,
   Flame,
   Activity,
+  UtensilsCrossed,
 } from 'lucide-react';
 
 /**
@@ -17,6 +18,8 @@ export function getDiseaseLucideIcon(diseaseId: string, size = 20): React.ReactN
       return <Stethoscope size={size} />;
     case 'gout':
       return <Footprints size={size} />;
+    case 'cholecystectomy':
+      return <UtensilsCrossed size={size} />;
     case 'diabetes':
       return <Droplet size={size} />;
     case 'hypertension':

@@ -26,6 +26,13 @@ export const theme = createTheme({
   primaryColor: 'emerald',
   primaryShade: 6,
   defaultRadius: 'md',
+  radius: {
+    xs: '4px',
+    sm: '8px',
+    md: '10px',
+    lg: '16px',
+    xl: '20px',
+  },
   components: {
     Button: {
       defaultProps: {
@@ -33,6 +40,11 @@ export const theme = createTheme({
       },
     },
     Card: {
+      defaultProps: {
+        radius: 'lg',
+      },
+    },
+    Paper: {
       defaultProps: {
         radius: 'lg',
       },

@@ -63,6 +63,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
 }) => {
   const stage = getStageMeta(selectedDiseaseId, selectedStage);
   const isGout = selectedDiseaseId === 'gout';
+  const isChole = selectedDiseaseId === 'cholecystectomy';
 
   const levels: {
     id: StageLevel | 'all';
@@ -164,7 +165,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
         >
           <Group justify="space-between" align="center" mb={4}>
             <Text size="11px" fw={700} c="slate.6" style={{ textTransform: 'uppercase' }}>
-              {isGout ? 'สภาวะโรคเกาต์ที่ประเมิน' : 'ระยะโรคไตที่ประเมิน'}
+              {isGout ? 'สภาวะโรคเกาต์ที่ประเมิน' : isChole ? 'สภาวะหลังตัดถุงน้ำดีที่ประเมิน' : 'ระยะโรคไตที่ประเมิน'}
             </Text>
             <Badge size="xs" color={stage.color as any || 'emerald'} variant="light">
               {stage.badge}
@@ -194,7 +195,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
             }}
             rightSection={<Settings size={13} />}
           >
-            {isGout ? 'เปลี่ยนสภาวะโรคเกาต์' : 'เปลี่ยนระยะโรคไต'}
+            {isGout ? 'เปลี่ยนสภาวะโรคเกาต์' : isChole ? 'เปลี่ยนสภาวะการฟื้นฟู' : 'เปลี่ยนระยะโรคไต'}
           </Button>
         </Box>
 
@@ -218,7 +219,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
                     display: 'block',
                     width: '100%',
                     padding: '8px 10px',
-                    borderRadius: 8,
+                    borderRadius: 10,
                     backgroundColor: isSelected ? '#f1f5f9' : 'transparent',
                     border: isSelected ? '1px solid #cbd5e1' : '1px solid transparent',
                     transition: 'all 0.15s ease',
@@ -294,7 +295,7 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
                     display: 'block',
                     width: '100%',
                     padding: '8px 10px',
-                    borderRadius: 8,
+                    borderRadius: 10,
                     backgroundColor: isSelected ? '#ecfdf5' : 'transparent',
                     border: isSelected ? '1px solid #a7f3d0' : '1px solid transparent',
                     transition: 'all 0.15s ease',

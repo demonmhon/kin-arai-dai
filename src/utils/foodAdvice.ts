@@ -58,7 +58,93 @@ export function getFoodAdvice(
     };
   }
 
-  // 2. Backward compatibility fallback for legacy flat fields
+  // 2. Specialized evaluation for Cholecystectomy (Post-Gallbladder Removal)
+  if (diseaseId === 'cholecystectomy') {
+    const isRecovery = stageId === 'chole_recovery';
+    const isHighFat = ((): boolean => {
+      const highFatIds = new Set([
+        'khao-kha-mu',
+        'fried-chicken',
+        'pad-krapow-crispy-pork',
+        'pad-see-ew',
+        'hamburger',
+        'kuay-tiew-nam-tok',
+        'processed-meat',
+        'organ-meat',
+        'egg-yolk',
+        'beer',
+        'cow-milk',
+        'dark-cola',
+        'thai-tea',
+      ]);
+      if (highFatIds.has(food.id)) return true;
+      const text = `${food.name} ${food.category} ${(food.tags || []).join(' ')} ${(food.keywords || []).join(' ')}`.toLowerCase();
+      return (
+        text.includes('ทอด') ||
+        text.includes('มันหมู') ||
+        text.includes('ขาหมู') ||
+        text.includes('หมูกรอบ') ||
+        text.includes('ไขมันสูง') ||
+        text.includes('กะทิ') ||
+        text.includes('เครื่องใน')
+      );
+    })();
+
+    const isLowFat = ['fruit', 'vegetable', 'carb'].includes(food.category) ||
+      ['chicken-breast', 'egg-white', 'white-fish', 'water', 'soy-milk-unsweetened', 'green-tea-matcha'].includes(food.id);
+
+    const choleSources: ReferenceSource[] = [
+      {
+        name: 'Mayo Clinic: Cholecystectomy diet (Gallbladder removal)',
+        url: 'https://www.mayoclinic.org/tests-procedures/cholecystectomy/expert-answers/gallbladder-removal-diet/faq-20057813',
+      },
+      {
+        name: 'โรงพยาบาลศิริราช ปิยมหาราชการุณย์: โภชนาการหลังผ่าตัดถุงน้ำดี',
+        url: 'https://www.siphhospital.com/',
+      },
+    ];
+
+    if (isHighFat) {
+      if (isRecovery) {
+        return {
+          level: 'danger',
+          advice: 'ช่วงพักฟื้นหรือมีอาการท้องเสียง่าย ควรงดของทอดและอาหารไขมันสูง น้ำดียังไม่พร้อมย่อยไขมันปริมาณมาก',
+          reason: 'ไม่มีถุงน้ำดีกักเก็บน้ำดีเข้มข้น ไขมันปริมาณมากในมื้อเดียวที่ย่อยไม่หมดจะกระตุ้นให้ลำไส้บีบตัวและเกิดอาการท้องเสียรุนแรง (Bile acid diarrhea)',
+          sources: choleSources,
+          tags: ['ไขมันสูง', 'ย่อยยาก', ...(food.tags || [])],
+        };
+      }
+      return {
+        level: 'caution',
+        advice: 'ทานได้ปริมาณน้อย แนะนำแบ่งการกินอาหารไขมันเป็นมื้อเล็กๆ หลายมื้อ ดีกว่ากินไขมันก้อนใหญ่ทีเดียว',
+        reason: 'หลังผ่าตัดถุงน้ำดี น้ำดีจะไหลรินเรื่อยๆ การกินของมันมื้อใหญ่จะทำให้แน่นท้องและท้องเสียได้ เป็นเรื่องความทนทานเฉพาะบุคคล (Individual tolerance)',
+        sources: choleSources,
+        tags: ['ควรแบ่งมื้อ', 'คุมปริมาณไขมัน', ...(food.tags || [])],
+      };
+    }
+
+    if (isLowFat) {
+      return {
+        level: 'safe',
+        advice: 'ทานได้ตามปกติ ไขมันต่ำ ย่อยง่าย ปลอดภัยสำหรับผู้ผ่าตัดถุงน้ำดี',
+        reason: 'อาหารมีปริมาณไขมันต่ำ ร่างกายไม่ต้องอาศัยน้ำดีเข้มข้นในการย่อย ไม่กระตุ้นอาการแน่นท้องหรือขับถ่ายเหลว',
+        sources: choleSources,
+        tags: ['ไขมันต่ำ', 'ย่อยง่าย', ...(food.tags || [])],
+      };
+    }
+
+    return {
+      level: isRecovery ? 'caution' : 'safe',
+      advice: isRecovery
+        ? 'ทานได้แต่พอดี ทานอาหารอ่อนย่อยง่าย และสังเกตการตอบสนองของระบบย่อยอาหาร'
+        : 'ทานได้ตามปกติ กระจายการทานเป็นมื้อเล็กๆ หลายมื้อ และสังเกตการตอบสนองของร่างกาย (Individual Tolerance)',
+      reason: 'ผู้ตัดถุงน้ำดีส่วนใหญ่กลับมาทานอาหารได้ปกติภายในไม่กี่เดือน ให้สังเกตความทนต่ออาหารแต่ละชนิดของตนเอง',
+      sources: choleSources,
+      tags: ['สังเกตอาการตนเอง', ...(food.tags || [])],
+    };
+  }
+
+  // 3. Backward compatibility fallback for legacy flat fields
   if (food.stages) {
     const legacyStageAdvice = stageId
       ? (food.stages as Record<string, { level: StageLevel; advice: string }>)[stageId]

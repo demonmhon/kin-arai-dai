@@ -59,7 +59,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           {/* 1. Hero Intention Section */}
           <Paper
             p={{ base: 'lg', sm: 40 }}
-            radius={28}
+            radius="xl"
             style={{
               background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #064e3b 100%)',
               color: '#ffffff',
@@ -189,7 +189,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </Box>
 
             <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }} spacing="md">
-              <Card p="lg" radius="xl" withBorder style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}>
+              <Card p="lg" radius="lg" withBorder style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}>
                 <ThemeIcon size={44} radius="lg" color="emerald" variant="light" mb="md">
                   <Zap size={24} />
                 </ThemeIcon>
@@ -201,7 +201,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </Text>
               </Card>
 
-              <Card p="lg" radius="xl" withBorder style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}>
+              <Card p="lg" radius="lg" withBorder style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}>
                 <ThemeIcon size={44} radius="lg" color="teal" variant="light" mb="md">
                   <SlidersHorizontal size={24} />
                 </ThemeIcon>
@@ -213,7 +213,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </Text>
               </Card>
 
-              <Card p="lg" radius="xl" withBorder style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}>
+              <Card p="lg" radius="lg" withBorder style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}>
                 <ThemeIcon size={44} radius="lg" color="blue" variant="light" mb="md">
                   <Stethoscope size={24} />
                 </ThemeIcon>
@@ -225,7 +225,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </Text>
               </Card>
 
-              <Card p="lg" radius="xl" withBorder style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}>
+              <Card p="lg" radius="lg" withBorder style={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0' }}>
                 <ThemeIcon size={44} radius="lg" color="indigo" variant="light" mb="md">
                   <ShieldCheck size={24} />
                 </ThemeIcon>
@@ -262,14 +262,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 เลือกภาวะสุขภาพหรืออาการที่ต้องการดูแล
               </Title>
               <Text size="xs" c="dimmed">
-                ตอนนี้ระบบเปิดให้บริการข้อมูลสำหรับ "โรคไตเรื้อรัง (CKD)" และ "โรคเกาต์ (Gout)" เต็มรูปแบบ และกำลังเตรียมข้อมูลสำหรับภาวะสุขภาพอื่นๆ เพิ่มเติม
+                ตอนนี้ระบบเปิดให้บริการข้อมูลสำหรับ "โรคไตเรื้อรัง (CKD)", "โรคเกาต์ (Gout)" และ "ผู้ที่ตัดถุงน้ำดี (Post-Cholecystectomy)" พร้อมใช้งานทันที และกำลังเตรียมข้อมูลสำหรับภาวะสุขภาพอื่นๆ เพิ่มเติม
               </Text>
             </Box>
 
             {/* Active Disease Card: CKD */}
             <Card
               p={{ base: 'md', sm: 'xl' }}
-              radius={24}
+              radius="xl"
               withBorder
               style={{
                 backgroundColor: '#ffffff',
@@ -468,7 +468,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               {/* Example 2: Caution */}
               <Card p="md" radius="lg" withBorder style={{ backgroundColor: '#fffbeb', borderColor: '#fde68a' }}>
                 <Group justify="space-between" mb="xs">
-                  <Badge size="sm" color="amber" variant="filled" leftSection={<AlertCircle size={12} />}>
+                  <Badge size="sm" color="#d97706" variant="filled" leftSection={<AlertCircle size={12} />}>
                     คุมปริมาณ (Caution)
                   </Badge>
                   <Group gap={4}>

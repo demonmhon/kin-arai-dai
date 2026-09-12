@@ -8,6 +8,57 @@ interface MedicalWarningBannerProps {
 
 export const MedicalWarningBanner: React.FC<MedicalWarningBannerProps> = ({ diseaseId = 'ckd' }) => {
   const isGout = diseaseId === 'gout';
+  const isChole = diseaseId === 'cholecystectomy';
+
+  if (isChole) {
+    return (
+      <Paper
+        p="md"
+        radius="lg"
+        style={{
+          backgroundColor: '#eff6ff',
+          border: '1px solid #bfdbfe',
+        }}
+      >
+        <Group align="flex-start" gap="sm" wrap="nowrap">
+          <Box style={{ color: '#2563eb', marginTop: 2 }}>
+            <AlertTriangle size={24} />
+          </Box>
+          <Box style={{ flex: 1 }}>
+            <Text fw={700} size="xs" c="#1e3a8a" mb={4}>
+              คำเตือนสำคัญพิเศษสำหรับผู้ที่ตัดถุงน้ำดี (Post-Cholecystectomy):
+            </Text>
+            <List size="xs" c="#1e40af" spacing={4} styles={{ item: { lineHeight: 1.5 } }}>
+              <List.Item>
+                <Text span fw={600}>
+                  แบ่งการกินอาหารไขมันเป็นมื้อเล็กๆ หลายมื้อ ดีกว่ากินไขมันก้อนใหญ่ทีเดียว:
+                </Text>{' '}
+                เนื่องจากไม่มีถุงน้ำดีกักเก็บและปล่อยน้ำดีเข้มข้น น้ำดีจากตับจะหยดลงลำไส้ทีละน้อยอย่างต่อเนื่อง การทานไขมันปริมาณมากในมื้อเดียวจะย่อยไม่ทัน ทำให้แน่นท้อง อืดท้อง และกระตุ้นการขับถ่ายเหลว
+              </List.Item>
+              <List.Item>
+                <Text span fw={600}>
+                  ระวังอาการท้องเสียเรื้อรังจากกรดน้ำดี (Bile Acid Diarrhea):
+                </Text>{' '}
+                ผู้ผ่าตัดบางรายอาจมีกรดน้ำดีไหลลงสู่ลำไส้ใหญ่มากเกินไป ทำให้ลำไส้บีบตัวและขับถ่ายเหลวเป็นมัน หากมีอาการต่อเนื่องจำเป็นต้องคุมปริมาณไขมันอย่างต่อเนื่องนานกว่าคนอื่นและปรึกษาแพทย์
+              </List.Item>
+              <List.Item>
+                <Text span fw={600}>
+                  การทนต่ออาหารเป็นเรื่องเฉพาะบุคคล (Individual Tolerance):
+                </Text>{' '}
+                ไม่มีข้อ "ห้ามกิน" ตายตัวแบบโรคไต ผู้ตัดถุงน้ำดีส่วนใหญ่จะค่อยๆ ปรับตัวและกลับไปทานอาหารปกติได้ภายในไม่กี่เดือน ให้สังเกตการตอบสนองของร่างกายตนเองและค่อยๆ ปรับเพิ่มอาหารทีละน้อย
+              </List.Item>
+              <List.Item>
+                <Text span fw={600}>
+                  เสริมใยอาหารชนิดละลายน้ำ (Soluble Fiber):
+                </Text>{' '}
+                เช่น ข้าวโอ๊ต กล้วย แอปเปิ้ล แครอท ช่วยดูดซับกรดน้ำดีส่วนเกินในลำไส้ ทำให้อุจจาระจับตัวเป็นก้อน ลดอาการถ่ายเหลวได้อย่างเป็นธรรมชาติ
+              </List.Item>
+            </List>
+          </Box>
+        </Group>
+      </Paper>
+    );
+  }
 
   if (isGout) {
     return (

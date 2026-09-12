@@ -112,7 +112,7 @@ export const FoodCard: React.FC<FoodCardProps> = ({
               style={{
                 width: 68,
                 height: 68,
-                borderRadius: 12,
+                borderRadius: 10,
                 overflow: 'hidden',
                 flexShrink: 0,
                 backgroundColor: '#f1f5f9',
@@ -136,7 +136,7 @@ export const FoodCard: React.FC<FoodCardProps> = ({
               style={{
                 width: 68,
                 height: 68,
-                borderRadius: 12,
+                borderRadius: 10,
                 backgroundColor: '#f8fafc',
                 border: '1px solid #e2e8f0',
                 display: 'flex',
@@ -160,7 +160,7 @@ export const FoodCard: React.FC<FoodCardProps> = ({
               p="xs"
               mt={6}
               style={{
-                borderRadius: 8,
+                borderRadius: 10,
                 backgroundColor: '#f8fafc',
                 border: '1px solid #f1f5f9',
               }}

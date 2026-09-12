@@ -79,7 +79,18 @@ export interface GoutStage {
   focus: string;
 }
 
-export type DiseaseStageId = KidneyStageId | GoutStageId;
+export type CholecystectomyStageId = 'chole_maintenance' | 'chole_recovery';
+
+export interface CholecystectomyStage {
+  id: CholecystectomyStageId;
+  name: string;
+  badge: string;
+  color: 'emerald' | 'amber';
+  summary: string;
+  focus: string;
+}
+
+export type DiseaseStageId = KidneyStageId | GoutStageId | CholecystectomyStageId;
 
 export interface Disease {
   id: string;
