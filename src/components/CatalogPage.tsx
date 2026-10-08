@@ -57,6 +57,7 @@ const VALID_CATEGORIES: FoodCategory[] = [
   'drink',
   'dish',
   'supplement',
+  'medicine',
 ];
 
 export const CATEGORY_LABELS: Record<FoodCategory, string> = {
@@ -69,6 +70,7 @@ export const CATEGORY_LABELS: Record<FoodCategory, string> = {
   drink: 'เครื่องดื่ม/ของหวาน',
   dish: 'อาหารจานเดียว/ฟาสต์ฟู้ด',
   supplement: 'อาหารเสริม/สารสกัด',
+  medicine: 'ยาสามัญประจำบ้าน',
 };
 
 export const CatalogPage: React.FC<CatalogPageProps> = ({
@@ -186,6 +188,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
       drink: 0,
       dish: 0,
       supplement: 0,
+      medicine: 0,
     };
     foods.forEach((item) => {
       counts[item.category]++;

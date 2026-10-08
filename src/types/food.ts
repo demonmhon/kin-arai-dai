@@ -11,7 +11,8 @@ export type FoodCategory =
   | 'condiment'
   | 'drink'
   | 'dish'
-  | 'supplement';
+  | 'supplement'
+  | 'medicine';
 
 export interface ReferenceSource {
   name: string;

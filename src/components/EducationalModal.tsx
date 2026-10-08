@@ -28,6 +28,8 @@ import {
   Layers,
   Utensils,
   Check,
+  Tablets,
+  ShieldAlert,
 } from 'lucide-react';
 import { kidneyStages } from '../data/kidneyStages';
 import { goutStages } from '../data/goutStages';
@@ -41,7 +43,7 @@ interface EducationalModalProps {
   selectedStage?: string;
 }
 
-type TabType = 'ckd' | 'gout' | 'cholecystectomy';
+type TabType = 'ckd' | 'gout' | 'cholecystectomy' | 'medicine';
 
 export const EducationalModal: React.FC<EducationalModalProps> = ({
   opened,
@@ -138,6 +140,23 @@ export const EducationalModal: React.FC<EducationalModalProps> = ({
             }}
           >
             ผู้ตัดถุงน้ำดี
+          </Button>
+
+          <Button
+            size="xs"
+            radius="xl"
+            variant={activeTab === 'medicine' ? 'filled' : 'default'}
+            color="red"
+            leftSection={<Tablets size={14} />}
+            onClick={() => setActiveTab('medicine')}
+            styles={{
+              root: {
+                fontWeight: 600,
+                borderColor: activeTab === 'medicine' ? undefined : '#cbd5e1',
+              },
+            }}
+          >
+            ยาสามัญที่ควรระวัง
           </Button>
         </Group>
 
@@ -558,6 +577,139 @@ export const EducationalModal: React.FC<EducationalModalProps> = ({
                 </Paper>
               </SimpleGrid>
             </Box>
+          </Stack>
+        )}
+
+        {/* Tab 4: ยาสามัญประจำบ้านที่ควรระวัง (Household Medications) */}
+        {activeTab === 'medicine' && (
+          <Stack gap="sm">
+            <Box>
+              <Group gap="xs" mb={4}>
+                <Badge size="xs" color="red" variant="light">
+                  Household Medicine Safety
+                </Badge>
+                <Badge size="xs" color="red" variant="filled">
+                  ข้อควรระวังสำคัญ
+                </Badge>
+              </Group>
+              <Text size="xs" c="dimmed">
+                ผู้ป่วยโรคไตเรื้อรังและโรคเกาต์มีความไวต่อยาและแร่ธาตุตกค้างมากกว่าคนปกติ ยาหลายชนิดที่หาซื้อได้ทั่วไปอาจส่งผลกระทบต่อไตเฉียบพลัน:
+              </Text>
+            </Box>
+
+            {/* Section 1: ยาแก้ปวด */}
+            <Paper p="sm" radius="md" style={{ backgroundColor: '#fff1f2', border: '1px solid #fecdd3' }}>
+              <Group gap={6} align="center" mb="xs">
+                <ShieldAlert size={16} color="#e11d48" />
+                <Text size="xs" fw={700} c="#881337">
+                  1. กลุ่มยาแก้ปวดและยาลดไข้ (Painkillers & Analgesics)
+                </Text>
+              </Group>
+
+              <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="xs">
+                <Paper p="xs" radius="sm" style={{ backgroundColor: '#ffffff', border: '1px solid #fda4af' }}>
+                  <Group justify="space-between" mb={2}>
+                    <Text size="xs" fw={700} c="#9f1239">
+                      🔴 ยาแก้ปวดกลุ่ม NSAIDs (ห้ามซื้อทานเอง)
+                    </Text>
+                    <Badge size="xs" color="red" variant="filled">อันตรายสูงสุด</Badge>
+                  </Group>
+                  <Text size="11px" c="slate.7" lh={1.4}>
+                    <Text span fw={600}>ตัวอย่าง:</Text> ไอบูโพรเฟน (Ibuprofen), พอนสแตน (Ponstan), ไดโคลฟีแนก (Diclofenac), ยาชุดคลายเส้น<br />
+                    <Text span fw={600} c="#991b1b">อันตรายต่อไต:</Text> ยับยั้งสารขยายหลอดเลือดไต ทำให้เลือดไปเลี้ยงไตลดฮวบ ไตขาดเลือดและเสี่ยงไตวายเฉียบพลันซ้ำเติม (AKI) ทันที อีกทั้งยังกัดกระเพาะอาหารอย่างรุนแรง
+                  </Text>
+                </Paper>
+
+                <Paper p="xs" radius="sm" style={{ backgroundColor: '#ffffff', border: '1px solid #86efac' }}>
+                  <Group justify="space-between" mb={2}>
+                    <Text size="xs" fw={700} c="#166534">
+                      🟢 พาราเซตามอล (ทางเลือกแรกที่ปลอดภัย)
+                    </Text>
+                    <Badge size="xs" color="teal" variant="light">ปลอดภัยต่อไต</Badge>
+                  </Group>
+                  <Text size="11px" c="slate.7" lh={1.4}>
+                    <Text span fw={600}>ตัวอย่าง:</Text> ซาร่า (Sara), ไทลินอล (Tylenol)<br />
+                    <Text span fw={600} c="#15803d">คำแนะนำ:</Text> ไม่ทำให้หลอดเลือดไตหดตัวและไม่กัดกระเพาะ ทานเมื่อมีอาการจริง ครั้งละ 1 เม็ด (500 มก.) ไม่เกินวันละ 2,000-3,000 มก. (4-6 เม็ด/วัน) หากเป็นไตระยะ 4-5 หรือฟอกไต ควรเว้นห่าง 6-8 ชม.
+                  </Text>
+                </Paper>
+              </SimpleGrid>
+            </Paper>
+
+            {/* Section 2: ยาลดกรดและขับลม */}
+            <Paper p="sm" radius="md" style={{ backgroundColor: '#fffbeb', border: '1px solid #fef3c7' }}>
+              <Group gap={6} align="center" mb="xs">
+                <AlertTriangle size={16} color="#d97706" />
+                <Text size="xs" fw={700} c="#92400e">
+                  2. กลุ่มยาลดกรด เคลือบกระเพาะ และยาขับลม (Antacids & Bloating)
+                </Text>
+              </Group>
+
+              <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="xs">
+                <Paper p="xs" radius="sm" style={{ backgroundColor: '#ffffff', border: '1px solid #fcd34d' }}>
+                  <Group justify="space-between" mb={2}>
+                    <Text size="xs" fw={700} c="#92400e">
+                      🔴 ยาลดกรดสูตร อะลูมิเนียม-แมกนีเซียม
+                    </Text>
+                    <Badge size="xs" color="red" variant="light">เสี่ยงแร่ธาตุคั่ง</Badge>
+                  </Group>
+                  <Text size="11px" c="slate.7" lh={1.4}>
+                    <Text span fw={600}>ตัวอย่าง:</Text> แอนตาซิล (Antacil), มาล็อกซ์ (Maalox), กราวิสคอน<br />
+                    <Text span fw={600} c="#b45309">อันตรายต่อไต:</Text> อะลูมิเนียมและแมกนีเซียมจะคั่งในเลือด ไตที่เสื่อมขับไม่ได้ อะลูมิเนียมจะสะสมในกระดูกทำให้กระดูกเปราะ และสะสมในสมอง ส่วนแมกนีเซียมกดหัวใจเต้นช้าและความดันตก
+                  </Text>
+                </Paper>
+
+                <Paper p="xs" radius="sm" style={{ backgroundColor: '#ffffff', border: '1px solid #f87171' }}>
+                  <Group justify="space-between" mb={2}>
+                    <Text size="xs" fw={700} c="#991b1b">
+                      🔴 ยาผงฟูขับลม / โซเดียมไบคาร์บอเนต
+                    </Text>
+                    <Badge size="xs" color="red" variant="filled">เสี่ยงน้ำท่วมปอด</Badge>
+                  </Group>
+                  <Text size="11px" c="slate.7" lh={1.4}>
+                    <Text span fw={600}>ตัวอย่าง:</Text> ยาผงฟูอีโน (ENO), ยาเม็ดฟู่ขับลม<br />
+                    <Text span fw={600} c="#b91c1c">อันตรายต่อไต:</Text> 1 ซองมีโซเดียมสูงถึง 700-850 มก. ดูดซึมเร็วมาก ดึงน้ำเข้ากระแสเลือดทันที ทำให้ความดันโลหิตพุ่งสูง ตัวบวม และเสี่ยงน้ำท่วมปอดฉับพลันจนหายใจไม่ออก
+                  </Text>
+                </Paper>
+              </SimpleGrid>
+            </Paper>
+
+            {/* Section 3: ยาแก้หวัดและยาแก้แพ้ */}
+            <Paper p="sm" radius="md" style={{ backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0' }}>
+              <Group gap={6} align="center" mb="xs">
+                <Tablets size={16} color="#16a34a" />
+                <Text size="xs" fw={700} c="#14532d">
+                  3. กลุ่มยาแก้หวัด คัดจมูก และยาแก้แพ้ (Cold & Allergy)
+                </Text>
+              </Group>
+
+              <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="xs">
+                <Paper p="xs" radius="sm" style={{ backgroundColor: '#ffffff', border: '1px solid #f87171' }}>
+                  <Group justify="space-between" mb={2}>
+                    <Text size="xs" fw={700} c="#991b1b">
+                      🔴 ยาลดน้ำมูกกลุ่มหดหลอดเลือด
+                    </Text>
+                    <Badge size="xs" color="red" variant="light">ความดันพุ่งสูง</Badge>
+                  </Group>
+                  <Text size="11px" c="slate.7" lh={1.4}>
+                    <Text span fw={600}>ตัวอย่าง:</Text> ซูโดอีเฟดรีน (Pseudoephedrine), ฟีนิลเอฟรีน (Phenylephrine), ยาแก้หวัดสูตรผสม<br />
+                    <Text span fw={600} c="#b91c1c">อันตรายต่อไต:</Text> กระตุ้นการหดตัวของหลอดเลือดทั่วร่างกาย ทำให้หลอดเลือดไตหดเกร็ง เลือดไปเลี้ยงไตลดลง และความดันโลหิตพุ่งสูงควบคุมยาก แนะนำใช้น้ำเกลือล้างจมูกแทน
+                  </Text>
+                </Paper>
+
+                <Paper p="xs" radius="sm" style={{ backgroundColor: '#ffffff', border: '1px solid #93c5fd' }}>
+                  <Group justify="space-between" mb={2}>
+                    <Text size="xs" fw={700} c="#1e40af">
+                      🟡 ยาแก้แพ้ (CPM และกลุ่มไม่ง่วง)
+                    </Text>
+                    <Badge size="xs" color="blue" variant="light">ต้องปรับตามค่าไต</Badge>
+                  </Group>
+                  <Text size="11px" c="slate.7" lh={1.4}>
+                    <Text span fw={600}>ตัวอย่าง:</Text> คลอร์เฟนิรามีน (CPM), เซทิริซีน (Cetirizine), ลอราทาดีน (Loratadine)<br />
+                    <Text span fw={600} c="#1d4ed8">คำแนะนำ:</Text> CPM ไม่อันตรายต่อเนื้อไตแต่ง่วงซึมและอาจทำให้ปัสสาวะคั่งในผู้สูงอายุ ส่วน Cetirizine ต้องปรับลดขนาดลงครึ่งหนึ่งในไตระยะ 3-5 เพราะขับออกทางไตเป็นหลัก
+                  </Text>
+                </Paper>
+              </SimpleGrid>
+            </Paper>
           </Stack>
         )}
 
